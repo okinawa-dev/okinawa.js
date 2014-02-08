@@ -1,5 +1,4 @@
 
-
 Engine.SceneCollection = function()
 {
   this.collection         = null;  // Array in the form scenes[i] = { 'scene': scene, 'name': name }
@@ -92,5 +91,4 @@ Engine.SceneCollection.prototype.advanceScene = function()
   // engine.logs.log('Engine.ScreenCollection.advanceScene', 'Advance Level', this.currentSceneIndex + 1);
   this.setScene(this.currentSceneIndex + 1);
 }
-
 

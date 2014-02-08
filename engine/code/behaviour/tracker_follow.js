@@ -1,5 +1,4 @@
 
-
 Engine.TrackerFollow = function(callback) 
 {
   Engine.Tracker.call(this, callback);

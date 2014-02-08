@@ -1,5 +1,4 @@
 
-
 Engine.Localization = function()
 {
   this.fallbackLanguage = "english";
@@ -68,7 +67,7 @@ Engine.Localization.prototype.get = function(stringId)
     return text;
   else 
     return this.stringTables[this.fallbackLanguage][stringId];
-},
+}
 
 Engine.Localization.prototype.addStringTable = function(language, table) 
 {

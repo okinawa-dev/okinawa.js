@@ -12,8 +12,6 @@ Engine.Emitter = function(x, y, particleVx, particleVy, magnitude, spread)
 
   // velocity vector of the particles
   this.particleSpeed = new Engine.MATH.Point(particleVx, particleVy);
-  // this.particleVx    = particleVx;
-  // this.particleVy    = particleVy;
 
   this.magnitude     = magnitude;
 
@@ -60,7 +58,6 @@ Engine.Emitter.prototype.createParticle = function()
 
 Engine.Emitter.prototype.step = function (dt)
 {
-  // Call inherited function 
   Engine.Item.prototype.step.call(this, dt);
   
   // this.emissionCount = this.emissionCount++ % this.emissionRate;
@@ -76,7 +73,6 @@ Engine.Emitter.prototype.step = function (dt)
 
 Engine.Emitter.prototype.draw = function (ctx) 
 {
-  // Call inherited function 
   Engine.Item.prototype.draw.call(this, ctx);
 }
 

@@ -1,5 +1,4 @@
 
-
 Engine.GUI.GuiNumberMenu = function(txt)
 {
   Engine.GUI.GuiElement.call(this);
@@ -73,7 +72,6 @@ Engine.GUI.GuiNumberMenu.prototype.activate = function()
         text.getPosition(),
         text.getSize(),
         engine.input.convertNumberToKey(i + 1));
-      
     }     
   }
 }

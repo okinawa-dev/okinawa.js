@@ -1,5 +1,4 @@
 
-
 Engine.Effect = function(effectType, x, y, vx, vy) 
 {
   Engine.Item.call(this);

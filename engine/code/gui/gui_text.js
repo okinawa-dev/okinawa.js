@@ -1,5 +1,4 @@
 
-
 Engine.GUI.GuiText = function(txt, x, y)
 {
   Engine.GUI.GuiElement.call(this);

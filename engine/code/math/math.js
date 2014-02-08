@@ -1,24 +1,19 @@
 
-
 Engine.MATH = {};
-
 
 // Object to store mathematical and graphical auxiliar 
 // functions that have no other place to be ;)
 
 Engine.MATH.Math = function()
 {
-
 }
 
 Engine.MATH.Math.prototype.initialize = function()
 {
-
 }
 
 Engine.MATH.Math.prototype.activate = function()
 {
-
 }
 
 // Distance between two Engine.MATH.Point objects

@@ -1,5 +1,4 @@
 
-
 Engine.INPUT.Controller = function()
 {
   // Same as KEYBOARD, but with code:key ordering
@@ -63,7 +62,6 @@ Engine.INPUT.Controller.prototype.initialize = function()
     return false;
   });
 
-
   // To avoid selections
   // document.onselectstart = function() { return false; }
 
@@ -80,7 +78,6 @@ Engine.INPUT.Controller.prototype.initialize = function()
 
 Engine.INPUT.Controller.prototype.activate = function()
 {
-
 }
 
 Engine.INPUT.Controller.prototype.getCurrentInputcontroller = function() 

@@ -1,5 +1,4 @@
 
-
 Engine.TrackerCircle = function(callback) 
 {
   Engine.Tracker.call(this, callback);

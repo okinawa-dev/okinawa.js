@@ -86,34 +86,20 @@ Engine.ParticleCollection.prototype.draw = function (ctx)
   {
     this.effectField.ctx.clearRect ( 0 , 0 , engine.core.size.x , engine.core.size.y );
 
-    // if (engine.options.useSmoothParticles)
-    // {
-    //   var imageData = this.effectField.ctx.getImageData(0, 0, engine.core.size.x, engine.core.size.y);
+    var particle, i = -1;
+    while (particle = this.particles[++i])
+    {
+      var tmpColor = [particle.color[0] - particle.lived * 3, 
+                      particle.color[1] - particle.lived,
+                      particle.color[2],
+                      particle.color[3]];
 
-    //   var particle, i = -1;
-    //   while (particle = this.particles[++i]) {
-    //      particle.drawSoft(imageData.data, engine.core.size.x, engine.core.size.y);
-    //   }
- 
-    //   this.effectField.ctx.putImageData(imageData, 0, 0);
-    // }
-    // else
-    // {
-      var particle, i = -1;
-      while (particle = this.particles[++i])
-      {
-        var tmpColor = [particle.color[0] - particle.lived * 3, 
-                        particle.color[1] - particle.lived,
-                        particle.color[2],
-                        particle.color[3]];
-
-        this.effectField.ctx.fillStyle = 'rgba(' + tmpColor.join(',') + ')';
-        this.effectField.ctx.fillRect(particle.position.x, 
-                                      particle.position.y, 
-                                      particle.size, 
-                                      particle.size);
-      }
-    // }
+      this.effectField.ctx.fillStyle = 'rgba(' + tmpColor.join(',') + ')';
+      this.effectField.ctx.fillRect(particle.position.x, 
+                                    particle.position.y, 
+                                    particle.size, 
+                                    particle.size);
+    }
 
     ctx.drawImage(this.effectField, 0, 0, engine.core.size.x, engine.core.size.y);
   }

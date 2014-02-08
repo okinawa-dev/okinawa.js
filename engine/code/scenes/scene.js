@@ -1,5 +1,4 @@
 
-
 Engine.Scene = function()
 {
   Engine.Item.call(this);
@@ -49,7 +48,6 @@ Engine.Scene.prototype.draw = function(ctx)
   for (var i = 0, len = this.backgrounds.length; i < len; i++) 
     this.backgrounds[i].draw(ctx);
 
-  // Call inherited function 
   Engine.Item.prototype.draw.call(this, ctx);
 
   this.gui.draw(ctx);
@@ -64,7 +62,6 @@ Engine.Scene.prototype.step = function(dt)
 
   this.clock.step(dt);
 
-  // Call inherited function 
   Engine.Item.prototype.step.call(this, dt);
 
   this.gui.step(dt);

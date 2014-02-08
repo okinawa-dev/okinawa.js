@@ -1,5 +1,4 @@
 
-
 Engine.GUI.GuiWindow = function(txt)
 {
   Engine.GUI.GuiElement.call(this);
@@ -41,13 +40,11 @@ Engine.GUI.GuiWindow.prototype.draw = function(ctx)
                   size.x * scale.x, 
                   size.y * scale.y);
 
-  // Call inherited function 
   Engine.GUI.GuiElement.prototype.draw.call(this, ctx);
 }
 
 Engine.GUI.GuiWindow.prototype.step = function(dt)
 {
-  // Call inherited function 
   Engine.GUI.GuiElement.prototype.step.call(this, dt);
 }
 

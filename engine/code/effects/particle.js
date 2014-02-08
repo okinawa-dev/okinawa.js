@@ -15,6 +15,7 @@ Engine.Particle = function(x, y, vx, vy)
 Engine.Particle.prototype = Object.create(Engine.Item.prototype);
 Engine.Particle.prototype.constructor = Engine.Particle;
 
+
 Engine.Particle.prototype.step = function(dt) 
 {
   this.move(this.speed.x * dt / engine.core.TIME_PER_FRAME,

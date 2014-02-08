@@ -1,8 +1,6 @@
 
-
 // Init namespace
 Engine.INPUT = {};
-
 
 // Keyboard key codes
 Engine.INPUT.KEYS = {

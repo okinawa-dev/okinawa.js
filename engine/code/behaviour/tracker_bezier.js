@@ -1,5 +1,4 @@
 
-
 Engine.TrackerBezier = function(callback) 
 {
   Engine.Tracker.call(this, callback);

@@ -25,13 +25,11 @@ Engine.Tracker.prototype.step = function (dt)
   // Item.step is where the attached items steps are called, so they go 
   // after updating the tracker
 
-  // Call inherited function 
   Engine.Item.prototype.step.call(this, dt);
 }
 
 Engine.Tracker.prototype.draw = function (ctx) 
 {
-  // Call inherited function 
   Engine.Item.prototype.draw.call(this, ctx); 
 }
 

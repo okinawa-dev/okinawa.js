@@ -1,5 +1,4 @@
 
-
 Engine.Background = function()
 { 
   Engine.Item.call(this);
@@ -33,7 +32,6 @@ Engine.Background.prototype.initialize = function()
 
 Engine.Background.prototype.activate = function()
 {
-  // Call inherited function 
   Engine.Item.prototype.activate.call(this);  
 
   this.verticalOffset = 0;
@@ -42,7 +40,6 @@ Engine.Background.prototype.activate = function()
 
 Engine.Background.prototype.step = function(dt) 
 {
-  // Call inherited function 
   Engine.Item.prototype.step.call(this, dt);
 
   // Not necessary if there are no animations, but here it is
@@ -134,8 +131,6 @@ Engine.Background.prototype.draw = function(ctx)
       engine.sprites.draw(ctx, this);
     }
 
-    // Call inherited function 
     // Engine.Item.prototype.draw.call(this, ctx);
-
   }
 }

@@ -7,8 +7,6 @@
 //   | a b |
 //   | c d |
 
-
-
 Engine.MATH.RotationMatrix = function() 
 {
   this.angle = 0;

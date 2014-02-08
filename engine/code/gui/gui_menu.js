@@ -1,5 +1,4 @@
 
-
 Engine.GUI.GuiMenu = function(txt)
 {
   Engine.GUI.GuiElement.call(this);

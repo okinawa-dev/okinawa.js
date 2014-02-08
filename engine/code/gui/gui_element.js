@@ -1,5 +1,4 @@
 
-
 Engine.GUI.GuiElement = function(parentItem)
 {
   Engine.Item.call(this);
@@ -34,13 +33,11 @@ Engine.GUI.GuiElement.prototype.activate = function()
 
 Engine.GUI.GuiElement.prototype.draw = function(ctx)
 {
-  // Call inherited function 
   Engine.Item.prototype.draw.call(this, ctx);
 }
 
 Engine.GUI.GuiElement.prototype.step = function(dt)
 {
-  // Call inherited function 
   Engine.Item.prototype.step.call(this, dt);
 }
 
@@ -66,8 +63,6 @@ Engine.GUI.GuiElement.prototype.setBlink = function(value)
 
 Engine.GUI.GuiElement.prototype.blinkStep = function()
 {
-  // engine.logs.log('GuiElement.blinkStep', 'Blinking ' + this.guiId);
-
   if ((this.blink == true) && (this.getVisible() == true))
     this.setVisible(false);
   else if ((this.blink == true) && (this.getVisible() == false))

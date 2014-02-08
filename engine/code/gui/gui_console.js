@@ -1,5 +1,4 @@
 
-
 Engine.GUI.GuiConsole = function(txt)
 {
   Engine.GUI.GuiElement.call(this);

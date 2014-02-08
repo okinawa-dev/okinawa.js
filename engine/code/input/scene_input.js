@@ -1,5 +1,4 @@
 
-
 Engine.INPUT.SceneInput = function()
 {
   // List of combos to detect

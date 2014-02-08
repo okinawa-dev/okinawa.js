@@ -10,7 +10,7 @@ Engine.Preloader = function()
   this.completed        = []; // Assets already loaded
 
   this.message          = null;
-};
+}
 
 Engine.Preloader.prototype = Object.create(Engine.Scene.prototype);
 Engine.Preloader.prototype.constructor = Engine.Preloader;
@@ -29,7 +29,6 @@ Engine.Preloader.prototype.activate = function()
 {
   engine.logs.log('Preloader.activate', 'Loading assets');
 
-  // Call inherited function first
   Engine.Scene.prototype.activate.call(this);
 
   this.timeStarted = new Date().getTime();
@@ -84,7 +83,6 @@ Engine.Preloader.prototype.incrementalLoader = function(info)
 
 Engine.Preloader.prototype.draw = function(ctx)
 {
-  // Call inherited function first
   Engine.Scene.prototype.draw.call(this, ctx);
 
   // Loading bar
@@ -101,7 +99,6 @@ Engine.Preloader.prototype.draw = function(ctx)
 
 Engine.Preloader.prototype.step = function(dt)
 {
-  // Call inherited function first
   Engine.Scene.prototype.step.call(this, dt);
 
   this.message.setText( engine.localization.get('loaded') + ' ' + this.percentageLoaded + '%' );

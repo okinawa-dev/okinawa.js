@@ -1,5 +1,4 @@
 
-
 Engine.GUI.GuiTouchButton = function(txt)
 {
   Engine.GUI.GuiElement.call(this);
@@ -49,13 +48,11 @@ Engine.GUI.GuiTouchButton.prototype.setButtonToEmulate = function(button)
 
 Engine.GUI.GuiTouchButton.prototype.draw = function(ctx)
 {
-  // Call inherited function 
   Engine.GUI.GuiElement.prototype.draw.call(this, ctx);
 }
 
 Engine.GUI.GuiTouchButton.prototype.step = function(dt)
 {
-  // Call inherited function 
   Engine.GUI.GuiElement.prototype.step.call(this, dt);
 }
 
