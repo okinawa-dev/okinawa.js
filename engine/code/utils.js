@@ -1,33 +1,4 @@
 
-// // Check if some item has been removed (position is undefined)
-// // and removes it from the array
-// Array.prototype.filterUndefined = function()
-// {
-//     for(var i = 0; i < this.length; i++)
-//     {
-//       if (this[i] == undefined)
-//       {
-//         this.splice(i, 1);
-//         i--;
-//       }
-//     }
-// };
-
-// function getGlobalOffset(element)
-// {
-//   var pos = new Engine.MATH.Point(0, 0);
-//   pos.x = element.offsetLeft;
-//   pos.y = element.offsetTop;
-
-//   while (element = element.offsetParent)
-//   {
-//     pos.x += element.offsetLeft;
-//     pos.y += element.offsetTop;    
-//   }
-
-//   return pos;
-// }
-
 // Global addEvent to fix old IE way of attaching events
 function addEvent(evnt, elem, func) 
 {
@@ -102,11 +73,3 @@ if (!Object.keys) {
   }());
 }
 
-
-// Truncate for float numbers
-// From http://stackoverflow.com/questions/4912788/truncate-not-round-off-decimal-numbers-in-javascript
-// Number.prototype.toFixedDown = function(digits) {
-//   var n = this - Math.pow(10, -digits)/2;
-//   n += n / Math.pow(2, 53); 
-//   return n.toFixed(digits);
-// };

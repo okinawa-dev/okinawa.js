@@ -1,4 +1,3 @@
-
  
 Engine.Sprites = function()
 {

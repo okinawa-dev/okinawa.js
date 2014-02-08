@@ -49,7 +49,6 @@ Engine.Device.prototype.doneResizing = function()
 
 Engine.Device.prototype.activate = function()
 {
-
 }
 
 Engine.Device.prototype.getGlobalScroll = function()
@@ -139,7 +138,6 @@ Engine.Device.prototype.createAndDownloadFile = function(filename, text)
     link.click();  
     document.body.removeChild(link)  
   }
-  
 }
 
 

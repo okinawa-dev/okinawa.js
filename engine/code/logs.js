@@ -1,8 +1,6 @@
 
-
 Engine.Logs = function()
 {
-
 }
 
 Engine.Logs.prototype.log = function (fileName, message, object) 
@@ -26,7 +24,6 @@ Engine.Logs.prototype.log = function (fileName, message, object)
   {
     var e = document.createElement('div');
     e.innerHTML = result;
-    // e.innerHTML = fileName + ' ' + message + ' ' + object;
     engine.core.canvas.parentNode.appendChild(e);
   }
   // Old IE, console is not initialized by default

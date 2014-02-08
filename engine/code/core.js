@@ -1,5 +1,4 @@
 
-
 Engine.Core = function() 
 {
 
@@ -13,9 +12,6 @@ Engine.Core = function()
   this.canvas = null;
   this.ctx = null;
 
-  // this.height = 800;
-  // this.width = 600;
-
   this.size = new Engine.MATH.Point(800, 600);
 
   // Should use requestAnimationFrame or not
@@ -26,7 +22,6 @@ Engine.Core = function()
   // To count frames per second
   this.fpsPassed = 0;           // frames rendered since last time
   this.fps = this.FRAMES_PER_SECOND; // updated only each second
-
 }
 
 // Game Initialization
@@ -168,32 +163,16 @@ Engine.Core.prototype.loop = function()
       }
 
       engine.gui.draw(this.ctx);
-
-      // this.timeLastRender = new Date().getTime();
     }
 
     // If the loop has been executed, wait a full TIME_PER_FRAME until next loop step
     dt = 0;
   }
 
-
   if (this.useAnimationFrame)
     window.requestAnimationFrame(function() { engine.core.loop(); });
   else
   {
-    // var delay;
-
-    // if (now - this.timeGameStart > 2000)
-    // {
-    //   delay = this.fps * TIME_PER_FRAME / FRAMES_PER_SECOND;
-    //   if (delay > TIME_PER_FRAME) 
-    //     delay = TIME_PER_FRAME;
-    // }
-    // else
-    // {
-    //   delay = TIME_PER_FRAME;
-    // }
-
     setTimeout(function() { engine.core.loop(); }, engine.core.TIME_PER_FRAME - dt);
   }
 }
@@ -202,7 +181,6 @@ Engine.Core.prototype.clearScreen = function()
 { 
   this.ctx.clearRect(0, 0, this.size.x, this.size.y);
 }
-
 
 Engine.Core.prototype.pauseGame = function() 
 { 

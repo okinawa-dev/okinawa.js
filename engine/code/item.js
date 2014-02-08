@@ -150,9 +150,6 @@ Engine.Item.prototype.setImage = function(spriteName)
   this.spriteName = spriteName;
 
   this.size = engine.sprites.getSpriteSize(spriteName);
-
-  // this.size = new Engine.MATH.Point(engine.sprites.getSpriteInfo(spriteName, SPRITEINFO.WIDTH),
-  //                       engine.sprites.getSpriteInfo(spriteName, SPRITEINFO.HEIGTH));
 }
 
 Engine.Item.prototype.getOrigin = function()
@@ -172,8 +169,6 @@ Engine.Item.prototype.getPosition = function()
   {
     parentPosition = this._parent.getPosition();
     transformedPosition = this._parent.rotationMatrix.transformPosition(this.position);
-    // result.x = this.position.x + parentPosition.x;
-    // result.y = this.position.y + parentPosition.y;
     result.x = transformedPosition.x + parentPosition.x;
     result.y = transformedPosition.y + parentPosition.y;
   }
@@ -212,6 +207,7 @@ Engine.Item.prototype.setSpeed = function(x, y)
   this.speed.x = x;
   this.speed.y = y;  
 }
+
 Engine.Item.prototype.getParentPosition = function()
 {
   if (this._parent != null)
@@ -219,6 +215,7 @@ Engine.Item.prototype.getParentPosition = function()
   else
     return new Engine.MATH.Point();
 }
+
 Engine.Item.prototype.getParentSpeed = function()
 {
   if (this._parent != null)
@@ -226,6 +223,7 @@ Engine.Item.prototype.getParentSpeed = function()
   else
     return new Engine.MATH.Point();
 }
+
 Engine.Item.prototype.getRadius = function()
 {
   return Math.sqrt(Math.pow(this.size.x/2, 2) + Math.pow(this.size.y/2, 2));
@@ -308,7 +306,6 @@ Engine.Item.prototype.step = function(dt)
 
 Engine.Item.prototype.eventAnimationRestart = function() 
 {
-  
 }
 
 Engine.Item.prototype.drawHelper = function(ctx, what)

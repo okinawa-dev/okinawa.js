@@ -68,13 +68,9 @@ Engine.UnalignedClock.prototype.step = function(dt)
   }
 }
 
-
 // ********************
 // ********************
 // ********************
-
-
-
 
 Engine.Clock = function()
 {

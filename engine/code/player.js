@@ -1,5 +1,4 @@
 
-
 Engine.Player = function ()
 { 
   engine.logs.log('Player.initialize', 'Initializing player object');
@@ -19,17 +18,14 @@ Engine.Player.prototype.setAvatar = function(item)
 
 Engine.Player.prototype.initialize = function()
 {
-
 }
 
 Engine.Player.prototype.activate = function()
 {
-
 }
 
 Engine.Player.prototype.step = function(dt)
 {
- 
 }
 
 Engine.Player.prototype.draw = function(ctx)
