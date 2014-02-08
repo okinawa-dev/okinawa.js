@@ -20,7 +20,7 @@ Current list of features:
  
 To do:
  * Sound
- * Item colections in the scene (multiple layers of items)
+ * Item collections in the scene (multiple layers of items)
  * Upload some examples of how to use the engine
  * Bla, bla, bla...
 
