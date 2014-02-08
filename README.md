@@ -7,7 +7,7 @@ Current list of features:
  * Multiple scenes/levels
  * Each level with its own hierarchy of items on screen
  * Item positioning and rotation inside the hierarchy
- * Independant background collection attached to the scene (with parallax)
+ * Independent background collection attached to the scene (with parallax)
  * Image preloading
  * GUI elements (text, console, menus, windows/frames)
  * Css fonts rendering to images (only re-rendered when text changes)
