@@ -37,7 +37,6 @@ Engine.prototype.initialize = function(canvasElementId)
 
   engine.logs.log('Engine.initialize', 'Initializing starts...');
 
-  // this.consts.initialize();
   this.core.initialize(canvasElementId);
   this.math.initialize();
   this.device.initialize();
@@ -69,8 +68,5 @@ Engine.prototype.initialize = function(canvasElementId)
 
   engine.preloader.playable = false; // Just in case
   engine.preloader.initialize();
-
-  // Checked from game.initialize to be sure the engine was initialized 
-  return true;
 }
 
