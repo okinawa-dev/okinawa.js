@@ -7,7 +7,7 @@
 //   | a b |
 //   | c d |
 
-Engine.MATH.RotationMatrix = function() 
+Engine.MATH.Rotation = function() 
 {
   this.angle = 0;
 
@@ -18,7 +18,17 @@ Engine.MATH.RotationMatrix = function()
   this.d = 1;
 }
 
-Engine.MATH.RotationMatrix.prototype.update = function(newAngle)
+Engine.MATH.Rotation.prototype.getAngle = function()
+{
+  return this.angle;
+}
+
+Engine.MATH.Rotation.prototype.rotate = function(dRot)
+{
+  this.update(this.angle + dRot);
+}
+
+Engine.MATH.Rotation.prototype.update = function(newAngle)
 {
   this.angle = newAngle;
 
@@ -28,7 +38,7 @@ Engine.MATH.RotationMatrix.prototype.update = function(newAngle)
   this.d = Math.cos(this.angle);
 }
 
-Engine.MATH.RotationMatrix.prototype.transformPosition = function(point)
+Engine.MATH.Rotation.prototype.transformPosition = function(point)
 {
   return new Engine.MATH.Point(point.x * this.a + point.y * this.b, point.x * this.c + point.y * this.d);
 }

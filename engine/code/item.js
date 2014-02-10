@@ -18,13 +18,11 @@ Engine.Item = function()
   this.maxVel   = 0; // maximum speed
   this.accel    = 0; // acceleration 
 
-  this.rotation = 0; // current rotation
-  this.maxRot   = 0; // max rotation angle
+  // this.rotation = 0; // current rotation
   this.vRot     = 0; // rotation speed
   this.maxVRot  = 0; // max rotation speed
   this.accelRot = 0; // rotation accel
-
-  this.rotationMatrix  = new Engine.MATH.RotationMatrix();
+  this.rotation = new Engine.MATH.Rotation();
 
   this.globalAlpha     = 1;
 
@@ -49,7 +47,6 @@ Engine.Item = function()
 
 Engine.Item.prototype.initialize = function()
 {
-  
 }
 
 Engine.Item.prototype.activate = function()
@@ -168,7 +165,7 @@ Engine.Item.prototype.getPosition = function()
   if (this._parent != null)
   {
     parentPosition = this._parent.getPosition();
-    transformedPosition = this._parent.rotationMatrix.transformPosition(this.position);
+    transformedPosition = this._parent.rotation.transformPosition(this.position);
     result.x = transformedPosition.x + parentPosition.x;
     result.y = transformedPosition.y + parentPosition.y;
   }
@@ -242,27 +239,17 @@ Engine.Item.prototype.move = function(dx, dy)
 
 Engine.Item.prototype.rotate = function(dRot)
 {
-  this.rotation += dRot;
-
-  if ((this.maxRot != 0) && (this.rotation > this.maxRot))
-    this.setRotation(this.maxRot);
-
-  else if ((this.maxRot != 0) && (this.rotation < -this.maxRot))
-    this.setRotation(-this.maxRot);
-
-  else
-    this.rotationMatrix.update(this.rotation);
+  this.rotation.rotate(dRot);
 }
 
 Engine.Item.prototype.setRotation = function(rot)
 {
-  this.rotation = rot;
-  this.rotationMatrix.update(this.rotation);
+  this.rotation.update(rot);
 }
 
 Engine.Item.prototype.getRotation = function()
 {
-  // TODO remove?
+  return this.rotation.getAngle();
 }
 
 Engine.Item.prototype.draw = function(ctx)
@@ -290,8 +277,11 @@ Engine.Item.prototype.draw = function(ctx)
 
 Engine.Item.prototype.step = function(dt)
 {
-  this.move(this.speed.x * dt / engine.core.TIME_PER_FRAME, this.speed.y * dt / engine.core.TIME_PER_FRAME);
-  this.rotate(this.vRot * dt / engine.core.TIME_PER_FRAME);
+  if ((this.speed.x != 0) || (this.speed.y != 0))
+    this.move(this.speed.x * dt / engine.core.TIME_PER_FRAME, this.speed.y * dt / engine.core.TIME_PER_FRAME);
+  
+  if (this.vRot != 0)
+    this.rotate(this.vRot * dt / engine.core.TIME_PER_FRAME);
 
   // Advance the necessary frames in the animation if needed
   if ((this.isAnimated == true) && (this.spriteName != null))

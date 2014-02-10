@@ -4,7 +4,7 @@ core.js
 utils.js
 math/math.js
 math/point.js
-math/rotation_matrix.js
+math/rotation.js
 device.js
 logs.js
 input/input.js

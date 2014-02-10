@@ -83,12 +83,12 @@ Engine.Sprites.prototype.draw = function(ctx, object)
   // Set transparency
   ctx.globalAlpha = object.globalAlpha;
 
-  if (object.rotation != 0)
+  if (object.rotation.getAngle() != 0)
   {
     ctx.save();
 
     ctx.translate(position.x, position.y);
-    ctx.rotate(object.rotation);
+    ctx.rotate(object.rotation.getAngle());
 
     ctx.drawImage(this.images[image],
                   xStart + object.currentFrame * width, yStart, 
