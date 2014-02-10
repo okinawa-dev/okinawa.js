@@ -25,3 +25,14 @@ Engine.MATH.Math.prototype.pointDistance = function(origin, destination)
 
   return Math.sqrt(Math.pow(destination.x - origin.x, 2) + Math.pow(destination.y - origin.y, 2));
 }
+
+
+Engine.MATH.Math.prototype.angleToDirectionVector = function(angle)
+{
+  var result = new Engine.MATH.Point();
+
+  result.x = Math.cos(angle);
+  result.y = Math.sin(angle);
+
+  return result;
+}
