@@ -262,15 +262,15 @@ Engine.Item.prototype.draw = function(ctx)
     if (this.spriteName != null)
       engine.sprites.draw(ctx, this);
 
-    if (engine.options.drawBoundingBoxes)
+    if (engine.options.drawBoundingBoxes == true)
       this.drawHelper(ctx, 'spriteBox');
-    if (engine.options.drawMaxRadius)
+    if (engine.options.drawMaxRadius == true)
       this.drawHelper(ctx, 'maxRadius');
-    if (engine.options.drawCollisionRadius)
+    if (engine.options.drawCollisionRadius == true)
       this.drawHelper(ctx, 'collisionRadius');
-    if (engine.options.drawOrigins)
+    if (engine.options.drawOrigins == true)
       this.drawHelper(ctx, 'origin');
-    if (engine.options.drawCenters)
+    if (engine.options.drawCenters == true)
       this.drawHelper(ctx, 'center');
   }
 }
