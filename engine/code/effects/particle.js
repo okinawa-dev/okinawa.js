@@ -1,10 +1,10 @@
 
-Engine.Particle = function(x, y, vx, vy) 
+Engine.Particle = function(position, speed) 
 {
   Engine.Item.call(this);
 
-  this.setPosition(x, y);
-  this.setSpeed(vx, vy);
+  this.setPosition(position.x, position.y);
+  this.setSpeed(speed.x, speed.y);
 
   this.ttl    = -1;
   this.lived  = 0;

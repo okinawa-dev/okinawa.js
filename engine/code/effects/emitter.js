@@ -1,17 +1,14 @@
 
-Engine.Emitter = function(x, y, particleVx, particleVy, magnitude, spread) 
+Engine.Emitter = function(particleSpeed, magnitude, spread) 
 {
   Engine.Item.call(this);
   
-  // position of the emitter
-  this.position.x    = x;
-  this.position.y    = y;
-
-  this.speed.x       = 0;
-  this.speed.y       = 0;
+  // this.position = new Engine.MATH.Point(0, 0);
+  // this.speed    = new Engine.MATH.Point(0, 0);
+  this.size     = new Engine.MATH.Point(10, 10);
 
   // velocity vector of the particles
-  this.particleSpeed = new Engine.MATH.Point(particleVx, particleVy);
+  this.particleSpeed = particleSpeed;
 
   this.magnitude     = magnitude;
 
@@ -36,17 +33,25 @@ Engine.Emitter.prototype.createParticle = function()
 {
   var modifier = Math.random() * this.spread - this.spread / 2;
 
-  var newvx = this.particleSpeed.x * this.magnitude;
-  var newvy = this.particleSpeed.y * this.magnitude;
-  newvx = (newvx * Math.cos(modifier)) + (newvy * Math.sin(modifier));
-  newvy = (-newvy * Math.cos(modifier)) - (newvx  * Math.sin(modifier));
+  var angle = this.getRotation() + modifier;
+  
+  var direction = engine.math.angleToDirectionVector(angle);
+  direction = direction.normalize();
 
-  // Initial position of the particle (counting the inherited parent position)
-  var position = this.getParentPosition();
+  var particleSpeed = new Engine.MATH.Point(direction.x * this.particleSpeed,
+                                            direction.y * this.particleSpeed);
+
+
+  // var newvx = this.particleSpeed.x * this.magnitude;
+  // var newvy = this.particleSpeed.y * this.magnitude;
+  // newvx = (newvx * Math.cos(modifier)) + (newvy * Math.sin(modifier));
+  // newvy = (-newvy * Math.cos(modifier)) - (newvx  * Math.sin(modifier));
+
+  // Initial position of the particle
+  var position = this.getPosition();
 
   // (x, y, vx, vy)
-  var particle = new Engine.Particle( this.position.x + position.x, this.position.y + position.y,
-                               newvx, newvy);
+  var particle = new Engine.Particle( position, particleSpeed);
 
   particle.ttl = Math.random() * this.particleLife;
   particle.color = this.particleColor;

@@ -18,7 +18,6 @@ Engine.Item = function()
   this.maxVel   = 0; // maximum speed
   this.accel    = 0; // acceleration 
 
-  // this.rotation = 0; // current rotation
   this.vRot     = 0; // rotation speed
   this.maxVRot  = 0; // max rotation speed
   this.accelRot = 0; // rotation accel
@@ -248,8 +247,11 @@ Engine.Item.prototype.setRotation = function(rot)
 }
 
 Engine.Item.prototype.getRotation = function()
-{
-  return this.rotation.getAngle();
+{  
+  if (this._parent != null)
+    return this.rotation.getAngle() + this._parent.getRotation();
+  else
+    return this.rotation.getAngle();
 }
 
 Engine.Item.prototype.draw = function(ctx)

@@ -8,7 +8,7 @@ Engine.Options = function()
 	this.useSmoothParticles = false;
 
 	// drawHelpers:
-	this.drawBoundingBoxes = false;
+	this.drawBoundingBoxes = true;
 	this.drawMaxRadius = false;
 	this.drawCollisionRadius = false;
 	this.drawOrigins = false;
@@ -32,7 +32,7 @@ Engine.Options = function()
 
 	this.allowPause = true; // allow pausing the game pressing the P key
 	this.allowHalt = false; // allow halting the engine pressing the escape key
-	this.allowFForFps = false; // allow pressing F to show FPS on screen
+	this.allowFForFps = true; // allow pressing F to show FPS on screen
 	this.pauseOnWindowChange = false;
 	this.avoidLeavingPage = false;
 

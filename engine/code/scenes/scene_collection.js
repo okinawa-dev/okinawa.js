@@ -32,7 +32,6 @@ Engine.SceneCollection.prototype.step = function(dt)
 
 Engine.SceneCollection.prototype.getCurrentScene = function() 
 { 
-  // return this.collection[this.currentSceneIndex]; 
   return this.currentScene;
 }
 
@@ -55,6 +54,9 @@ Engine.SceneCollection.prototype.setScene = function(num)
   this.currentScene           = this.collection[num].scene;
   this.currentScene.isCurrent = true;
   this.currentScene.activate();
+  
+  if (game.player != undefined)
+    game.player.activate();
 
   engine.logs.log('Engine.ScreenCollection.setScene', 
                   'Set Scene: ' + this.currentSceneName + ' (' + this.currentSceneIndex + ')');
@@ -64,9 +66,6 @@ Engine.SceneCollection.prototype.addScene = function(scene, name)
 {
   engine.logs.log('Engine.ScreenCollection.addScene', 'Add Scene: ' + name);
 
-  // if (playable != undefined)
-  //   scene.playable = playable;
-  
   scene.isCurrent = false;
 
   this.collection.push( { 'scene': scene, 'name': name } );
@@ -74,9 +73,6 @@ Engine.SceneCollection.prototype.addScene = function(scene, name)
 
 Engine.SceneCollection.prototype.insertScene = function(scene, name, num)
 {
-  // if (playable != undefined)
-  //   scene.playable = playable;
-
   scene.isCurrent = false;
 
   this.collection.splice(num, 0, { 'scene': scene, 'name': name });
