@@ -1,0 +1,4 @@
+
+// Init namespace
+Game.ITEMS = {};
+
