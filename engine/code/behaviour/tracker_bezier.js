@@ -64,18 +64,18 @@ Engine.TrackerBezier.prototype.step = function (dt)
   this.position.y = this.ay*(t*t*t) + this.by*(t*t) + this.cy*t + this.p0.y;
 
   // inform the attached items we are moving
-  for (var i = 0, len = this.getAttachedItems().length; i < len; i++)
-  {
-    var element = this.getAttachedItems()[i];
-    if (this.position.x > oldX)
-      element.informEvent(EVENTS.RIGHT);
-    else if (this.position.x < oldX)
-      element.informEvent(EVENTS.LEFT);
-    if (this.position.y > oldY)
-      element.informEvent(EVENTS.DOWN);
-    else if (this.position.y < oldY)
-      element.informEvent(EVENTS.UP);
-  }
+  // for (var i = 0, len = this.getAttachedItems().length; i < len; i++)
+  // {
+  //   var element = this.getAttachedItems()[i];
+  //   if (this.position.x > oldX)
+  //     element.informEvent(EVENTS.RIGHT);
+  //   else if (this.position.x < oldX)
+  //     element.informEvent(EVENTS.LEFT);
+  //   if (this.position.y > oldY)
+  //     element.informEvent(EVENTS.DOWN);
+  //   else if (this.position.y < oldY)
+  //     element.informEvent(EVENTS.UP);
+  // }
 
   // End of the curve
   if (this.bezierAdvance > 1) 
