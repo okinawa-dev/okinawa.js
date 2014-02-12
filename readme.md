@@ -13,7 +13,8 @@ Current list of features:
  * Css fonts rendering to images (only re-rendered when text changes)
  * Simple item behaviour attaching it to a tracker (bezier curves, circles, sine movement, follow)
  * Particle system
- * Input controller per scene (single keys and key combos: consecutive or simultaneous keys)
+ * Input controller per scene (key events subscribing or checking key status in real time)
+ * Input combos: consecutive or simultaneous keys
  * Basic touch controls for touch devices
  * Clock subcriptions to wait for certain events
  * Bla, bla, bla... 
