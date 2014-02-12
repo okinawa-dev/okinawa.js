@@ -1,7 +1,7 @@
 Okinawa
 =======
 
-A simple javascript 2D game engine.
+A simple javascript 2D game engine. Test it on http://okinawa.neverbot.com/
 
 Current list of features:
  * Multiple scenes/levels
