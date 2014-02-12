@@ -27,15 +27,15 @@ a
 #container {
   padding-top:10px;
   margin:0 auto;
-  width:800px;
+  width:500px;
   /* height:600px; */
 }
 
 /* Give canvas a background */
 canvas {
   background-color:black;
-  width:800px;
-  height:600px;
+  width:500px;
+  height:500px;
 }
 
 *

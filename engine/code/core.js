@@ -12,7 +12,7 @@ Engine.Core = function()
   this.canvas = null;
   this.ctx = null;
 
-  this.size = new Engine.MATH.Point(800, 600);
+  this.size = new Engine.MATH.Point(500, 500);
 
   // Should use requestAnimationFrame or not
   this.useAnimationFrame = false;
