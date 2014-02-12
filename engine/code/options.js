@@ -8,7 +8,7 @@ Engine.Options = function()
 	this.useSmoothParticles = false;
 
 	// drawHelpers:
-	this.drawBoundingBoxes = true;
+	this.drawBoundingBoxes = false;
 	this.drawMaxRadius = false;
 	this.drawCollisionRadius = false;
 	this.drawOrigins = false;

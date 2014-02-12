@@ -42,16 +42,10 @@ Engine.Emitter.prototype.createParticle = function()
                                             direction.y * this.particleSpeed);
 
 
-  // var newvx = this.particleSpeed.x * this.magnitude;
-  // var newvy = this.particleSpeed.y * this.magnitude;
-  // newvx = (newvx * Math.cos(modifier)) + (newvy * Math.sin(modifier));
-  // newvy = (-newvy * Math.cos(modifier)) - (newvx  * Math.sin(modifier));
-
   // Initial position of the particle
   var position = this.getPosition();
 
-  // (x, y, vx, vy)
-  var particle = new Engine.Particle( position, particleSpeed);
+  var particle = new Engine.Particle(position, particleSpeed);
 
   particle.ttl = Math.random() * this.particleLife;
   particle.color = this.particleColor;
@@ -81,3 +75,8 @@ Engine.Emitter.prototype.draw = function (ctx)
   Engine.Item.prototype.draw.call(this, ctx);
 }
 
+Engine.Emitter.prototype.collide = function(what)
+{
+  // Emitters are not physical objects
+  return false;
+}

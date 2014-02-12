@@ -1,8 +1,8 @@
 
 Engine.Localization = function()
 {
-  this.fallbackLanguage = "english";
-  this.selectedLanguage = "";
+  this.fallbackLanguage = 'english';
+  this.selectedLanguage = '';
   this.stringTables = {};
 
   this.baseTexts = {
@@ -36,7 +36,7 @@ Engine.Localization.prototype.initialize = function()
   // engine.logs.log('localization.initialize', 'Initializing localization handler');
 
   // initial lenguage
-  this.selectedLanguage = "english"; 
+  this.selectedLanguage = 'english'; 
 
   for (var lang in this.baseTexts) {
     this.stringTables[lang] = [];
