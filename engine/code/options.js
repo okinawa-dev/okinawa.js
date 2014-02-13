@@ -24,15 +24,15 @@ Engine.Options = function()
 	this.outputPressedCombos = false;
 
 	// Show LogHandler info in the navigator console
-	this.debugInConsole = true;
+	this.debugInConsole = false;
 	// Redirect console info to a html element
 	// Useful for mobile debug
 	this.debugInHtml = false;
 	this.debugFunctionNames = false;
 
-	this.allowPause = true; // allow pausing the game pressing the P key
+	this.allowPause = false; // allow pausing the game pressing the P key
 	this.allowHalt = false; // allow halting the engine pressing the escape key
-	this.allowFForFps = true; // allow pressing F to show FPS on screen
+	this.allowFForFps = false; // allow pressing F to show FPS on screen
 	this.pauseOnWindowChange = false;
 	this.avoidLeavingPage = false;
 

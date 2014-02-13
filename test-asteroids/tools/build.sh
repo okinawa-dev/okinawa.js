@@ -7,7 +7,7 @@ GAME_DIR='..'
 BUILD_DIR="$GAME_DIR/build"
 GAME_CONTENT_DIR="$BUILD_DIR/game"
 
-echo "Building scripts"
+echo "Executing scripts"
 
 # unify engine.js and game.js
 # echo " * execute $ENGINE_DIR/tools/group.sh"
