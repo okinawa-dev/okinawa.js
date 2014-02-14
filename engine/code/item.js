@@ -274,6 +274,8 @@ Engine.Item.prototype.draw = function(ctx)
       this.drawHelper(ctx, 'origin');
     if (engine.options.drawCenters == true)
       this.drawHelper(ctx, 'center');
+    if (engine.options.drawDirectionVectors == true)
+      this.drawHelper(ctx, 'direction');
   }
 }
 
@@ -344,6 +346,17 @@ Engine.Item.prototype.drawHelper = function(ctx, what)
                    pos.y - size.y/2 * scale.y, 
                    size.x * scale.x, 
                    size.y * scale.y);
+  }
+  else if ('direction' == what)
+  {
+    var speed = this.getSpeed();
+
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = '#FF0000';
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+    ctx.lineTo(pos.x + speed.x * 10, pos.y + speed.y * 10);
+    ctx.stroke();    
   }
 }
 

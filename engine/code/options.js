@@ -14,6 +14,7 @@ Engine.Options = function()
 	this.drawOrigins = false;
 	this.drawCenters = false;
 	this.drawTrackers = false;
+	this.drawDirectionVectors = false;
 
 	// screenInfos
 	this.showFps = false; // frames per second
