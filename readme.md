@@ -21,7 +21,7 @@ Current list of features:
 
 Tests included
  * Asteroids clone
-   + Execute the test-asteroids/tools/builds.sh script and the game will be built inside test-asteroids/build, ready to be tested
+   + Execute the test-asteroids/tools/build.sh script and the game will be built inside test-asteroids/build, ready to be tested
    
 To do:
  * Sound
