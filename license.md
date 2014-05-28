@@ -1,6 +1,6 @@
 
 
-Some of the assets have their own licenses:
+Some of the assets used in the tests have their own licenses:
 
 #### Sounds ####
 
