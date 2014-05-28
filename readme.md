@@ -17,18 +17,17 @@ Current list of features:
  * Input combos: consecutive or simultaneous keys
  * Basic touch controls for touch devices
  * Clock subcriptions to wait for certain events
- * Bla, bla, bla... 
+ * Basic audio support
 
 Tests included
  * Asteroids clone
    + Execute the test-asteroids/tools/build.sh script and the game will be built inside test-asteroids/build, ready to be tested
    
 To do:
- * Sound
+ * Better audio system
  * Item collections in the scene (multiple layers of items)
  * Upload more examples of how to use the engine
  * A manual/tutorial would be useful, don't you think?
- * Bla, bla, bla...
 
 I started this just to learn something about javascript, so...
  * Is the code orthodox? Maybe not, as I'm not used to most javascript coding conventions. Feel free to point anything you found or to improve it.
