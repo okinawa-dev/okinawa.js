@@ -73,3 +73,16 @@ if (!Object.keys) {
   }());
 }
 
+function detectIE()
+{
+  var userAgent = navigator.userAgent.toLowerCase();
+
+  if (/msie/.test(userAgent))
+    return parseFloat((userAgent.match(/.*(?:rv|ie)[\/: ](.+?)([ \);]|$)/) || [])[1]);
+
+  if (navigator.appVersion.indexOf('Trident/') > 0)
+    return 11;
+  
+  return -1;
+}
+

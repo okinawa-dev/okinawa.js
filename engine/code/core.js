@@ -29,7 +29,7 @@ Engine.Core.prototype.initialize = function(canvasElementId)
 {
   engine.logs.log('Engine.Core.initialize', 'Initializing engine core object');
 
-  this.canvas = document.getElementById(canvasElementId)
+  this.canvas = document.getElementById(canvasElementId);
   this.size.x = this.canvas.width;
   this.size.y = this.canvas.height;
   this.timeLastRender = new Date().getMilliseconds();

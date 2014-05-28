@@ -140,4 +140,27 @@ Engine.Device.prototype.createAndDownloadFile = function(filename, text)
   }
 }
 
+// Duplicated in utils.js, as a global function, just for really, really old IEs
+Engine.Device.prototype.detectIE = function()
+{
+  var userAgent = navigator.userAgent.toLowerCase();
+
+  if (/msie/.test(userAgent))
+    return parseFloat((userAgent.match(/.*(?:rv|ie)[\/: ](.+?)([ \);]|$)/) || [])[1]);
+
+  if (navigator.appVersion.indexOf('Trident/') > 0)
+    return 11;
+
+  return -1;
+}
+
+Engine.Device.prototype.isIE = function()
+{
+  // First detect IE 6-10, second detect IE 11
+  if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0)
+    return true;
+
+  return false;
+}
+
 

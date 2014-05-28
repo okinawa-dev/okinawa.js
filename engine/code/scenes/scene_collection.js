@@ -88,3 +88,13 @@ Engine.SceneCollection.prototype.advanceScene = function()
   this.setScene(this.currentSceneIndex + 1);
 }
 
+Engine.SceneCollection.prototype.goBackScene = function() 
+{
+  // Not able to go back
+  if (this.currentSceneIndex - 1 < 0)
+    return;
+
+  // engine.logs.log('Engine.ScreenCollection.advanceScene', 'Advance Level', this.currentSceneIndex + 1);
+  this.setScene(this.currentSceneIndex - 1);
+}
+
