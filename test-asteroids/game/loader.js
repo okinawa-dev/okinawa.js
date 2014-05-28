@@ -9,28 +9,24 @@ Game.Loader.prototype.initialize = function()
   // engine.preloader.addAnimation(anim_name, path, 
   // xStart, yStart, width, height, frames, initFrame, speed)
 
-  engine.preloader.addAnimation({ name: 'starship', path: 'game/images/ship.png', 
-                           xStart: 0, yStart: 0, width: 50, height: 50, frames: 1, initFrame: 0, speed: 0 });
+  engine.preloader.addSprite({ name: 'starship', path: 'game/images/ship.png', width: 50, height: 50 });
 
   // **************
   //  Enemies 
   // **************
-  engine.preloader.addAnimation({ name: 'meteor', path: 'game/images/meteor.png', 
-                           xStart: 0, yStart: 0, width: 60, height: 60, frames: 1, initFrame: 0, speed: 0 });
+  engine.preloader.addSprite({ name: 'meteor', path: 'game/images/meteor.png', width: 60, height: 60 });
 
   // **************
   //  Shots
   // **************
-  engine.preloader.addAnimation({ name: 'shot', path: 'game/images/shot.png', 
-                           xStart: 0, yStart: 0, width: 10, height: 10, frames: 1, initFrame: 0, speed: 0 });
+  engine.preloader.addSprite({ name: 'shot', path: 'game/images/shot.png', width: 10, height: 10 });
 
   // **************
   //  Effects
   // **************
   engine.preloader.addAnimation({ name: 'explosion', path: 'game/images/effect.explosion.png', 
                            xStart: 0, yStart: 0, width: 48, height: 47, frames: 11, initFrame: 0, speed: 14 });
-  engine.preloader.addAnimation({ name: 'halo', path: 'game/images/effect.halo.png', 
-                           xStart: 0, yStart: 0, width: 63, height: 63, frames: 1, initFrame: 0, speed: 0 });
+  engine.preloader.addSprite({ name: 'halo', path: 'game/images/effect.halo.png', width: 63, height: 63 });
 
   // First screen: preloader with progress bar
   engine.preloader.addBackground(game.commonBackground);

@@ -20,6 +20,19 @@ Engine.Preloader.prototype.addAnimation = function(data)
   this.assets.push(data);
 }
 
+Engine.Preloader.prototype.addSprite = function(data)
+{
+  // Add information for a complete animation spritesheet, with only
+  // one image
+  data.xStart = 0;
+  data.yStart = 0;
+  data.frames = 1;
+  data.initFrame = 0;
+  data.speed = 0;
+
+  this.addAnimation(data);
+}
+
 Engine.Preloader.prototype.initialize = function()
 {
   Engine.Scene.prototype.initialize.call(this);
