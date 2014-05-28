@@ -9,6 +9,7 @@ function Engine()
   this.effects      = null;
   this.particles    = null;
   this.sprites      = null;
+  this.sounds       = null;
   this.clock        = null;
   this.localization = null;
   this.input        = null;
@@ -28,6 +29,7 @@ Engine.prototype.initialize = function(canvasElementId)
   this.effects      = new Engine.Effects();
   this.particles    = new Engine.ParticleCollection();
   this.sprites      = new Engine.Sprites();
+  this.sounds       = new Engine.Sounds();
   this.clock        = new Engine.Clock();
   this.localization = new Engine.Localization();
   this.input        = new Engine.INPUT.Controller();
@@ -43,6 +45,7 @@ Engine.prototype.initialize = function(canvasElementId)
   this.effects.initialize();
   this.particles.initialize();
   this.sprites.initialize();
+  this.sounds.initialize();
 
   this.clock.initialize();
   this.clock.suscribeOneSecond('testFPS', function() { 

@@ -28,6 +28,12 @@ Game.Loader.prototype.initialize = function()
                            xStart: 0, yStart: 0, width: 48, height: 47, frames: 11, initFrame: 0, speed: 14 });
   engine.preloader.addSprite({ name: 'halo', path: 'game/images/effect.halo.png', width: 63, height: 63 });
 
+
+  // **************
+  //  Sounds
+  // **************
+  engine.preloader.addSound(({ name: 'explosion', path: 'game/sounds/fridobeck_explosion.mp3' }));
+
   // First screen: preloader with progress bar
   engine.preloader.addBackground(game.commonBackground);
   engine.preloader.initialize(); // Usually empty

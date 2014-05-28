@@ -1,7 +1,13 @@
  
 Engine.Sprites = function()
 {
+  // Information related to each sprite, as it was configured in the preloader, indexed by 
+  // the sprite id/name
+  // sprites[spriteName] = [imagePath, xStart, yStart, width, height, frames, initFrame, speed]
   this.sprites = {};
+
+  // List of Image() objects used in the game, indexed by original URL
+  // images[path] = object;
   this.images  = {};
 }
 

@@ -35,5 +35,6 @@ scenes/background.js
 scenes/scene.js
 scenes/preloader.js
 scenes/scene_collection.js
-sprites.js
+assets/sprites.js
+assets/sounds.js
 player.js

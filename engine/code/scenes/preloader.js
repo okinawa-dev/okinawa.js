@@ -6,32 +6,16 @@ Engine.Preloader = function()
   this.timeStarted      = 0;  // timestamp when activate() was called
   this.percentageLoaded = 0;  // Percentage of files loaded
   this.incremental      = 0;  // current loader step in the incrementalLoader function
-  this.assets           = []; // Assets to load
-  this.completed        = []; // Assets already loaded
+  this.imageAssets      = []; // Assets to load
+  this.imageCompleted   = []; // Assets already loaded
+  this.soundAssets      = []; 
+  this.soundCompleted   = []; 
 
   this.message          = null;
 }
 
 Engine.Preloader.prototype = Object.create(Engine.Scene.prototype);
 Engine.Preloader.prototype.constructor = Engine.Preloader;
-
-Engine.Preloader.prototype.addAnimation = function(data)
-{
-  this.assets.push(data);
-}
-
-Engine.Preloader.prototype.addSprite = function(data)
-{
-  // Add information for a complete animation spritesheet, with only
-  // one image
-  data.xStart = 0;
-  data.yStart = 0;
-  data.frames = 1;
-  data.initFrame = 0;
-  data.speed = 0;
-
-  this.addAnimation(data);
-}
 
 Engine.Preloader.prototype.initialize = function()
 {
@@ -46,11 +30,18 @@ Engine.Preloader.prototype.activate = function()
 
   this.timeStarted = new Date().getTime();
 
-  for (var i = 0, len = this.assets.length; i < len; i++) 
+  for (var i = 0, len = this.imageAssets.length; i < len; i++) 
   {
-    var what = this.assets[i];
+    var what = this.imageAssets[i];
 
     this.addImageToLoad(what);
+  }
+
+  for (var i = 0, len = this.soundAssets.length; i < len; i++) 
+  {
+    var what = this.soundAssets[i];
+
+    this.addSoundToLoad(what);
   }
 
   this.message = new Engine.GUI.GuiText(engine.localization.get('loaded') + ' ' + this.percentageLoaded + '%', 300, 30);
@@ -59,6 +50,24 @@ Engine.Preloader.prototype.activate = function()
   // this.message.setFontSize(20);
   this.message.setFontColor('#FF2222');
   this.gui.attachItem(this.message, 'msg_loading');
+}
+
+Engine.Preloader.prototype.addAnimation = function(data)
+{
+  this.imageAssets.push(data);
+}
+
+Engine.Preloader.prototype.addSprite = function(data)
+{
+  // Add information for a complete animation spritesheet, with only
+  // one image
+  data.xStart = 0;
+  data.yStart = 0;
+  data.frames = 1;
+  data.initFrame = 0;
+  data.speed = 0;
+
+  this.addAnimation(data);
 }
 
 Engine.Preloader.prototype.addImageToLoad = function(data) 
@@ -87,11 +96,36 @@ Engine.Preloader.prototype.addImageToLoad = function(data)
   }
 }
 
+Engine.Preloader.prototype.addSound = function(data)
+{
+  this.soundAssets.push(data);
+}
+
+Engine.Preloader.prototype.addSoundToLoad = function(data)
+{
+  var sound = null;
+
+  // Load only new images
+  if (!engine.sounds.soundExists(data.path))
+  {
+    sound = new Audio(data.path);
+    // sound.src = data.path;
+    sound.load();
+
+    addEvent('canplaythrough', sound, function() { 
+      engine.preloader.incrementalLoader('sound'); 
+    });
+
+
+    engine.sounds.addSound(data.name, data.path, sound);
+  }
+}
+
 Engine.Preloader.prototype.incrementalLoader = function(info)
 {
   this.incremental += 1;
 
-  this.percentageLoaded = Math.floor(this.incremental * 100 / this.assets.length);
+  this.percentageLoaded = Math.floor(this.incremental * 100 / (this.imageAssets.length + this.soundAssets.length));
 }
 
 Engine.Preloader.prototype.draw = function(ctx)

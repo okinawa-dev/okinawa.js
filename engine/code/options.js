@@ -31,7 +31,7 @@ Engine.Options = function()
 	this.debugInHtml = false;
 	this.debugFunctionNames = false;
 
-	this.allowPause = false; // allow pausing the game pressing the P key
+	this.allowPause = true; // allow pausing the game pressing the P key
 	this.allowHalt = false; // allow halting the engine pressing the escape key
 	this.allowFForFps = false; // allow pressing F to show FPS on screen
 	this.pauseOnWindowChange = false;

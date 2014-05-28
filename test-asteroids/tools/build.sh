@@ -30,5 +30,6 @@ cp "$ENGINE_DIR"/build/engine.js "$GAME_CONTENT_DIR"
 cp "$GAME_DIR"/game/style.css "$GAME_CONTENT_DIR"
 cp -R "$GAME_DIR"/game/fonts "$GAME_CONTENT_DIR"
 cp -R "$GAME_DIR"/game/images "$GAME_CONTENT_DIR"
+cp -R "$GAME_DIR"/game/sounds "$GAME_CONTENT_DIR"
 
 echo "Done"
