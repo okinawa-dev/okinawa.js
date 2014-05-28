@@ -69,7 +69,7 @@ Game.ITEMS.Meteor.prototype.collide = function(what)
     effect.transparencyMethod = Math.floor(Math.random() * 3);
   }
 
-  engine.sounds.get('explosion').play();
+  engine.sounds.play('explosion');
 
   // true == should be removed
   return true;

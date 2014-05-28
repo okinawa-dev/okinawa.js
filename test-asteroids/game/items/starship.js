@@ -79,6 +79,8 @@ Game.ITEMS.Starship.prototype.shoot = function()
 {
   for(var i = 0, len = this.gunRack.length; i < len; i++) 
     this.gunRack[i].shoot(this);
+
+  engine.sounds.play('shot');
 }
 
 

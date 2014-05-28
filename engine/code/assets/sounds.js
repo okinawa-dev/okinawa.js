@@ -51,3 +51,18 @@ Engine.Sounds.prototype.get = function(name)
 
   return this.sounds[name][Engine.Sounds.SOUNDINFO.AUDIOOBJECT];
 }
+
+// Play the sound now
+Engine.Sounds.prototype.play = function(name)
+{
+  var sound = this.get(name);
+
+  if (sound != null)
+  {
+    // Sound already playing
+    if (sound.currentTime > 0)
+      sound.currentTime = 0;
+
+    sound.play();
+  }
+}

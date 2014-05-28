@@ -33,6 +33,7 @@ Game.Loader.prototype.initialize = function()
   //  Sounds
   // **************
   engine.preloader.addSound(({ name: 'explosion', path: 'game/sounds/fridobeck_explosion.mp3' }));
+  engine.preloader.addSound(({ name: 'shot', path: 'game/sounds/halgrimm_shot.mp3' }));
 
   // First screen: preloader with progress bar
   engine.preloader.addBackground(game.commonBackground);
