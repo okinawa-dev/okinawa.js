@@ -1,4 +1,4 @@
- 
+
 Engine.Sounds = function()
 {
   // List of Audio() objects used in the game, indexed by id/name
@@ -49,7 +49,13 @@ Engine.Sounds.prototype.get = function(name)
   if (this.sounds[name] == undefined)
     return null;
 
-  return this.sounds[name][Engine.Sounds.SOUNDINFO.AUDIOOBJECT];
+  var sound = this.sounds[name][Engine.Sounds.SOUNDINFO.AUDIOOBJECT];
+
+  // if already playing, clone the Audio object and use the new copy
+  if (sound.currentTime > 0)
+    sound = sound.cloneNode();
+
+  return sound;
 }
 
 // Play the sound now
