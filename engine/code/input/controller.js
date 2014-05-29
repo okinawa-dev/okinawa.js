@@ -25,12 +25,12 @@ Engine.INPUT.Controller.prototype.initialize = function()
 
   addEvent('keyup', document, function(event) { 
     engine.input.onKeyup(event); 
-    //event.preventDefault();
+    // event.preventDefault();
   });
 
   addEvent('keydown', document, function(event) { 
     engine.input.onKeydown(event); 
-    //event.preventDefault();
+    event.preventDefault();
   });
 
   addEvent('blur', window, function(event) { 
