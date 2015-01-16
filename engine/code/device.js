@@ -26,7 +26,9 @@ Engine.Device.prototype.initialize = function()
   addEvent('resize', window, function(event) {
 
     engine.device.isResizing = true;
-    engine.gui.get('console').addText('resize', 'Resizing!'); 
+
+    if (engine.options.showResizeMessage == true)
+      engine.gui.get('console').addText('resize', 'Resizing!'); 
     // engine.logs.log('Engine.INPUT.Controller.onResize', 'Window resized');        
 
     // Recalculate if window is resized
@@ -44,7 +46,9 @@ Engine.Device.prototype.initialize = function()
 Engine.Device.prototype.doneResizing = function()
 {
   engine.device.isResizing = false;
-  engine.gui.get('console').addText('resize', 'Resizing done');   
+
+  if (engine.options.showResizeMessage == true)
+    engine.gui.get('console').addText('resize', 'Resizing done');   
 }
 
 Engine.Device.prototype.activate = function()

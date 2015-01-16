@@ -19,6 +19,7 @@ Engine.Options = function()
 	// screenInfos
 	this.showFps = false; // frames per second
 	this.showStatistics = false; // num items, particles, effects, etc
+	this.showResizeMessage = true; // show an announcement when resize happens
 
 	// Console inform
 	this.outputPressedKeys = false;
