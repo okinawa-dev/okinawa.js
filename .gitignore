@@ -1,0 +1,5 @@
+.DS_Store
+
+engine/build
+engine/tools/*.old
+test-asteroids/build
