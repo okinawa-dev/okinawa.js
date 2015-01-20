@@ -26,7 +26,7 @@ Engine.Options = function()
 	this.outputPressedCombos = false;
 
 	// Show LogHandler info in the navigator console
-	this.debugInConsole = false;
+	this.debugInConsole = true;
 	// Redirect console info to a html element
 	// Useful for mobile debug
 	this.debugInHtml = false;
