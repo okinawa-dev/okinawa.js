@@ -27,12 +27,12 @@ Engine.Logs.prototype.log = function (fileName, message, object)
     engine.core.canvas.parentNode.appendChild(e);
   }
   // Old IE, console is not initialized by default
-  else if (typeof console === "undefined" || typeof console.log === "undefined")
+  else if (typeof window.console === "undefined" || typeof window.console.log === "undefined")
   {
     // Do nothing?
   }
   else
   {
-    console.log(result);
+    window.console.log(result);
   }
 }
