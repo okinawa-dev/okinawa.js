@@ -6,6 +6,9 @@ var engine = new Engine();
 // Game initialization
 
 addEvent('load', window, function() {
-  engine.initialize('game-canvas');
+  // parameters: 
+  //   1) canvas DOM element id
+  //   2) game class name to be instatiated
+  engine.initialize('game-canvas', 'Game');
 });
 

@@ -20,7 +20,7 @@ function Engine()
   this.game         = null;
 }
 
-Engine.prototype.initialize = function(canvasElementId)
+Engine.prototype.initialize = function(canvasElementId, gameClassName)
 {
   this.options      = new Engine.Options();
   this.logs         = new Engine.Logs();
@@ -37,9 +37,16 @@ Engine.prototype.initialize = function(canvasElementId)
   this.gui          = new Engine.GUI.GuiElement();
   this.scenes       = new Engine.SceneCollection();
   this.preloader    = new Engine.Preloader();
-  this.game         = new Game();
 
   engine.logs.log('Engine.initialize', 'Initializing starts...');
+
+  try {
+    this.game = new window[gameClassName]();
+  }
+  catch(err) {
+    engine.logs.log('Engine.initialize', 'Error instantiating game class');
+    return;
+  }
 
   this.core.initialize(canvasElementId);
   this.math.initialize();
