@@ -55,7 +55,7 @@ Game.ITEMS.Shot.prototype.collide = function(what)
   
   // Win!
   if (what instanceof Game.ITEMS.Meteor)
-    game.points.add(50);
+    engine.game.points.add(50);
 
   // Should be done only if we are going to return true in this function
   Engine.Item.prototype.collide.call(this);

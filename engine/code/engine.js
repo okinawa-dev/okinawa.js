@@ -17,6 +17,7 @@ function Engine()
   this.gui          = null;
   this.scenes       = null;
   this.preloader    = null;
+  this.game         = null;
 }
 
 Engine.prototype.initialize = function(canvasElementId)
@@ -36,6 +37,7 @@ Engine.prototype.initialize = function(canvasElementId)
   this.gui          = new Engine.GUI.GuiElement();
   this.scenes       = new Engine.SceneCollection();
   this.preloader    = new Engine.Preloader();
+  this.game         = new Game();
 
   engine.logs.log('Engine.initialize', 'Initializing starts...');
 
@@ -64,12 +66,13 @@ Engine.prototype.initialize = function(canvasElementId)
   console.setPosition(15 + console.size.x / 2, 15 + console.size.y / 2); // left down 
   console.order = Engine.GUI.ORDENATION.UP;
 
-  engine.gui.initialize();
-  engine.gui.attachItem(console, 'console');
+  this.gui.initialize();
+  this.gui.attachItem(console, 'console');
 
-  engine.scenes.initialize();
+  this.scenes.initialize();
 
-  engine.preloader.playable = false; // Just in case
-  engine.preloader.initialize();
+  this.preloader.playable = false; // Just in case
+  this.preloader.initialize();
+  this.game.initialize();
 }
 

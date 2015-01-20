@@ -36,14 +36,14 @@ Game.Loader.prototype.initialize = function()
   engine.preloader.addSound(({ name: 'shot', path: 'game/sounds/halgrimm_shot.mp3' }));
 
   // First screen: preloader with progress bar
-  engine.preloader.addBackground(game.commonBackground);
+  engine.preloader.addBackground(engine.game.commonBackground);
   engine.preloader.initialize(); // Usually empty
   engine.scenes.addScene(engine.preloader, 'preloader');
   engine.scenes.setScene(0);
 
   engine.localization.addTextsToStringTable('english', this.localization_en());
   engine.localization.addTextsToStringTable('spanish', this.localization_es());  
-  engine.localization.selectLanguage(game.options.defaultLanguage);  
+  engine.localization.selectLanguage(engine.game.options.defaultLanguage);  
 }
 
 Game.Loader.prototype.localization_en = function()

@@ -23,7 +23,7 @@ Game.SCENES.Level.prototype.initialize = function()
 
 Game.SCENES.Level.prototype.activate = function()
 {
-  this.attachItem(game.player.getAvatar());
+  this.attachItem(engine.game.player.getAvatar());
 
   Engine.Scene.prototype.activate.call(this);
 }

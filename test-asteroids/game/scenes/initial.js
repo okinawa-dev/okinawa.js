@@ -20,7 +20,7 @@ Game.SCENES.Initial.prototype.initialize = function()
 // Will be called when the scene starts being playable
 Game.SCENES.Initial.prototype.activate = function()
 {
-  var avatar = game.player.getAvatar();
+  var avatar = engine.game.player.getAvatar();
 
   // Position the player avatar in the proper place
   avatar.setPosition(engine.core.size.x/2, engine.core.size.y/2);

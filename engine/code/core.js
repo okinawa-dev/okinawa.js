@@ -68,7 +68,7 @@ Engine.Core.prototype.activate = function()
 {
   engine.logs.log('Engine.activate', 'Starting engine');
 
-  game.activate();
+  engine.game.activate();
   engine.gui.activate();
 
   engine.scenes.advanceScene();
@@ -134,8 +134,8 @@ Engine.Core.prototype.loop = function()
       if (this.paused == false)
       {
         sc.step(dt);
-        if (game != undefined)
-          game.step(dt);
+        if (engine.game != undefined)
+          engine.game.step(dt);
         engine.effects.step(dt);
         engine.particles.step(dt);
       }

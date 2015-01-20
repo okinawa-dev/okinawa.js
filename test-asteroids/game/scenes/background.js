@@ -80,13 +80,13 @@ Game.Background.prototype.draw = function(ctx)
     var parallaxOffset;
 
     // No player or one the three first screens (preloader, menu or initial animation)
-    if ((game.player == undefined) || (engine.currentScene <= 2))
+    if ((engine.game.player == undefined) || (engine.currentScene <= 2))
     {
       parallaxOffset = (depth + 1) * this.parallaxDisplacement * (engine.core.size.x / 2) / engine.core.size.x;
     }
     else
     {
-      var playerDisplacement = game.player.getAvatar().getPosition().x;
+      var playerDisplacement = engine.game.player.getAvatar().getPosition().x;
 
       parallaxOffset = Math.round((depth + 1) * this.parallaxDisplacement * playerDisplacement / engine.core.size.x);
       

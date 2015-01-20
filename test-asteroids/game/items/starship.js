@@ -48,7 +48,7 @@ Game.ITEMS.Starship.prototype.step = function(dt)
 
   Engine.Item.prototype.step.call(this, dt);
 
-  if (game.player.isThrusting == true)
+  if (engine.game.player.isThrusting == true)
     this.motorEffect.start();
   else
     this.motorEffect.stop();
@@ -69,7 +69,7 @@ Game.ITEMS.Starship.prototype.collide = function(what)
   this.speed.x = this.speed.x / 10;
   this.speed.y = this.speed.y / 10;
 
-  game.points.add(-10);
+  engine.game.points.add(-10);
 
   // should not be removed
   return false;

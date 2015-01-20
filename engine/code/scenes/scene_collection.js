@@ -55,8 +55,8 @@ Engine.SceneCollection.prototype.setScene = function(num)
   this.currentScene.isCurrent = true;
   this.currentScene.activate();
   
-  if (game.player != undefined)
-    game.player.activate();
+  if (engine.game.player != undefined)
+    engine.game.player.activate();
 
   engine.logs.log('Engine.ScreenCollection.setScene', 
                   'Set Scene: ' + this.currentSceneName + ' (' + this.currentSceneIndex + ')');
