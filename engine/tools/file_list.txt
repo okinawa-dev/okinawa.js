@@ -38,3 +38,4 @@ scenes/scene_collection.js
 assets/sprites.js
 assets/sounds.js
 player.js
+init.js

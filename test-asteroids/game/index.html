@@ -8,15 +8,24 @@
 
   <body>
 
-      <div id='container'>
-        <canvas id='game-canvas' width='500' height='500'>
-        </canvas>
-      </div>
+    <div id='container'>
+      <canvas id='game-canvas' width='500' height='500'>
+      </canvas>
+    </div>
 
-      <script type='text/javascript' src='game/engine.js'></script>
-      <script type='text/javascript' src='game/game.js'></script>
-      <script type='text/javascript' src='game/options.js'></script>
-      <script type='text/javascript' src='game/init.js'></script>
+    <script type='text/javascript' src='game/engine.js'></script>
+    <script type='text/javascript' src='game/game.js'></script>
+    <script type='text/javascript' src='game/options.js'></script>
+
+    <script>
+
+      // Create and initialize game object
+      // parameters: 
+      //   1) canvas DOM element id
+      //   2) game class name to be instatiated
+      Okinawa('game-canvas', 'Game');
+
+    </script>
 
   </body>
 
