@@ -18,9 +18,11 @@ function Engine()
   this.scenes       = null;
   this.preloader    = null;
   this.game         = null;
+
+  this.externalCallback = null;
 }
 
-Engine.prototype.initialize = function(canvasElementId, gameClassName)
+Engine.prototype.initialize = function(canvasElementId, gameClassName, callbackFunction)
 {
   this.options      = new Engine.Options();
   this.logs         = new Engine.Logs();
@@ -47,6 +49,9 @@ Engine.prototype.initialize = function(canvasElementId, gameClassName)
     engine.logs.log('Engine.initialize', 'Error instantiating game class');
     return;
   }
+
+  if (callbackFunction != null)
+    this.externalCallback = callbackFunction;
 
   this.core.initialize(canvasElementId);
   this.math.initialize();
@@ -83,3 +88,15 @@ Engine.prototype.initialize = function(canvasElementId, gameClassName)
   this.game.initialize();
 }
 
+Engine.prototype.external = function(eventType, id, message)
+{
+  if (this.externalCallback != null)
+  {
+    try {
+      this.externalCallback(eventType, id, message);
+    } 
+    catch (err) {
+      engine.logs.log('Engine.external', 'Error with external callback with event ' + eventType + ' ' + id);
+    }
+  }
+}

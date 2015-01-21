@@ -156,5 +156,6 @@ Engine.Preloader.prototype.step = function(dt)
   if ((this.percentageLoaded >= 100) && (timeLived > 1000))
   {
     engine.core.activate();
+    engine.external('LOADED', null, null);
   }
 }
