@@ -37,6 +37,7 @@ Engine.Options = function()
   this.allowFForFps = true; // allow pressing F to show FPS on screen
   this.pauseOnWindowChange = false;
   this.avoidLeavingPage = false;
+  this.preventDefaultKeyStrokes = true;
 
   // Show the language screen?
   this.useLanguageScreen = false;

@@ -30,7 +30,8 @@ Engine.INPUT.Controller.prototype.initialize = function()
 
   addEvent('keydown', document, function(event) { 
     engine.input.onKeydown(event); 
-    event.preventDefault();
+    if (engine.options.preventDefaultKeyStrokes == true)
+      event.preventDefault();
   });
 
   addEvent('blur', window, function(event) { 
