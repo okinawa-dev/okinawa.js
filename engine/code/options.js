@@ -42,6 +42,11 @@ Engine.Options = function()
   // Show the language screen?
   this.useLanguageScreen = false;
   this.defaultLanguage = 'english';
+
+  // prepend this url to the url/path of the assets in the preloader 
+  // only used if != null
+  // should start with the protocol, i.e. 'http://whatever.com/assets/''
+  this.forceAssetsURL = null;
 }
 
 Engine.Options.prototype.addOptions = function(opts) 

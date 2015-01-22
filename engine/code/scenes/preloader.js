@@ -84,7 +84,10 @@ Engine.Preloader.prototype.addImageToLoad = function(data)
     });
 
     // src always have to be set after adding the event listener, due to bug in IE8
-    image.src = data.path;
+    if (engine.options.forceAssetsURL != null)
+      image.src = engine.options.forceAssetsURL + data.path;
+    else
+      image.src = data.path;
 
     engine.sprites.addImage(data.path, image);
   }
@@ -115,7 +118,6 @@ Engine.Preloader.prototype.addSoundToLoad = function(data)
     addEvent('canplaythrough', sound, function() { 
       engine.preloader.incrementalLoader('sound'); 
     });
-
 
     engine.sounds.addSound(data.name, data.path, sound);
   }
