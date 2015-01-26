@@ -7,9 +7,8 @@ Engine.Preloader = function()
   this.percentageLoaded = 0;  // Percentage of files loaded
   this.incremental      = 0;  // current loader step in the incrementalLoader function
   this.imageAssets      = []; // Assets to load
-  this.imageCompleted   = []; // Assets already loaded
+  this.totalImages      = 0;  // Number of different images to be loaded
   this.soundAssets      = []; 
-  this.soundCompleted   = []; 
 
   this.message          = null;
 }
@@ -89,6 +88,8 @@ Engine.Preloader.prototype.addImageToLoad = function(data)
     else
       image.src = data.path;
 
+    this.totalImages++;
+
     engine.sprites.addImage(data.path, image);
   }
 
@@ -127,7 +128,7 @@ Engine.Preloader.prototype.incrementalLoader = function(info)
 {
   this.incremental += 1;
 
-  this.percentageLoaded = Math.floor(this.incremental * 100 / (this.imageAssets.length + this.soundAssets.length));
+  this.percentageLoaded = Math.floor(this.incremental * 100 / (this.totalImages + this.soundAssets.length));
 }
 
 Engine.Preloader.prototype.draw = function(ctx)
