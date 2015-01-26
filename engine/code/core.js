@@ -38,23 +38,23 @@ Engine.Core.prototype.initialize = function(canvasElementId)
   
   if (!this.ctx)
   { 
-      engine.logs.log('Engine.initialize', 'Old browser, unable to create canvas context');
+      engine.logs.log('Engine.Core.initialize', 'Old browser, unable to create canvas context');
       alert('Unable to get canvas context. Old browser?'); 
       return null;
   }
 
-  engine.logs.log('Engine.initialize', 'UserAgent: ' + engine.device.getUserAgent());
+  engine.logs.log('Engine.Core.initialize', 'UserAgent: ' + engine.device.getUserAgent());
 
   // Sometimes this is slower, I don't know why, and that makes me angry :(
   if ((engine.options.useAnimationFrame == false) || (window.requestAnimationFrame == null))
   {
     this.useAnimationFrame = false;
-    engine.logs.log('Engine.initialize', 'NOT using requestAnimationFrame');
+    engine.logs.log('Engine.Core.initialize', 'NOT using requestAnimationFrame');
   }
   else
   {
     this.useAnimationFrame = true;
-    engine.logs.log('Engine.initialize', 'Modern browser, using requestAnimationFrame');
+    engine.logs.log('Engine.Core.initialize', 'Modern browser, using requestAnimationFrame');
   }
 
   // Start main loop
