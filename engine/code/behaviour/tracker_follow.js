@@ -50,7 +50,7 @@ Engine.TrackerFollow.prototype.step = function (dt)
     this.lastDirection = direction;
   }
 
-  if ((forceDetach == false) && (engine.math.pointDistance(pos, targetPos) > 5))
+  if ((forceDetach == false) && (engine.math.pointDistance(pos, targetPos) > 2))
   {
     this.position.x += direction.x * this.trackSpeed;
     this.position.y += direction.y * this.trackSpeed;
