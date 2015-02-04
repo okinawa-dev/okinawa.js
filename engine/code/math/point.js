@@ -23,3 +23,10 @@ Engine.MATH.Point.prototype.normalize = function()
   return new Engine.MATH.Point(this.x / magnitude, this.y / magnitude);
 }
 
+Engine.MATH.Point.prototype.equals = function(p)
+{
+  if (p instanceof Engine.MATH.Point == false)
+    return false;
+  
+  return ( (this.x == p.x) && (this.y == p.y) );
+}
