@@ -86,7 +86,7 @@ Engine.Preloader.prototype.addImageToLoad = function(data)
     if (engine.options.assetsURLPrefix != null)
       image.src = engine.options.assetsURLPrefix + data.path;
     else
-      image.src = window.location.protocol + '//' + window.location.host + data.path;
+      image.src = window.location.protocol + '//' + window.location.host + '/' + data.path;
 
     this.totalImages++;
 
