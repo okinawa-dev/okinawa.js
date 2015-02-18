@@ -45,8 +45,9 @@ Engine.Options = function()
 
   // prepend this url to the url/path of the assets in the preloader 
   // only used if != null
-  // should start with the protocol, i.e. 'http://whatever.com/assets/''
-  this.forceAssetsURL = null;
+  // should start with the protocol, i.e. 'http://whatever.com/assets/'
+  // if null, window.location will be used
+  this.assetsURLPrefix = null;
 }
 
 Engine.Options.prototype.addOptions = function(opts) 

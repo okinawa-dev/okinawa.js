@@ -83,10 +83,10 @@ Engine.Preloader.prototype.addImageToLoad = function(data)
     });
 
     // src always have to be set after adding the event listener, due to bug in IE8
-    if (engine.options.forceAssetsURL != null)
-      image.src = engine.options.forceAssetsURL + data.path;
+    if (engine.options.assetsURLPrefix != null)
+      image.src = engine.options.assetsURLPrefix + data.path;
     else
-      image.src = data.path;
+      image.src = window.location.protocol + '//' + window.location.host + data.path;
 
     this.totalImages++;
 
