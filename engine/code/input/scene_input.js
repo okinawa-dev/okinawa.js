@@ -25,6 +25,7 @@ Engine.INPUT.SceneInput = function()
   //                  character : character to emulate when it's touched
   //                        }
   this.touchZones = {};
+  this.clickZones = {};
 }
 
 Engine.INPUT.SceneInput.prototype.initialize = function() 
@@ -230,4 +231,34 @@ Engine.INPUT.SceneInput.prototype.detectTouch = function(position)
   }
 }
 
+Engine.INPUT.SceneInput.prototype.addClickZone = function(id, location, rectangleSize, char)
+{
+  this.clickZones[id] = {
+    position : location,
+    size : rectangleSize,
+    character : char
+  }
+}
 
+Engine.INPUT.SceneInput.prototype.detectClick = function(position)
+{
+  for (var clickId in this.clickZones)
+  {
+    var clickZone = this.clickZones[clickId];
+
+    // engine.logs.log('Engine.INPUT.SceneInput.detectTouch', 'Testing ' + clickId + ' zone');
+
+    if ((position.x >= clickZone.position.x - clickZone.size.x / 2 ) && 
+        (position.x <= clickZone.position.x + clickZone.size.x / 2 ) && 
+        (position.y >= clickZone.position.y - clickZone.size.y / 2 ) && 
+        (position.y <= clickZone.position.y + clickZone.size.y / 2 ))
+    {
+      // Touch done!
+      // engine.logs.log('Engine.INPUT.SceneInput.detectTouch', 'Touch OK, zone: ' + clickId);
+      // engine.gui.get('console').addText('touch', clickId); 
+
+      // Save the emulated key
+      engine.input.addLastPressed(clickZone.character);
+    }
+  }
+}
