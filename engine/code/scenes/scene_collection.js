@@ -36,30 +36,31 @@ Engine.SceneCollection.prototype.getCurrentScene = function()
 }
 
 // Change an active game scene
+// do not use 'this', as this function could be called out
 Engine.SceneCollection.prototype.setScene = function(num) 
 { 
   // Old scene
-  var oldScene = this.currentScene;
+  var oldScene = engine.scenes.currentScene;
 
-  if ((this.currentScene != undefined) && (this.currentScene != null))
+  if ((engine.scenes.currentScene != undefined) && (engine.scenes.currentScene != null))
   {
-    this.currentScene.isCurrent = false;
+    engine.scenes.currentScene.isCurrent = false;
   }
 
   engine.core.clearScreen();
 
   // New scene
-  this.currentSceneIndex      = num;
-  this.currentSceneName       = this.collection[num].name;
-  this.currentScene           = this.collection[num].scene;
-  this.currentScene.isCurrent = true;
-  this.currentScene.activate();
+  engine.scenes.currentSceneIndex      = num;
+  engine.scenes.currentSceneName       = engine.scenes.collection[num].name;
+  engine.scenes.currentScene           = engine.scenes.collection[num].scene;
+  engine.scenes.currentScene.isCurrent = true;
+  engine.scenes.currentScene.activate();
   
   if (engine.game.player != undefined)
     engine.game.player.activate();
 
   engine.logs.log('Engine.ScreenCollection.setScene', 
-                  'Set Scene: ' + this.currentSceneName + ' (' + this.currentSceneIndex + ')');
+                  'Set Scene: ' + engine.scenes.currentSceneName + ' (' + engine.scenes.currentSceneIndex + ')');
 }
 
 Engine.SceneCollection.prototype.addScene = function(scene, name)
@@ -78,14 +79,15 @@ Engine.SceneCollection.prototype.insertScene = function(scene, name, num)
   this.collection.splice(num, 0, { 'scene': scene, 'name': name });
 }
 
+// do not use 'this', as this function could be called out
 Engine.SceneCollection.prototype.advanceScene = function() 
 {
   // Not able to advance scene
-  if (this.currentSceneIndex + 1 >= this.collection.length)
+  if (engine.scenes.currentSceneIndex + 1 >= engine.scenes.collection.length)
     return;
 
   // engine.logs.log('Engine.ScreenCollection.advanceScene', 'Advance Level', this.currentSceneIndex + 1);
-  this.setScene(this.currentSceneIndex + 1);
+  engine.scenes.setScene(engine.scenes.currentSceneIndex + 1);
 }
 
 Engine.SceneCollection.prototype.goBackScene = function() 
