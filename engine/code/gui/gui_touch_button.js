@@ -32,10 +32,13 @@ Engine.GUI.GuiTouchButton.prototype.activate = function()
     this.getSize(),
     this.buttonToEmulate);
 
-  var image = new Engine.GUI.GuiElement();
-  image.setPosition(pos.x, pos.y);
-  image.setImage(this.buttonSprite);
-  scene.gui.attachItem(image, 'touch_image_' + this.guiId);
+  if (this.getVisible() == true)
+  {
+    var image = new Engine.GUI.GuiElement();
+    image.setPosition(pos.x, pos.y);
+    image.setImage(this.buttonSprite);
+    scene.gui.attachItem(image, 'touch_image_' + this.guiId);    
+  }
 
   // Listen to all the keys
   // scene.input.addKeyListener( this, 'eventKeyPressed', keyList, true ); 
