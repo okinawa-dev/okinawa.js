@@ -71,8 +71,8 @@ Engine.TrackerFollow.prototype.step = function (dt)
         element.speed.x = direction.x * this.trackSpeed;
         element.speed.y = direction.y * this.trackSpeed;
 
-        this.getParent().attachItem(element);
         this.detachItem(element);
+        this.getParent().attachItem(element);
       }
 
       // Suicide!

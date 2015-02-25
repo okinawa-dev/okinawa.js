@@ -92,8 +92,8 @@ Engine.TrackerBezier.prototype.step = function (dt)
         element.position.x += this.position.x;
         element.position.y += this.position.y;
 
-        this.getParent().attachItem(element);
         this.detachItem(element);
+        this.getParent().attachItem(element);
       }
 
       // Suicide!
