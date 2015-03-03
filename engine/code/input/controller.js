@@ -66,21 +66,17 @@ Engine.INPUT.Controller.prototype.initialize = function()
   // Capture click events
   addEvent('click', engine.core.canvas, function(event) {
     engine.input.onClickStart(event);
+    event.preventDefault();    
+    return false;
+  });
+
+  addEvent('mousedown', engine.core.canvas, function(event) {
+    event.preventDefault();    
     return false;
   });
 
   // To avoid selections
   // document.onselectstart = function() { return false; }
-
-  // addEvent('touchend', document, function(event) {
-  //   event.preventDefault();
-  // });
-
-  // addEvent('touchmove', document, function(event) {
-  //   event.preventDefault();
-  //   return false;
-  // });
-
 }
 
 Engine.INPUT.Controller.prototype.activate = function()
