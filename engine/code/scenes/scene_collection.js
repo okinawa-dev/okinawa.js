@@ -61,6 +61,8 @@ Engine.SceneCollection.prototype.setScene = function(num)
 
   engine.logs.log('Engine.ScreenCollection.setScene', 
                   'Set Scene: ' + engine.scenes.currentSceneName + ' (' + engine.scenes.currentSceneIndex + ')');
+
+  engine.external('SCENE_CHANGE', null, null);
 }
 
 Engine.SceneCollection.prototype.addScene = function(scene, name)
