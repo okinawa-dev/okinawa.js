@@ -92,11 +92,14 @@ Engine.prototype.external = function(eventType, id, message)
 {
   if (this.externalCallback != null)
   {
-    try {
-      this.externalCallback(eventType, id, message);
-    } 
-    catch (err) {
-      engine.logs.log('Engine.external', 'Error with external callback with event ' + eventType + ' ' + id);
-    }
+    setTimeout(function() { 
+      try {
+        engine.externalCallback(eventType, id, message);
+      } 
+      catch (err) {
+        engine.logs.log('Engine.external', 'Error with external callback with event ' + eventType + ' ' + id);
+      }
+    }, 1);
+
   }
 }
