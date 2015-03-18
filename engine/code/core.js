@@ -78,14 +78,14 @@ Engine.Core.prototype.eventKeyPressed = function(keyCode)
 {
   // engine.logs.log('Engine.eventKeyPressed', 'Key Pressed: ' + keyCode);
 
-  if (keyCode == Engine.INPUT.KEYS.P)
+  if ((keyCode == Engine.INPUT.KEYS.P) && (engine.options.allowPause == true))
   {
     if (this.paused)
       this.unpauseGame();
     else if (engine.scenes.getCurrentScene().playable != false)
       this.pauseGame();
   }
-  else if ((keyCode == Engine.INPUT.KEYS.ESC) && engine.options.allowHalt)
+  else if ((keyCode == Engine.INPUT.KEYS.ESC) && (engine.options.allowHalt == true))
   {
     if (this.halted)
     {
@@ -104,7 +104,7 @@ Engine.Core.prototype.eventKeyPressed = function(keyCode)
       engine.gui.draw(this.ctx); // Force draw before halting the loop
     }
   }
-  else if ((keyCode == Engine.INPUT.KEYS.F) && (engine.options.allowFForFps))
+  else if ((keyCode == Engine.INPUT.KEYS.F) && (engine.options.allowFForFps == true))
   {
     if (engine.options.showFps == true)
       engine.options.showFps = false;
@@ -152,7 +152,7 @@ Engine.Core.prototype.loop = function()
       // FPS related stuff
       this.fpsPassed++;
 
-      if (engine.options.showStatistics)
+      if (engine.options.showStatistics == true)
       {
         if (sc.getAttachedItems().length > 0)
           engine.gui.get('console').addText('numItems', sc.getAttachedItems().length + ' ' + engine.localization.get('items'));
@@ -169,7 +169,7 @@ Engine.Core.prototype.loop = function()
     dt = 0;
   }
 
-  if (this.useAnimationFrame)
+  if (this.useAnimationFrame == true)
     window.requestAnimationFrame(function() { engine.core.loop(); });
   else
   {
@@ -202,6 +202,9 @@ Engine.Core.prototype.pauseGame = function()
 
 Engine.Core.prototype.unpauseGame = function() 
 { 
+  if (engine.options.allowPause == false)
+    return;
+
   this.paused = false; 
 
   engine.gui.detachItem('pause');
