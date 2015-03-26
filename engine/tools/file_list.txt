@@ -1,7 +1,6 @@
 engine.js
 options.js
 core.js
-../lib/font.js/Font.js
 utils.js
 math/math.js
 math/point.js
@@ -41,3 +40,4 @@ assets/sprites.js
 assets/sounds.js
 player.js
 init.js
+../lib/font.js/Font.js
