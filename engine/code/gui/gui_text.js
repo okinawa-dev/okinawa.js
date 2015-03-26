@@ -4,6 +4,7 @@ Engine.GUI.GuiText = function(txt, x, y)
   Engine.GUI.GuiElement.call(this);
 
   this.text = txt;
+  this.font = 'BaseFont,"Courier New"';
   this.fontSize = 20;
   this.fontColor = '#FFFFFF'; // white
   this.fontBorderColor = '#000000'; // black
@@ -103,7 +104,7 @@ Engine.GUI.GuiText.prototype._updateInnerRender = function()
   this._innerContext.strokeStyle = this.fontBorderColor;
   this._innerContext.fillStyle   = this.fontColor;
   this._innerContext.textAlign   = this.textAlign;     
-  this._innerContext.font        = 'bold '+this.fontSize+'px BaseFont,"Courier New"';
+  this._innerContext.font        = 'bold '+this.fontSize+'px '+this.font;
 
   this._innerContext.strokeText( this.text, where.x, where.y); 
   this._innerContext.fillText( this.text, where.x, where.y); 
@@ -125,7 +126,7 @@ Engine.GUI.GuiText.prototype.draw = function(ctx)
       ctx.strokeStyle = this.fontBorderColor;
       ctx.fillStyle = this.fontColor;
       ctx.textAlign = this.textAlign;     
-      ctx.font = 'bold '+this.fontSize+'px BaseFont,"Courier New"';
+      ctx.font = 'bold '+this.fontSize+'px '+this.font;
 
       ctx.strokeText( this.text, 
                       pos.x - (size.x / 2) + 10, 
@@ -154,6 +155,7 @@ Engine.GUI.GuiText.prototype.step = function(dt)
   Engine.GUI.GuiElement.prototype.step.call(this, dt);
 }
 
+Engine.GUI.GuiText.prototype.setFont = function(font) { this.font = font; }
 Engine.GUI.GuiText.prototype.setFontSize = function(size) { this.fontSize = size; }
 Engine.GUI.GuiText.prototype.setFontColor = function(color) { this.fontColor = color; }
 Engine.GUI.GuiText.prototype.setFontBorderColor = function(color) { this.fontBorderColor = color; }
