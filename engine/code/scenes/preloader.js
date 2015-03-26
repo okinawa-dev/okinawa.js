@@ -87,7 +87,7 @@ Engine.Preloader.prototype.addImageToLoad = function(data)
     if (engine.options.assetsURLPrefix != null)
       image.src = engine.options.assetsURLPrefix + data.path;
     else
-      image.src = window.location.protocol + '//' + window.location.host + '/' + data.path;
+      image.src = getProtocolAndHost() + data.path;
 
     this.totalImages++;
 
@@ -113,7 +113,14 @@ Engine.Preloader.prototype.addSoundToLoad = function(data)
   // Load only new images
   if (!engine.sounds.soundExists(data.path))
   {
-    sound = new Audio(data.path);
+    var path = data.path;
+
+    if (engine.options.assetsURLPrefix != null)
+      path = engine.options.assetsURLPrefix + path;
+    else
+      path = getProtocolAndHost() + path;
+
+    sound = new Audio(path);
     // sound.src = data.path;
     sound.load();
 
@@ -125,27 +132,29 @@ Engine.Preloader.prototype.addSoundToLoad = function(data)
   }
 }
 
-Engine.Preloader.prototype.addFont = function(url)
-{
-  // load a font asynchonously using the Font.js library
-  var font = new Font();
+// Engine.Preloader.prototype.addFont = function(url)
+// {
+//   // load a font asynchonously using the Font.js library
+//   var font = new Font();
 
-  this.totalFonts++;
+//   this.totalFonts++;
 
-  font.onerror = function(err) 
-  {
-    engine.logs.log('Preloader.addFont', 'Error loading a font');
-  }
-  font.onload = function() 
-  {
-    engine.logs.log('Preloader.addFont', 'Font loaded');
-  }
-  font.src = url;    
-}
+//   font.onerror = function(err) 
+//   {
+//     engine.logs.log('Preloader.addFont', 'Error loading a font');
+//   }
+//   font.onload = function() 
+//   {
+//     engine.logs.log('Preloader.addFont', 'Font loaded');
+//   }
+
+//   font.src = url;    
+// }
 
 Engine.Preloader.prototype.incrementalLoader = function(info)
 {
-  var total = this.totalImages + this.soundAssets.length + this.totalFonts;
+  // var total = this.totalImages + this.soundAssets.length + this.totalFonts;
+  var total = this.totalImages + this.soundAssets.length;
   
   this.incremental += 1;
 

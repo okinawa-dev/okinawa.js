@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 if [ "$#" == "0" ]; then
   BASE_DIR=..
 else

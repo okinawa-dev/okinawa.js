@@ -40,4 +40,3 @@ do
   fi
 
 done < "$FILELIST"
-

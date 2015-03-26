@@ -15,6 +15,20 @@ function addEvent(evnt, elem, func)
     elem['on' + evnt] = func;
 }
 
+// get protocol and hostname
+function getProtocolAndHost()
+{
+  var result = '';
+
+  if (window.location.protocol != 'file:')
+    result += window.location.protocol + '//';
+
+  if (window.location.host != '')
+    result += window.location.host + '/';
+
+  return result;
+}
+
 // Polyfill for the Array.isArray function
 Array.isArray || (Array.isArray = function ( a ) {
     return'' + a !== a && {}.toString.call( a ) == '[object Array]'
