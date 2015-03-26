@@ -97,7 +97,8 @@ Engine.Preloader.prototype.addImageToLoad = function(data)
   // Save only new sprites
   if (!engine.sprites.spriteExists(data.name))
   {
-    engine.sprites.addSprite(data.name, data.path, data.xStart, data.yStart, data.width, data.height, data.frames, data.initFrame, data.speed);
+    engine.sprites.addSprite(data.name, data.path, data.xStart, data.yStart, 
+                             data.width, data.height, data.frames, data.initFrame, data.speed);
   }
 }
 
@@ -132,7 +133,7 @@ Engine.Preloader.prototype.addSoundToLoad = function(data)
   }
 }
 
-Engine.Preloader.prototype.addFont = function(url)
+Engine.Preloader.prototype.addFont = function(url, fontFamily, flag)
 {
   // load a font asynchonously using the Font.js library
   var font = new Font();
@@ -141,14 +142,25 @@ Engine.Preloader.prototype.addFont = function(url)
 
   font.onerror = function(err) 
   {
-    engine.logs.log('Preloader.addFont', 'Error loading a font');
+    engine.logs.log('Preloader.addFont', 'Error loading a font: ' + err);
   }
   font.onload = function() 
   {
     engine.logs.log('Preloader.addFont', 'Font loaded');
+    engine.preloader.incrementalLoader('font'); 
   }
 
-  font.src = url;    
+  font.fontFamily = fontFamily;
+
+  if (typeof flag != 'undefined')
+    font.src = url;
+  else
+  {
+    if (engine.options.assetsURLPrefix != null)
+      font.src = engine.options.assetsURLPrefix + url;
+    else
+      font.src = getProtocolAndHost() + url;
+  }
 }
 
 Engine.Preloader.prototype.incrementalLoader = function(info)
@@ -168,11 +180,14 @@ Engine.Preloader.prototype.draw = function(ctx)
   var barWidth = engine.core.size.x / 3;
 
   ctx.fillStyle = '#FF2222';
-  ctx.fillRect((engine.core.size.x - barWidth) / 2 + 1, engine.core.size.y/2 + 51, this.percentageLoaded * barWidth / 100, 15);
+  ctx.fillRect((engine.core.size.x - barWidth) / 2 + 1, 
+                  engine.core.size.y/2 + 51, 
+                  this.percentageLoaded * barWidth / 100, 15);
 
   ctx.lineWidth = 2;
   ctx.strokeStyle = '#FFEEEE';
-  ctx.strokeRect((engine.core.size.x - barWidth) / 2, engine.core.size.y/2 + 50, 
+  ctx.strokeRect((engine.core.size.x - barWidth) / 2, 
+                  engine.core.size.y/2 + 50, 
                   barWidth + 2, 16);
 }
 
