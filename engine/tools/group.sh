@@ -41,3 +41,4 @@ do
 
 done < "$FILELIST"
 
+echo "//@ sourceURL=/okinawa.js" >> "$BUILD_DIR/$END_FILE"
