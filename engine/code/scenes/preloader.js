@@ -132,29 +132,28 @@ Engine.Preloader.prototype.addSoundToLoad = function(data)
   }
 }
 
-// Engine.Preloader.prototype.addFont = function(url)
-// {
-//   // load a font asynchonously using the Font.js library
-//   var font = new Font();
+Engine.Preloader.prototype.addFont = function(url)
+{
+  // load a font asynchonously using the Font.js library
+  var font = new Font();
 
-//   this.totalFonts++;
+  this.totalFonts++;
 
-//   font.onerror = function(err) 
-//   {
-//     engine.logs.log('Preloader.addFont', 'Error loading a font');
-//   }
-//   font.onload = function() 
-//   {
-//     engine.logs.log('Preloader.addFont', 'Font loaded');
-//   }
+  font.onerror = function(err) 
+  {
+    engine.logs.log('Preloader.addFont', 'Error loading a font');
+  }
+  font.onload = function() 
+  {
+    engine.logs.log('Preloader.addFont', 'Font loaded');
+  }
 
-//   font.src = url;    
-// }
+  font.src = url;    
+}
 
 Engine.Preloader.prototype.incrementalLoader = function(info)
 {
-  // var total = this.totalImages + this.soundAssets.length + this.totalFonts;
-  var total = this.totalImages + this.soundAssets.length;
+  var total = this.totalImages + this.soundAssets.length + this.totalFonts;
   
   this.incremental += 1;
 
