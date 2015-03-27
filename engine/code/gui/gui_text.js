@@ -12,7 +12,7 @@ Engine.GUI.GuiText = function(txt, x, y)
 
   // to avoid magic numbers which really does not fit with 
   // different fonts
-  this.verticalOffset = 10;
+  this.verticalOffset = 20;
   this.horizontalOffset = 10;
 
   if ((x == undefined) || (y == undefined))
