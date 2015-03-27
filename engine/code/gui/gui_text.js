@@ -10,6 +10,11 @@ Engine.GUI.GuiText = function(txt, x, y)
   this.fontBorderColor = '#000000'; // black
   this.textAlign = Engine.GUI.ALIGN.LEFT;
 
+  // to avoid magic numbers which really does not fit with 
+  // different fonts
+  this.verticalOffset = 10;
+  this.horizontalOffset = 10;
+
   if ((x == undefined) || (y == undefined))
   {
     this.size.x = 100;
@@ -92,12 +97,15 @@ Engine.GUI.GuiText.prototype._updateInnerRender = function()
   var size = this.getSize();
   var scale = this.getScaling();
 
-  var where = new Engine.MATH.Point(10, 10 + this.fontSize/2);
+  var where = new Engine.MATH.Point(this.horizontalOffset, this.verticalOffset);
 
   if (this.textAlign == Engine.GUI.ALIGN.CENTER)
   {
     where.x = this.size.x / 2;
-    where.y = 10 + this.fontSize/2;
+  }
+  else if (this.textAlign == Engine.GUI.ALIGN.RIGHT)
+  {
+    where.x = this.size.x - this.horizontalOffset;
   }
 
   this._innerContext.clearRect(0, 0, this.size.x, this.size.y);
@@ -106,8 +114,8 @@ Engine.GUI.GuiText.prototype._updateInnerRender = function()
   this._innerContext.textAlign   = this.textAlign;     
   this._innerContext.font        = 'bold '+this.fontSize+'px '+this.font;
 
-  this._innerContext.strokeText( this.text, where.x, where.y); 
-  this._innerContext.fillText( this.text, where.x, where.y); 
+  this._innerContext.strokeText(this.text, where.x, where.y); 
+  this._innerContext.fillText(this.text, where.x, where.y); 
 
   this._innerChange = false;
 }
@@ -122,6 +130,16 @@ Engine.GUI.GuiText.prototype.draw = function(ctx)
     if (this._canvasRendering == false)
     {
       // var scale = this.getScaling();
+      var offset = new Engine.MATH.Point(this.horizontalOffset, this.verticalOffset);
+
+      if (this.textAlign == Engine.GUI.ALIGN.CENTER)
+      {
+        offset.x = this.size.x / 2;
+      }
+      else if (this.textAlign == Engine.GUI.ALIGN.RIGHT)
+      {
+        offset.x = this.size.x - this.horizontalOffset;
+      }
 
       ctx.strokeStyle = this.fontBorderColor;
       ctx.fillStyle = this.fontColor;
@@ -129,19 +147,19 @@ Engine.GUI.GuiText.prototype.draw = function(ctx)
       ctx.font = 'bold '+this.fontSize+'px '+this.font;
 
       ctx.strokeText( this.text, 
-                      pos.x - (size.x / 2) + 10, 
-                      pos.y - (size.y / 2) + this.fontSize/2 + 10);
+                      pos.x - (size.x / 2) + offset.x, 
+                      pos.y - (size.y / 2) + offset.y);
 
       ctx.fillText( this.text,
-                    pos.x - (size.x / 2) + 10, 
-                    pos.y - (size.y / 2) + this.fontSize/2 + 10);
+                    pos.x - (size.x / 2) + offset.x, 
+                    pos.y - (size.y / 2) + offset.y);
     }
     else
     {    
       if (this._innerChange == true)
         this._updateInnerRender();
 
-      ctx.drawImage(this._innerCanvas, pos.x - (size.x / 2), pos.y - (size.y / 2));
+      ctx.drawImage(this._innerCanvas, pos.x - this.size.x / 2, pos.y - this.size.y / 2);
     }
   }
 
@@ -161,4 +179,6 @@ Engine.GUI.GuiText.prototype.setFontColor = function(color) { this.fontColor = c
 Engine.GUI.GuiText.prototype.setFontBorderColor = function(color) { this.fontBorderColor = color; }
 Engine.GUI.GuiText.prototype.setAlign = function(align) { this.textAlign = align; }
 Engine.GUI.GuiText.prototype.setCanvasRendering = function(value) { this._canvasRendering = value; }
+Engine.GUI.GuiText.prototype.setVerticalOffset = function(offset) { this.verticalOffset = offset; }
+Engine.GUI.GuiText.prototype.setHorizontalOffset = function(offset) { this.horizontalOffset = offset; }
 
