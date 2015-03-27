@@ -47,6 +47,7 @@ Engine.Preloader.prototype.activate = function()
   this.message = new Engine.GUI.GuiText(engine.localization.get('loaded') + ' ' + this.percentageLoaded + '%', 300, 30);
   this.message.setPosition(engine.core.size.x/2, engine.core.size.y/2 + 100);
   this.message.setAlign(Engine.GUI.ALIGN.CENTER);
+  this.message.setVerticalOffset(20);
   // this.message.setFontSize(20);
   this.message.setFontColor('#FF2222');
   this.gui.attachItem(this.message, 'msg_loading');
