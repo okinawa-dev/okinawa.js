@@ -6,7 +6,8 @@ Engine.TrackerSine = function(callback)
   this.position        = new Engine.MATH.Point(0, 0); 
   this.amplitudeVector = new Engine.MATH.Point(10, 10); // { x: 10, y: 10};
   this.frequencyVector = new Engine.MATH.Point(1, 1);   // { x: 1, y: 1};
-  this.phaseVector     = new Engine.MATH.Point(1, 1);   // { x: 1, y: 1};
+  // phase in degrees (will be converted to radians)
+  this.phaseVector     = new Engine.MATH.Point(0, 0);   // { x: 1, y: 1};
 
   this.initTime = 0;
 }
@@ -33,12 +34,14 @@ Engine.TrackerSine.prototype.step = function (dt)
 {
   this.position.x += this.amplitudeVector.x * 
                         Math.sin((new Date().getTime() - this.initTime)/1000 * 
-                        this.frequencyVector.x + 
-                        this.phaseVector.x/180*Math.PI) * (dt / 1000);
+                          this.frequencyVector.x + 
+                          this.phaseVector.x/180 * 
+                          Math.PI) * (dt / 1000);
   this.position.y += this.amplitudeVector.y * 
                         Math.sin((new Date().getTime() - this.initTime)/1000 * 
-                        this.frequencyVector.y + 
-                        this.phaseVector.y/180*Math.PI) * (dt / 1000);
+                          this.frequencyVector.y + 
+                          this.phaseVector.y/180 * 
+                          Math.PI) * (dt / 1000);
 
   // Tracker.step is where the attached items steps are called, so they go 
   // after updating the tracker
