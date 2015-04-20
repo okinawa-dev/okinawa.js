@@ -5,8 +5,8 @@ Engine.GUI.GuiButton = function(txt)
 
   this.buttonToEmulate = null;
 
-  this.buttonSprite = '';
-  this.image        = null;
+  this.spriteName = '';
+  this.image      = null;
 }
 
 Engine.GUI.GuiButton.prototype = Object.create(Engine.GUI.GuiElement.prototype);
@@ -34,13 +34,13 @@ Engine.GUI.GuiButton.prototype.activate = function()
     this.getSize(),
     this.buttonToEmulate);
 
-  if (this.buttonSprite =! '')
+  if (this.spriteName != '')
   {
     if (this.image == null)
       this.image = new Engine.GUI.GuiElement();
 
     this.image.setPosition(0, 0);
-    this.image.setImage(this.buttonSprite);
+    this.image.setImage(this.spriteName);
     this.attachItem(this.image);    
   }
 

@@ -150,7 +150,7 @@ Engine.INPUT.Controller.prototype.onClickStart = function(x, y)
     // engine.logs.log('Engine.INPUT.Controller.onTouchStart', 'Touch inside the canvas, got it!');
     // engine.gui.get('console').addText('touch', 'Pos ' + position.x + ' ' + position.y); 
 
-    this.currentInputController.detectTouch(position);
+    this.currentInputController.detectClick(position);
   }
 }
 
