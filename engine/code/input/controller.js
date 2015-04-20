@@ -45,7 +45,8 @@ Engine.INPUT.Controller.prototype.initialize = function()
 
   // Capture touch events
   addEvent('touchstart', engine.core.canvas, function(event) {
-    engine.input.onTouchStart(event);
+    
+    engine.input.onTouchStart(event.touches[0].clientX, event.touches[0].clientY);
 
     // So touch would work in Android browser
     if ( navigator.userAgent.match(/Android/i) )
@@ -65,7 +66,8 @@ Engine.INPUT.Controller.prototype.initialize = function()
 
   // Capture click events
   addEvent('click', engine.core.canvas, function(event) {
-    engine.input.onClickStart(event);
+
+    engine.input.onClickStart(event.clientX, event.clientY);
     event.preventDefault();    
     return false;
   });
@@ -116,49 +118,14 @@ Engine.INPUT.Controller.prototype.onKeyup = function(event)
   delete this.pressed[event.keyCode];
 }
 
-Engine.INPUT.Controller.prototype.onTouchStart = function(event)
+Engine.INPUT.Controller.prototype.onClickStart = function(x, y)
 {
   // If the screen is being modified, ignore touch events for safety
   if (engine.device.isResizing == true)
     return;
 
-  var position = new Engine.MATH.Point(event.touches[0].clientX, event.touches[0].clientY); // ontouchstart
+  var position = new Engine.MATH.Point(x, y);
   // var position = new Engine.MATH.Point(event.changedTouches[0].pageX, event.changedTouches[0].pageY); // ontouchend
-
-  // Apply correction if the scroll has moved
-  var scroll = engine.device.getGlobalScroll();
-
-  position.x += scroll.x;
-  position.y += scroll.y;
-
-  // engine.logs.log('Engine.INPUT.Controller.onTouchStart', 'Touch in position: ' +position.x+' '+position.y);        
-
-  if ((position.x < engine.device.canvasGlobalOffset.x) || (position.y < engine.device.canvasGlobalOffset.y) || 
-      (position.x > engine.device.canvasGlobalOffset.x + engine.core.canvas.width) ||
-      (position.y > engine.device.canvasGlobalOffset.y + engine.core.canvas.height))
-  {
-    // engine.logs.log('Engine.INPUT.Controller.onTouchStart', 'Touch outside the canvas, ignoring');   
-    // engine.gui.get('console').addText('touch', 'Pos ' + position.x + ' ' + position.y); 
-  }
-  else
-  {
-    position.x -= engine.device.canvasGlobalOffset.x;
-    position.y -= engine.device.canvasGlobalOffset.y;
-
-    // engine.logs.log('Engine.INPUT.Controller.onTouchStart', 'Touch inside the canvas, got it!');
-    // engine.gui.get('console').addText('touch', 'Pos ' + position.x + ' ' + position.y); 
-
-    this.currentInputController.detectTouch(position);
-  }
-}
-
-Engine.INPUT.Controller.prototype.onClickStart = function(event)
-{
-  // If the screen is being modified, ignore click events for safety
-  if (engine.device.isResizing == true)
-    return;
-
-  var position = new Engine.MATH.Point(event.clientX, event.clientY); 
 
   // Apply correction if the scroll has moved
   var scroll = engine.device.getGlobalScroll();
