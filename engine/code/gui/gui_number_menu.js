@@ -68,7 +68,7 @@ Engine.GUI.GuiNumberMenu.prototype.activate = function()
       var textInfo = this._menuOptions[this._menuIds[i]];
       var text = textInfo[2];
 
-      scene.input.addTouchZone('number_menu_' + this.guiId + '_' + i, 
+      scene.input.addClickZone('number_menu_' + this.guiId + '_' + i, 
         text.getPosition(),
         text.getSize(),
         engine.input.convertNumberToKey(i + 1));

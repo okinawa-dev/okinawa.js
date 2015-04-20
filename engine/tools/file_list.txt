@@ -30,7 +30,6 @@ gui/gui_console.js
 gui/gui_menu.js
 gui/gui_number_menu.js
 gui/gui_window.js
-gui/gui_touch_button.js
 gui/gui_button.js
 scenes/background.js
 scenes/scene.js

@@ -4,7 +4,9 @@ Engine.GUI.GuiButton = function(txt)
   Engine.GUI.GuiElement.call(this);
 
   this.buttonToEmulate = null;
-  this.buttonSprite = 'button_zone';
+
+  this.buttonSprite = '';
+  this.image        = null;
 }
 
 Engine.GUI.GuiButton.prototype = Object.create(Engine.GUI.GuiElement.prototype);
@@ -32,12 +34,14 @@ Engine.GUI.GuiButton.prototype.activate = function()
     this.getSize(),
     this.buttonToEmulate);
 
-  if (this.getVisible() == true)
+  if (this.buttonSprite =! '')
   {
-    var image = new Engine.GUI.GuiElement();
-    image.setPosition(pos.x, pos.y);
-    image.setImage(this.buttonSprite);
-    scene.gui.attachItem(image, 'button_zone_' + this.guiId);    
+    if (this.image == null)
+      this.image = new Engine.GUI.GuiElement();
+
+    this.image.setPosition(0, 0);
+    this.image.setImage(this.buttonSprite);
+    this.attachItem(this.image);    
   }
 
   // Listen to all the keys
@@ -58,5 +62,3 @@ Engine.GUI.GuiButton.prototype.step = function(dt)
 {
   Engine.GUI.GuiElement.prototype.step.call(this, dt);
 }
-
-

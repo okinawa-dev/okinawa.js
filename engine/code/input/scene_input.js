@@ -18,14 +18,13 @@ Engine.INPUT.SceneInput = function()
 
   this.keyListeners = {}; // { keyCode : [ list of objects listening to the event ] }
 
-  // List of touch zones
-  // touchZones[zoneName] = { 
+  // List of clickable zones
+  // clickableZones[zoneName] = { 
   //                  position : x, y of its center, 
   //                  size : x, y (rectangle form),
   //                  character : character to emulate when it's touched
   //                        }
-  this.touchZones = {};
-  this.clickZones = {};
+  this.clickableZones = {};
 }
 
 Engine.INPUT.SceneInput.prototype.initialize = function() 
@@ -199,41 +198,9 @@ Engine.INPUT.SceneInput.prototype.detectCombo = function()
   return null;
 }
 
-Engine.INPUT.SceneInput.prototype.addTouchZone = function(id, location, rectangleSize, char)
-{
-  this.touchZones[id] = {
-    position : location,
-    size : rectangleSize,
-    character : char
-  }
-}
-
-Engine.INPUT.SceneInput.prototype.detectTouch = function(position)
-{
-  for (var touchId in this.touchZones)
-  {
-    var touchZone = this.touchZones[touchId];
-
-    // engine.logs.log('Engine.INPUT.SceneInput.detectTouch', 'Testing ' + touchId + ' zone');
-
-    if ((position.x >= touchZone.position.x - touchZone.size.x / 2 ) && 
-        (position.x <= touchZone.position.x + touchZone.size.x / 2 ) && 
-        (position.y >= touchZone.position.y - touchZone.size.y / 2 ) && 
-        (position.y <= touchZone.position.y + touchZone.size.y / 2 ))
-    {
-      // Touch done!
-      // engine.logs.log('Engine.INPUT.SceneInput.detectTouch', 'Touch OK, zone: ' + touchId);
-      // engine.gui.get('console').addText('touch', touchId); 
-
-      // Save the emulated key
-      engine.input.addLastPressed(touchZone.character);
-    }
-  }
-}
-
 Engine.INPUT.SceneInput.prototype.addClickZone = function(id, location, rectangleSize, char)
 {
-  this.clickZones[id] = {
+  this.clickableZones[id] = {
     position : location,
     size : rectangleSize,
     character : char
@@ -242,9 +209,9 @@ Engine.INPUT.SceneInput.prototype.addClickZone = function(id, location, rectangl
 
 Engine.INPUT.SceneInput.prototype.detectClick = function(position)
 {
-  for (var clickId in this.clickZones)
+  for (var clickId in this.clickableZones)
   {
-    var clickZone = this.clickZones[clickId];
+    var clickZone = this.clickableZones[clickId];
 
     // engine.logs.log('Engine.INPUT.SceneInput.detectTouch', 'Testing ' + clickId + ' zone');
 
