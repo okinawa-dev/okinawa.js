@@ -7,6 +7,8 @@ Engine.TrackerFollow = function(callback)
   this.lastDirection = null; // In case target disappears
 
   this.trackSpeed = 1;
+  // if distance to target is less than threshold, finish the tracker
+  this.threshold  = 2;
 }
 
 Engine.TrackerFollow.prototype = Object.create(Engine.Tracker.prototype);
@@ -50,7 +52,7 @@ Engine.TrackerFollow.prototype.step = function (dt)
     this.lastDirection = direction;
   }
 
-  if ((forceDetach == false) && (engine.math.pointDistance(pos, targetPos) > 2))
+  if ((forceDetach == false) && (engine.math.pointDistance(pos, targetPos) > this.threshold))
   {
     this.position.x += direction.x * this.trackSpeed;
     this.position.y += direction.y * this.trackSpeed;
