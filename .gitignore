@@ -3,3 +3,5 @@
 engine/build
 engine/tools/*.old
 test-asteroids/build
+test-asteroids/sounds
+test-asteroids/psds
