@@ -46,7 +46,7 @@ Engine.INPUT.Controller.prototype.initialize = function()
   // Capture touch events
   addEvent('touchstart', engine.core.canvas, function(event) {
     
-    engine.input.onTouchStart(event.touches[0].clientX, event.touches[0].clientY);
+    engine.input.onClickStart(event.touches[0].clientX, event.touches[0].clientY);
 
     // So touch would work in Android browser
     if ( navigator.userAgent.match(/Android/i) )
