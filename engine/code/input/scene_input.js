@@ -25,6 +25,8 @@ Engine.INPUT.SceneInput = function()
   //                  character : character to emulate when it's touched
   //                        }
   this.clickableZones = {};
+
+  this.clickListeners = []; // array of elements listening to click events
 }
 
 Engine.INPUT.SceneInput.prototype.initialize = function() 
@@ -69,6 +71,19 @@ Engine.INPUT.SceneInput.prototype.addKeyListener = function(object, funcName, ke
   }
 }
 
+Engine.INPUT.SceneInput.prototype.addClickListener = function(object, funcName, onPause)
+{
+  if (onPause == undefined)
+    onPause = false;
+
+  var element = [];
+  element['listeningOb'] = object;
+  element['listeningFunc'] = funcName;
+  element['onPause'] = onPause;
+
+  this.clickListeners.push(element);
+}
+
 Engine.INPUT.SceneInput.prototype.informKeyPressed = function(keyCode)
 {
   var listeners = [];
@@ -95,6 +110,25 @@ Engine.INPUT.SceneInput.prototype.informKeyPressed = function(keyCode)
     // If the object has the function, inform
     if (which.listeningOb[which.listeningFunc] != undefined)
       which.listeningOb[which.listeningFunc](keyCode);
+  }
+}
+
+Engine.INPUT.SceneInput.prototype.informClick = function(id)
+{  
+  if (typeof(this.clickListeners) === 'undefined')
+    return;
+
+  for (var i = 0, len = this.clickListeners.length; i < len; i++)
+  {
+    var which = this.clickListeners[i];
+
+    // If the listening object should not be informed on pause
+    if (!which.onPause && engine.paused)
+      continue;
+
+    // If the object has the function, inform
+    if (typeof(which.listeningOb[which.listeningFunc]) !== 'undefined')
+      which.listeningOb[which.listeningFunc](id);
   }
 }
 
@@ -198,12 +232,12 @@ Engine.INPUT.SceneInput.prototype.detectCombo = function()
   return null;
 }
 
-Engine.INPUT.SceneInput.prototype.addClickZone = function(id, location, rectangleSize, char)
+Engine.INPUT.SceneInput.prototype.addClickZone = function(id, location, rectangleSize, ch)
 {
   this.clickableZones[id] = {
     position : location,
     size : rectangleSize,
-    character : char
+    character : ch
   }
 }
 
@@ -225,7 +259,10 @@ Engine.INPUT.SceneInput.prototype.detectClick = function(position)
       // engine.gui.get('console').addText('touch', clickId); 
 
       // Save the emulated key
-      engine.input.addLastPressed(clickZone.character);
+      if (clickZone.character != null)
+        engine.input.addLastPressed(clickZone.character);
+
+      engine.input.addClick(clickId);
     }
   }
 }

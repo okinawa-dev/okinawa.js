@@ -188,6 +188,14 @@ Engine.INPUT.Controller.prototype.addLastPressed = function(keyCode)
     this.currentInputController.informComboPerformed(whichCombo, now);
 }
 
+Engine.INPUT.Controller.prototype.addClick = function(id)
+{
+  this.currentInputController.informClick(id);
+
+  if (engine.options.outputClicks == true)
+    engine.logs.log('Input.addClick', 'Click over: ' + id);
+}
+
 Engine.INPUT.Controller.prototype.getKeyFromCode = function(keyCode)
 {
   return this.inverseKeyboard[keyCode];

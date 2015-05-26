@@ -24,6 +24,7 @@ Engine.Options = function()
   // Console inform
   this.outputPressedKeys = false;
   this.outputPressedCombos = false;
+  this.outputClicks = false;
 
   // Show LogHandler info in the navigator console
   this.debugInConsole = false;
