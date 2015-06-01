@@ -7,9 +7,7 @@ Engine.TrackerFollow = function(callback)
   this.lastDirection = null; // In case target disappears
 
   this.trackSpeed = 1;
-  // if distance to target is less than threshold, finish the tracker
-  this.threshold  = 2;
-}
+};
 
 Engine.TrackerFollow.prototype = Object.create(Engine.Tracker.prototype);
 Engine.TrackerFollow.prototype.constructor = Engine.TrackerFollow;
@@ -18,19 +16,19 @@ Engine.TrackerFollow.prototype.constructor = Engine.TrackerFollow;
 Engine.TrackerFollow.prototype.initialize = function()
 {
   Engine.Tracker.prototype.initialize.call(this);
-}
+};
 
 Engine.TrackerFollow.prototype.activate = function()
 {
   Engine.Tracker.prototype.activate.call(this);
-}
+};
 
 Engine.TrackerFollow.prototype.setTarget = function(target)
 {
   this.targetOb = target;
-}
+};
 
-Engine.TrackerFollow.prototype.step = function (dt)
+Engine.TrackerFollow.prototype.step = function(dt)
 {
   var pos = this.getPosition();
   var targetPos = this.targetOb.getPosition();
@@ -38,7 +36,7 @@ Engine.TrackerFollow.prototype.step = function (dt)
   var forceDetach = false;
 
   // The target has been removed from the scene
-  if (this.targetOb.getParent() == null)
+  if (this.targetOb.getParent() === null)
   {
     direction = this.lastDirection;
     forceDetach = true;
@@ -52,15 +50,26 @@ Engine.TrackerFollow.prototype.step = function (dt)
     this.lastDirection = direction;
   }
 
-  if ((forceDetach == false) && (engine.math.pointDistance(pos, targetPos) > this.threshold))
+  var movement = new Engine.MATH.Point(direction.x * this.trackSpeed, 
+                                       direction.y * this.trackSpeed);
+  var futurePos = new Engine.MATH.Point(pos.x + movement.x,
+                                        pos.y + movement.y);
+
+  var distanceToTarget = engine.math.pointDistance(pos, targetPos);
+  var distanceToFuture = engine.math.pointDistance(pos, futurePos);
+
+  if ((forceDetach === false) && (distanceToTarget > distanceToFuture))
   {
-    this.position.x += direction.x * this.trackSpeed;
-    this.position.y += direction.y * this.trackSpeed;
+    this.position.x = futurePos.x;
+    this.position.y = futurePos.y;
   }
   else
   {
-    if (this.getParent() != null)
+    if (this.getParent() !== null)
     {
+      this.position.x = targetPos.x;
+      this.position.y = targetPos.y;
+
       // Move all children from here to the parent
       for (var i = 0, len = this.getAttachedItems().length; i < len; i++)
       {
@@ -90,14 +99,14 @@ Engine.TrackerFollow.prototype.step = function (dt)
 
   // Call inherited function 
   Engine.Tracker.prototype.step.call(this, dt);
-}
+};
 
-Engine.TrackerFollow.prototype.draw = function (ctx) 
+Engine.TrackerFollow.prototype.draw = function(ctx) 
 {
   // Call inherited function 
   Engine.Tracker.prototype.draw.call(this, ctx); 
 
-  if (engine.options.drawTrackers == true)
+  if (engine.options.drawTrackers === true)
   {
     var pos = this.getPosition();
     var targetPos = this.targetOb.getPosition();
@@ -114,5 +123,4 @@ Engine.TrackerFollow.prototype.draw = function (ctx)
     ctx.lineTo(targetPos.x, targetPos.y);
     ctx.stroke();
   }
-}
-
+};
