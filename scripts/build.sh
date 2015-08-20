@@ -7,7 +7,7 @@ else
 fi
 
 # some constants
-CONTENT_DIR=$BASE_DIR/engine/
+CONTENT_DIR=$BASE_DIR/
 FILELIST=$BASE_DIR/scripts/file_list.txt
 BUILD_DIR=$BASE_DIR/build
 END_FILE=okinawa.js
