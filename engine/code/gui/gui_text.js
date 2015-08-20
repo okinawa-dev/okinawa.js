@@ -15,7 +15,7 @@ Engine.GUI.GuiText = function(txt, x, y)
   this.verticalOffset = 20;
   this.horizontalOffset = 10;
 
-  if ((x == undefined) || (y == undefined))
+  if ((typeof(x) === 'undefined') || (typeof(y) === 'undefined'))
   {
     this.size.x = 100;
     this.size.y = 30;
@@ -34,7 +34,7 @@ Engine.GUI.GuiText = function(txt, x, y)
   this._innerContext = this._innerCanvas.getContext('2d');
   // Should re-render the canvas?
   this._innerChange  = true;
-}
+};
 
 Engine.GUI.GuiText.prototype = Object.create(Engine.GUI.GuiElement.prototype);
 Engine.GUI.GuiText.prototype.constructor = Engine.GUI.GuiText;
@@ -43,12 +43,12 @@ Engine.GUI.GuiText.prototype.constructor = Engine.GUI.GuiText;
 Engine.GUI.GuiText.prototype.initialize = function()
 {
   Engine.GUI.GuiElement.prototype.initialize.call(this);
-}
+};
 
 Engine.GUI.GuiText.prototype.activate = function()
 {
   Engine.GUI.GuiElement.prototype.activate.call(this);
-}
+};
 
 // Mask Item.getSize
 // Engine.GUI.GuiText.prototype.getSize = function()
@@ -69,7 +69,7 @@ Engine.GUI.GuiText.prototype.setSize = function(x, y)
   this._innerCanvas.width  = this.size.x;
   this._innerCanvas.height = this.size.y;
   this._innerChange = true;
-}
+};
 
 // Mask Item.getPosition
 // Engine.GUI.GuiText.prototype.getPosition = function()
@@ -89,7 +89,7 @@ Engine.GUI.GuiText.prototype.setText = function(txt)
 
   this.text = txt;
   this._innerChange = true;
-}
+};
 
 Engine.GUI.GuiText.prototype._updateInnerRender = function()
 {
@@ -118,16 +118,16 @@ Engine.GUI.GuiText.prototype._updateInnerRender = function()
   this._innerContext.fillText(this.text, where.x, where.y); 
 
   this._innerChange = false;
-}
+};
 
 Engine.GUI.GuiText.prototype.draw = function(ctx)
 {
-  if (this.getVisible() == true)
+  if (this.getVisible() === true)
   {
     var pos = this.getPosition();
     var size = this.getSize();
 
-    if (this._canvasRendering == false)
+    if (this._canvasRendering === false)
     {
       // var scale = this.getScaling();
       var offset = new Engine.MATH.Point(this.horizontalOffset, this.verticalOffset);
@@ -156,7 +156,7 @@ Engine.GUI.GuiText.prototype.draw = function(ctx)
     }
     else
     {    
-      if (this._innerChange == true)
+      if (this._innerChange === true)
         this._updateInnerRender();
 
       ctx.drawImage(this._innerCanvas, pos.x - this.size.x / 2, pos.y - this.size.y / 2);
@@ -165,20 +165,20 @@ Engine.GUI.GuiText.prototype.draw = function(ctx)
 
   // Call inherited function 
   Engine.GUI.GuiElement.prototype.draw.call(this, ctx);
-}
+};
 
 Engine.GUI.GuiText.prototype.step = function(dt)
 {
   // Call inherited function 
   Engine.GUI.GuiElement.prototype.step.call(this, dt);
-}
+};
 
-Engine.GUI.GuiText.prototype.setFont = function(font) { this.font = font; }
-Engine.GUI.GuiText.prototype.setFontSize = function(size) { this.fontSize = size; }
-Engine.GUI.GuiText.prototype.setFontColor = function(color) { this.fontColor = color; }
-Engine.GUI.GuiText.prototype.setFontBorderColor = function(color) { this.fontBorderColor = color; }
-Engine.GUI.GuiText.prototype.setAlign = function(align) { this.textAlign = align; }
-Engine.GUI.GuiText.prototype.setCanvasRendering = function(value) { this._canvasRendering = value; }
-Engine.GUI.GuiText.prototype.setVerticalOffset = function(offset) { this.verticalOffset = offset; }
-Engine.GUI.GuiText.prototype.setHorizontalOffset = function(offset) { this.horizontalOffset = offset; }
+Engine.GUI.GuiText.prototype.setFont = function(font) { this.font = font; };
+Engine.GUI.GuiText.prototype.setFontSize = function(size) { this.fontSize = size; };
+Engine.GUI.GuiText.prototype.setFontColor = function(color) { this.fontColor = color; };
+Engine.GUI.GuiText.prototype.setFontBorderColor = function(color) { this.fontBorderColor = color; };
+Engine.GUI.GuiText.prototype.setAlign = function(align) { this.textAlign = align; };
+Engine.GUI.GuiText.prototype.setCanvasRendering = function(value) { this._canvasRendering = value; };
+Engine.GUI.GuiText.prototype.setVerticalOffset = function(offset) { this.verticalOffset = offset; };
+Engine.GUI.GuiText.prototype.setHorizontalOffset = function(offset) { this.horizontalOffset = offset; };
 

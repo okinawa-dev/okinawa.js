@@ -17,7 +17,7 @@ Engine.GUI.GuiButton.prototype.initialize = function(button)
 {
   Engine.GUI.GuiElement.prototype.initialize.call(this);
 
-  if (button != undefined)
+  if (typeof(button) !== 'undefined')
     this.buttonToEmulate = button;
 }
 
@@ -36,7 +36,7 @@ Engine.GUI.GuiButton.prototype.activate = function()
 
   if (this.spriteName != '')
   {
-    if (this.image == null)
+    if (this.image === null)
       this.image = new Engine.GUI.GuiElement();
 
     this.image.setPosition(0, 0);

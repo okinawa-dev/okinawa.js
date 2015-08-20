@@ -12,7 +12,7 @@ Engine.GUI.GuiMenu = function(txt)
   this.selector.setImage('selector');
   this.selector.setPosition(0, -5);
   this.attachItem(this.selector);
-}
+};
 
 Engine.GUI.GuiMenu.prototype = Object.create(Engine.GUI.GuiElement.prototype);
 Engine.GUI.GuiMenu.prototype.constructor = Engine.GUI.GuiMenu;
@@ -21,7 +21,7 @@ Engine.GUI.GuiMenu.prototype.constructor = Engine.GUI.GuiMenu;
 Engine.GUI.GuiMenu.prototype.initialize = function()
 {
   Engine.GUI.GuiElement.prototype.initialize.call(this);
-}
+};
 
 Engine.GUI.GuiMenu.prototype.activate = function()
 {
@@ -31,17 +31,17 @@ Engine.GUI.GuiMenu.prototype.activate = function()
 
   var scene = this.getParentScene();
 
-  if (scene == null)
+  if (scene === null)
     return;
 
   scene.input.addKeyListener( this, 'eventKeyPressed', [ Engine.INPUT.KEYS.UP, Engine.INPUT.KEYS.DOWN, Engine.INPUT.KEYS.ENTER ], true ); 
-}
+};
 
 Engine.GUI.GuiMenu.prototype.draw = function(ctx)
 {
   var len = this._menuIds.length;
 
-  if (len == 0)
+  if (len === 0)
     return;
 
   // var pos = this.getPosition();
@@ -65,13 +65,13 @@ Engine.GUI.GuiMenu.prototype.draw = function(ctx)
 
   // Call inherited function 
   Engine.GUI.GuiElement.prototype.draw.call(this, ctx);
-}
+};
 
 Engine.GUI.GuiMenu.prototype.step = function(dt)
 {
   // Call inherited function 
   Engine.GUI.GuiElement.prototype.step.call(this, dt);
-}
+};
 
 Engine.GUI.GuiMenu.prototype.addMenuOption = function(id, text, ob)
 {
@@ -83,7 +83,7 @@ Engine.GUI.GuiMenu.prototype.addMenuOption = function(id, text, ob)
   // } );
 
 
-  if (this._menuOptions[id] != undefined)
+  if (typeof(this._menuOptions[id]) !== 'undefined')
   {
     if (this._menuOptions[id][0] != text)
     {
@@ -103,7 +103,7 @@ Engine.GUI.GuiMenu.prototype.addMenuOption = function(id, text, ob)
     // So step and draw are autocalled
     this.attachItem(txt, id);
   }
-}
+};
 
 Engine.GUI.GuiMenu.prototype.eventKeyPressed = function(keyCode)
 {
@@ -121,11 +121,9 @@ Engine.GUI.GuiMenu.prototype.eventKeyPressed = function(keyCode)
   {
     var option = this._menuOptions[ this._menuIds[ this.currentOption ] ];
 
-    if (option[2] != undefined)
+    if (typeof(option[2]) !== 'undefined')
       if (option[2].eventGuiAction)
-        option[2].eventGuiAction(this.guiId, Engine.GUI.EVENTS.SELECTION, this._menuIds[ this.currentOption ])
+        option[2].eventGuiAction(this.guiId, Engine.GUI.EVENTS.SELECTION, this._menuIds[ this.currentOption ]);
   }
-}
-
-
+};
 
