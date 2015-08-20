@@ -3,9 +3,4 @@
 npm-debug.log
 node_modules/*
 build/*
-
-engine/build
-engine/tools/*.old
-test-asteroids/build
-test-asteroids/sounds
-test-asteroids/psds
+scripts/*.old

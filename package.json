@@ -8,10 +8,15 @@
     "type": "git",
     "url": "git://github.com/neverbot/okinawa.js.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "jshint": "^2.8.0"
+  },
   "devDependencies": {},
   "optionalDependencies": {},
   "engines": {
     "node": "*"
+  },
+  "scripts": {
+    "build": "./scripts/build.sh ."
   }
 }
