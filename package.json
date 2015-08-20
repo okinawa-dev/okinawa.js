@@ -18,6 +18,7 @@
     "node": "*"
   },
   "scripts": {
+    "lint": "jshint engine/code/",
     "build": "./scripts/build.sh .",
     "postbuild": "uglifyjs ./build/okinawa.js -o ./build/okinawa.min.js"
   }
