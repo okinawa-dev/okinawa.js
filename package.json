@@ -9,7 +9,6 @@
     "url": "git://github.com/neverbot/okinawa.js.git"
   },
   "dependencies": {
-    "browserify": "^11.0.1",
     "jshint": "^2.8.0"
   },
   "devDependencies": {},
@@ -18,7 +17,6 @@
     "node": "*"
   },
   "scripts": {
-    "build": "browserify engine/code/main.js > build/okinawa.js",
-    "postbuild": "cp build/okinawa.js test-asteroids/build/game/okinawa.js"
+    "build": "./scripts/build.sh ."
   }
 }
