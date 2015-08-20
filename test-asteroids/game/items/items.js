@@ -1,4 +1,0 @@
-
-// Init namespace
-Game.ITEMS = {};
-
