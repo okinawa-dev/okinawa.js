@@ -1,5 +1,9 @@
 .DS_Store
 
+npm-debug.log
+node_modules/*
+build/*
+
 engine/build
 engine/tools/*.old
 test-asteroids/build
