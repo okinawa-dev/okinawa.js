@@ -1,7 +1,7 @@
-Okinawa
+Okinawajs
 =======
 
-A simple javascript 2D game engine. Test it on http://dev.neverbot.com/okinawa
+A simple javascript 2D game engine. Test it on http://dev.neverbot.com/okinawajs
 
 Current list of features:
  * Multiple scenes/levels
