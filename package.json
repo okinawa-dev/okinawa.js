@@ -1,0 +1,17 @@
+{
+  "author": "Ivan Alonso (@neverbot)",
+  "name": "okinawa.js",
+  "description": "Javascript 2D game engine",
+  "version": "1.0.0",
+  "homepage": "http://dev.neverbot.com/okinawa.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/neverbot/okinawa.js.git"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
