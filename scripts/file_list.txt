@@ -30,6 +30,7 @@ engine/code/gui/gui_console.js
 engine/code/gui/gui_menu.js
 engine/code/gui/gui_number_menu.js
 engine/code/gui/gui_window.js
+engine/code/gui/gui_bubble.js
 engine/code/gui/gui_button.js
 engine/code/scenes/background.js
 engine/code/scenes/scene.js
