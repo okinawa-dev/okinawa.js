@@ -19,9 +19,8 @@ Current list of features:
  * Clock subcriptions to wait for certain events
  * Basic audio support
 
-Tests included
- * Asteroids clone
-   + Execute the `test-asteroids/tools/build.sh` script and the game will be built inside `test-asteroids/build`, ready to be tested
+Tests/Demos
+ * Asteroids: see the [okinawa-asteroids](https://github.com/neverbot/okinawa-asteroids) repository.
    
 To do:
  * Better audio system
