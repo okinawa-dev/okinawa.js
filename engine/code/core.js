@@ -22,7 +22,7 @@ Engine.Core = function()
   // To count frames per second
   this.fpsPassed = 0;           // frames rendered since last time
   this.fps = this.FRAMES_PER_SECOND; // updated only each second
-}
+};
 
 // Game Initialization
 Engine.Core.prototype.initialize = function(canvasElementId) 
@@ -46,7 +46,7 @@ Engine.Core.prototype.initialize = function(canvasElementId)
   engine.logs.log('Engine.Core.initialize', 'UserAgent: ' + engine.device.getUserAgent());
 
   // Sometimes this is slower, I don't know why, and that makes me angry :(
-  if ((engine.options.useAnimationFrame == false) || (window.requestAnimationFrame == null))
+  if ((engine.options.useAnimationFrame === false) || (window.requestAnimationFrame === null))
   {
     this.useAnimationFrame = false;
     engine.logs.log('Engine.Core.initialize', 'NOT using requestAnimationFrame');
@@ -61,7 +61,7 @@ Engine.Core.prototype.initialize = function(canvasElementId)
   this.loop(); 
 
   return 1;
-}
+};
 
 // Game Initialization
 Engine.Core.prototype.activate = function() 
@@ -72,20 +72,20 @@ Engine.Core.prototype.activate = function()
   engine.gui.activate();
 
   engine.scenes.advanceScene();
-}
+};
 
 Engine.Core.prototype.eventKeyPressed = function(keyCode)
 {
   // engine.logs.log('Engine.eventKeyPressed', 'Key Pressed: ' + keyCode);
 
-  if ((keyCode == Engine.INPUT.KEYS.P) && (engine.options.allowPause == true))
+  if ((keyCode == Engine.INPUT.KEYS.P) && (engine.options.allowPause === true))
   {
     if (this.paused)
       this.unpauseGame();
-    else if (engine.scenes.getCurrentScene().playable != false)
+    else if (engine.scenes.getCurrentScene().playable !== false)
       this.pauseGame();
   }
-  else if ((keyCode == Engine.INPUT.KEYS.ESC) && (engine.options.allowHalt == true))
+  else if ((keyCode == Engine.INPUT.KEYS.ESC) && (engine.options.allowHalt === true))
   {
     if (this.halted)
     {
@@ -104,14 +104,14 @@ Engine.Core.prototype.eventKeyPressed = function(keyCode)
       engine.gui.draw(this.ctx); // Force draw before halting the loop
     }
   }
-  else if ((keyCode == Engine.INPUT.KEYS.F) && (engine.options.allowFForFps == true))
+  else if ((keyCode == Engine.INPUT.KEYS.F) && (engine.options.allowFForFps === true))
   {
-    if (engine.options.showFps == true)
+    if (engine.options.showFps === true)
       engine.options.showFps = false;
     else
       engine.options.showFps = true;
   }
-}
+};
 
 // Game Loop
 Engine.Core.prototype.loop = function() 
@@ -128,13 +128,13 @@ Engine.Core.prototype.loop = function()
       return;
 
     // Only the current scene
-    if (sc && (sc.isCurrent == true))
+    if (sc && (sc.isCurrent === true))
     {
       // Only advance game logic if game is not paused
-      if (this.paused == false)
+      if (this.paused === false)
       {
         sc.step(dt);
-        if (engine.game != undefined)
+        if (engine.game !== undefined)
           engine.game.step(dt);
         engine.effects.step(dt);
         engine.particles.step(dt);
@@ -152,14 +152,17 @@ Engine.Core.prototype.loop = function()
       // FPS related stuff
       this.fpsPassed++;
 
-      if (engine.options.showStatistics == true)
+      if (engine.options.showStatistics === true)
       {
         if (sc.getAttachedItems().length > 0)
-          engine.gui.get('console').addText('numItems', sc.getAttachedItems().length + ' ' + engine.localization.get('items'));
+          engine.gui.get('console').addText('numItems', sc.getAttachedItems().length + 
+                                            ' ' + engine.localization.get('items'));
         if (engine.effects.effects.length > 0)
-          engine.gui.get('console').addText('numEffects', engine.effects.effects.length + ' ' + engine.localization.get('effects'));  
+          engine.gui.get('console').addText('numEffects', engine.effects.effects.length + 
+                                            ' ' + engine.localization.get('effects'));  
         if (engine.particles.particles.length > 0)
-          engine.gui.get('console').addText('numParticles', engine.particles.particles.length + ' ' + engine.localization.get('particles'));
+          engine.gui.get('console').addText('numParticles', engine.particles.particles.length + 
+                                            ' ' + engine.localization.get('particles'));
       }
 
       engine.gui.draw(this.ctx);
@@ -169,27 +172,27 @@ Engine.Core.prototype.loop = function()
     dt = 0;
   }
 
-  if (this.useAnimationFrame == true)
+  if (this.useAnimationFrame === true)
     window.requestAnimationFrame(function() { engine.core.loop(); });
   else
   {
     setTimeout(function() { engine.core.loop(); }, engine.core.TIME_PER_FRAME - dt);
   }
-}
+};
 
 Engine.Core.prototype.clearScreen = function() 
 { 
   this.ctx.clearRect(0, 0, this.size.x, this.size.y);
-}
+};
 
 Engine.Core.prototype.pauseGame = function() 
 { 
-  if (engine.options.allowPause == false)
+  if (engine.options.allowPause === false)
     return;
 
   this.paused = true; 
 
-  if (engine.gui.get('pause') == null)
+  if (engine.gui.get('pause') === null)
   {
     var text = new Engine.GUI.GuiText(engine.localization.get('paused'), 500, 30);
     text.setFontColor('#FF2222');
@@ -198,15 +201,14 @@ Engine.Core.prototype.pauseGame = function()
 
     engine.gui.attachItem(text, 'pause');
   }
-}
+};
 
 Engine.Core.prototype.unpauseGame = function() 
 { 
-  if (engine.options.allowPause == false)
+  if (engine.options.allowPause === false)
     return;
 
   this.paused = false; 
 
   engine.gui.detachItem('pause');
-}
-
+};

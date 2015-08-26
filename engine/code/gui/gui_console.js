@@ -8,7 +8,7 @@ Engine.GUI.GuiConsole = function(txt)
   this._textsToRemove = [];
 
   this.order = Engine.GUI.ORDENATION.DOWN;
-}
+};
 
 Engine.GUI.GuiConsole.prototype = Object.create(Engine.GUI.GuiElement.prototype);
 Engine.GUI.GuiConsole.prototype.constructor = Engine.GUI.GuiConsole;
@@ -17,18 +17,18 @@ Engine.GUI.GuiConsole.prototype.constructor = Engine.GUI.GuiConsole;
 Engine.GUI.GuiConsole.prototype.initialize = function()
 {
   Engine.GUI.GuiElement.prototype.initialize.call(this);
-}
+};
 
 Engine.GUI.GuiConsole.prototype.activate = function()
 {
   Engine.GUI.GuiElement.prototype.activate.call(this);
-}
+};
 
 Engine.GUI.GuiConsole.prototype.draw = function(ctx)
 {
   var len = this._textKeys.length;
 
-  if (len == 0)
+  if (len === 0)
     return;
 
   // var pos = this.getPosition();
@@ -65,7 +65,7 @@ Engine.GUI.GuiConsole.prototype.draw = function(ctx)
 
   // Call inherited function 
   Engine.GUI.GuiElement.prototype.draw.call(this, ctx);
-}
+};
 
 Engine.GUI.GuiConsole.prototype.step = function(dt)
 {
@@ -85,11 +85,11 @@ Engine.GUI.GuiConsole.prototype.step = function(dt)
     this._textKeys = Object.keys(this._texts);
     this._textsToRemove = [];
   }
-}
+};
 
 Engine.GUI.GuiConsole.prototype.addText = function(key, text)
 {
-  if (this._texts[key] != undefined)
+  if (typeof(this._texts[key]) !== 'undefined')
   {
     if (this._texts[key][0] != text)
     {
@@ -108,4 +108,4 @@ Engine.GUI.GuiConsole.prototype.addText = function(key, text)
 
     this.attachItem(txt, key);
   }
-}
+};

@@ -7,7 +7,7 @@ Engine.GUI.GuiButton = function(txt)
 
   this.spriteName = '';
   this.image      = null;
-}
+};
 
 Engine.GUI.GuiButton.prototype = Object.create(Engine.GUI.GuiElement.prototype);
 Engine.GUI.GuiButton.prototype.constructor = Engine.GUI.GuiButton;
@@ -19,7 +19,7 @@ Engine.GUI.GuiButton.prototype.initialize = function(button)
 
   if (typeof(button) !== 'undefined')
     this.buttonToEmulate = button;
-}
+};
 
 Engine.GUI.GuiButton.prototype.activate = function()
 {
@@ -34,7 +34,7 @@ Engine.GUI.GuiButton.prototype.activate = function()
     this.getSize(),
     this.buttonToEmulate);
 
-  if (this.spriteName != '')
+  if (this.spriteName !== '')
   {
     if (this.image === null)
       this.image = new Engine.GUI.GuiElement();
@@ -46,19 +46,19 @@ Engine.GUI.GuiButton.prototype.activate = function()
 
   // Listen to all the keys
   // scene.input.addKeyListener( this, 'eventKeyPressed', keyList, true ); 
-}
+};
 
 Engine.GUI.GuiButton.prototype.setButtonToEmulate = function(button)
 {
   this.buttonToEmulate = button;
-}
+};
 
 Engine.GUI.GuiButton.prototype.draw = function(ctx)
 {
   Engine.GUI.GuiElement.prototype.draw.call(this, ctx);
-}
+};
 
 Engine.GUI.GuiButton.prototype.step = function(dt)
 {
   Engine.GUI.GuiElement.prototype.step.call(this, dt);
-}
+};

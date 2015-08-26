@@ -6,7 +6,7 @@ Engine.TrackerCircle = function(callback)
   // For circular tracks
   this.circleAngle = 0.1;
   this.circleRadius = 60;
-}
+};
 
 Engine.TrackerCircle.prototype = Object.create(Engine.Tracker.prototype);
 Engine.TrackerCircle.prototype.constructor = Engine.TrackerCircle;
@@ -15,12 +15,12 @@ Engine.TrackerCircle.prototype.constructor = Engine.TrackerCircle;
 Engine.TrackerCircle.prototype.initialize = function()
 {
   Engine.Tracker.prototype.initialize.call(this);
-}
+};
 
 Engine.TrackerCircle.prototype.activate = function()
 {
   Engine.Tracker.prototype.activate.call(this);
-}
+};
 
 Engine.TrackerCircle.prototype.step = function (dt)
 {
@@ -33,14 +33,14 @@ Engine.TrackerCircle.prototype.step = function (dt)
 
   // Call inherited function 
   Engine.Tracker.prototype.step.call(this, dt);
-}
+};
 
 Engine.TrackerCircle.prototype.draw = function (ctx) 
 {
   // Call inherited function 
   Engine.Tracker.prototype.draw.call(this, ctx); 
 
-  if (engine.options.drawTrackers == true)
+  if (engine.options.drawTrackers === true)
   {
     var pos = this.getParentPosition();
     var gradient = ctx.createLinearGradient(pos.x - this.circleRadius, pos.y, 
@@ -56,5 +56,4 @@ Engine.TrackerCircle.prototype.draw = function (ctx)
     ctx.closePath();
     ctx.stroke();
   }
-}
-
+};

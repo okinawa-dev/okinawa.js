@@ -19,7 +19,7 @@ Engine.Background = function()
   this.horizontalScroll = false;
   this.horizontalOffset = 0;
   this.horizontalSpeed = 0;
-}
+};
 
 Engine.Background.prototype = Object.create(Engine.Item.prototype);
 Engine.Background.prototype.constructor = Engine.Background;
@@ -28,7 +28,7 @@ Engine.Background.prototype.constructor = Engine.Background;
 Engine.Background.prototype.initialize = function()
 {
   Engine.Item.prototype.initialize.call(this);
-}
+};
 
 Engine.Background.prototype.activate = function()
 {
@@ -36,7 +36,7 @@ Engine.Background.prototype.activate = function()
 
   this.verticalOffset = 0;
   this.horizontalOffset = 0;
-}
+};
 
 Engine.Background.prototype.step = function(dt) 
 {
@@ -46,22 +46,22 @@ Engine.Background.prototype.step = function(dt)
   // if (this.spriteName != null)
   //   engine.sprites.step(dt, this);
 
-  if (this.pauseScroll == false)
+  if (this.pauseScroll === false)
   {
     // Calculate the offset if we have scroll
     // Note: vertical OR horizontal scroll, NOT both
-    if (this.verticalScroll == true)
+    if (this.verticalScroll === true)
     {
       this.verticalOffset += this.verticalSpeed * dt / engine.core.TIME_PER_FRAME;
       this.verticalOffset = Math.floor(this.verticalOffset % engine.core.size.y);  
     }
-    else if (this.horizontalScroll == true)
+    else if (this.horizontalScroll === true)
     {
       this.horizontalOffset += this.horizontalSpeed * dt / engine.core.TIME_PER_FRAME;
       this.horizontalOffset = Math.floor(this.horizontalOffset % engine.core.size.x);
     }
   }
-}
+};
 
 Engine.Background.prototype.draw = function(ctx) 
 {
@@ -72,10 +72,13 @@ Engine.Background.prototype.draw = function(ctx)
   }
   else if (this.backgroundType == 'image') 
   {
-    if (this.verticalScroll == true)
+    var intOffset;
+    var remaining;
+
+    if (this.verticalScroll === true)
     {
-      var intOffset = Math.floor(this.verticalOffset);
-      var remaining = engine.core.size.y - intOffset;
+      intOffset = Math.floor(this.verticalOffset);
+      remaining = engine.core.size.y - intOffset;
 
       // Draw the top half of the background
       if(intOffset > 0) 
@@ -98,10 +101,10 @@ Engine.Background.prototype.draw = function(ctx)
                 engine.core.size.x, remaining);
       }  
     }
-    else if (this.horizontalScroll == true)
+    else if (this.horizontalScroll === true)
     {
-      var intOffset = Math.floor(this.horizontalOffset);
-      var remaining = engine.core.size.x - intOffset;
+      intOffset = Math.floor(this.horizontalOffset);
+      remaining = engine.core.size.x - intOffset;
 
       // Draw the right half of the background (left side of the image)
       if(intOffset > 0) 
@@ -133,4 +136,4 @@ Engine.Background.prototype.draw = function(ctx)
 
     // Engine.Item.prototype.draw.call(this, ctx);
   }
-}
+};

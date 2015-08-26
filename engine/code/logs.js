@@ -1,16 +1,16 @@
 
 Engine.Logs = function()
 {
-}
+};
 
 Engine.Logs.prototype.log = function (fileName, message, object) 
 {
   var result = [];
 
-  if (engine.options.debugInConsole == false)
+  if (engine.options.debugInConsole === false)
     return;
 
-  if (engine.options.debugFunctionNames == true)
+  if (engine.options.debugFunctionNames === true)
     result.push(fileName);
 
   if (Array.isArray(message))
@@ -20,7 +20,7 @@ Engine.Logs.prototype.log = function (fileName, message, object)
   if (object)
     result.push(object);
 
-  if ((engine.options.debugInHtml == true) && (engine.core.canvas != undefined))
+  if ((engine.options.debugInHtml === true) && (engine.core.canvas !== undefined))
   {
     var e = document.createElement('div');
     e.innerHTML = result;
@@ -35,4 +35,4 @@ Engine.Logs.prototype.log = function (fileName, message, object)
   {
     window.console.log(result);
   }
-}
+};

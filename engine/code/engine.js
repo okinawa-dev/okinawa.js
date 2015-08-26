@@ -50,7 +50,7 @@ Engine.prototype.initialize = function(canvasElementId, gameClassName, callbackF
     return;
   }
 
-  if (callbackFunction != null)
+  if (callbackFunction !== null)
     this.externalCallback = callbackFunction;
 
   this.core.initialize(canvasElementId);
@@ -86,11 +86,11 @@ Engine.prototype.initialize = function(canvasElementId, gameClassName, callbackF
   this.preloader.playable = false; // Just in case
   this.preloader.initialize();
   this.game.initialize();
-}
+};
 
 Engine.prototype.external = function(eventType, id, message)
 {
-  if (this.externalCallback != null)
+  if (this.externalCallback !== null)
   {
     setTimeout(function() { 
       try {
@@ -102,4 +102,4 @@ Engine.prototype.external = function(eventType, id, message)
     }, 1);
 
   }
-}
+};

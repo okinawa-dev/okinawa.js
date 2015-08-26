@@ -20,7 +20,7 @@ Engine.TrackerBezier = function(callback)
   // var p3 = { x: 100,  y: -350 };
 
   // this.bezierPoints(p0, p1, p2, p3);
-}
+};
 
 Engine.TrackerBezier.prototype = Object.create(Engine.Tracker.prototype);
 Engine.TrackerBezier.prototype.constructor = Engine.TrackerBezier;
@@ -29,12 +29,12 @@ Engine.TrackerBezier.prototype.constructor = Engine.TrackerBezier;
 Engine.TrackerBezier.prototype.initialize = function()
 {
   Engine.Tracker.prototype.initialize.call(this);
-}
+};
 
 Engine.TrackerBezier.prototype.activate = function()
 {
   Engine.Tracker.prototype.activate.call(this);
-}
+};
 
 Engine.TrackerBezier.prototype.bezierPoints = function(p0, p1, p2, p3)
 {
@@ -43,14 +43,14 @@ Engine.TrackerBezier.prototype.bezierPoints = function(p0, p1, p2, p3)
   this.p2 = p2;
   this.p3 = p3;
 
-  this.cx = 3 * (this.p1.x - this.p0.x)
+  this.cx = 3 * (this.p1.x - this.p0.x);
   this.bx = 3 * (this.p2.x - this.p1.x) - this.cx;
   this.ax = this.p3.x - this.p0.x - this.cx - this.bx;
 
   this.cy = 3 * (this.p1.y - this.p0.y);
   this.by = 3 * (this.p2.y - this.p1.y) - this.cy;
   this.ay = this.p3.y - this.p0.y - this.cy - this.by;  
-}
+};
 
 Engine.TrackerBezier.prototype.step = function (dt)
 {
@@ -82,7 +82,7 @@ Engine.TrackerBezier.prototype.step = function (dt)
   {
     this.bezierAdvance = 1;
 
-    if (this.getParent() != null)
+    if (this.getParent() !== null)
     {
       // Move all children from here to the parent
       for (var i = 0, len = this.getAttachedItems().length; i < len; i++)
@@ -109,14 +109,14 @@ Engine.TrackerBezier.prototype.step = function (dt)
 
   // Call inherited function 
   Engine.Tracker.prototype.step.call(this, dt);
-}
+};
 
 Engine.TrackerBezier.prototype.draw = function (ctx) 
 {
   // Call inherited function 
   Engine.Tracker.prototype.draw.call(this, ctx); 
 
-  if (engine.options.drawTrackers == true)
+  if (engine.options.drawTrackers === true)
   {
     var pos = this.getParentPosition();
     var gradient = ctx.createLinearGradient(pos.x + this.p0.x, pos.y + this.p0.y, 
@@ -136,5 +136,4 @@ Engine.TrackerBezier.prototype.draw = function (ctx)
                       pos.x + this.p3.x, pos.y + this.p3.y);
     ctx.stroke();
   }
-}
-
+};

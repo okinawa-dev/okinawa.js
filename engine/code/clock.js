@@ -7,23 +7,23 @@
 Engine.UnalignedClock = function()
 {
   this.clockEvents = {};
-}
+};
 
 Engine.UnalignedClock.prototype.initialize = function() 
 {
   this.clockEvents = {};
-}
+};
 
 Engine.UnalignedClock.prototype.activate = function() 
 {
   // The events could be suscribed since game initalization
   // so we do not remove them when the scene is activated
   // this.clockEvents = {};
-}
+};
 
 Engine.UnalignedClock.prototype.suscribe = function(id, object, func, time)
 {
-  if (this.clockEvents[id] != undefined)
+  if (typeof(this.clockEvents[id]) !== 'undefined')
     engine.logs.log('UnalignedClock.suscribe', 'Object suscribing to clock event with repeated id ' + id);
 
   this.clockEvents[id] = { 
@@ -32,12 +32,12 @@ Engine.UnalignedClock.prototype.suscribe = function(id, object, func, time)
     t : time,
     dt : 0
   };  
-}
+};
 
 Engine.UnalignedClock.prototype.unsuscribe = function(id)
 {
   delete this.clockEvents[id];
-}
+};
 
 Engine.UnalignedClock.prototype.step = function(dt)
 {
@@ -53,7 +53,7 @@ Engine.UnalignedClock.prototype.step = function(dt)
     {
       // engine.logs.log('UnalignedClock.step', 'Suscribed clock call: ' + ids[i]); // + ' ' + item.f);
 
-      if (item.ob != undefined)
+      if (typeof(item.ob) !== 'undefined')
       {
         item.ob[item.f]();
       }
@@ -66,7 +66,7 @@ Engine.UnalignedClock.prototype.step = function(dt)
       item.dt = 0;
     }
   }
-}
+};
 
 // ********************
 // ********************
@@ -84,11 +84,11 @@ Engine.Clock = function()
   this.listeners1   = {};
   this.ticker5      = 0;
   this.listeners5   = {};
-}
+};
 
 Engine.Clock.prototype.initialize = function() {
   this.startTime = new Date().getTime(); // Init time
-}
+};
 
 Engine.Clock.prototype.step = function(dt) {
   this.ticker1 += dt;
@@ -109,26 +109,31 @@ Engine.Clock.prototype.step = function(dt) {
     this.informListeners(this.listeners500);
     this.ticker500 = 0;
   }
-}
+};
 
-Engine.Clock.prototype.draw = function(ctx) {
+Engine.Clock.prototype.draw = function(ctx) 
+{
+};
 
-}
-
-Engine.Clock.prototype.suscribe500 = function(name, func) {
+Engine.Clock.prototype.suscribe500 = function(name, func) 
+{
   this.listeners500[name] = func;
-}
+};
 
-Engine.Clock.prototype.suscribeOneSecond = function(name, func) {
+Engine.Clock.prototype.suscribeOneSecond = function(name, func) 
+{
   this.listeners1[name] = func;
-}
+};
 
-Engine.Clock.prototype.suscribeFiveSeconds = function(name, func) {
+Engine.Clock.prototype.suscribeFiveSeconds = function(name, func) 
+{
   this.listeners5[name] = func;
-}
+};
 
-Engine.Clock.prototype.informListeners = function(listenersList) {
-  for(ob in listenersList) {
+Engine.Clock.prototype.informListeners = function(listenersList) 
+{
+  for(var ob in listenersList) 
+  {
     listenersList[ob](); // call the function
 
     // // the callback exists
@@ -137,4 +142,4 @@ Engine.Clock.prototype.informListeners = function(listenersList) {
     //   listenersList[ob].apply();
     // }
   }
-}
+};

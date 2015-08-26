@@ -9,7 +9,7 @@ Engine.Sprites = function()
   // List of Image() objects used in the game, indexed by original URL
   // images[path] = object;
   this.images  = {};
-}
+};
 
 Engine.Sprites.SPRITEINFO = {
   PATH : 0,
@@ -20,7 +20,7 @@ Engine.Sprites.SPRITEINFO = {
   FRAMES : 5,
   INITFRAME : 6,
   FRAMESPEED : 7
-}
+};
 
 Engine.Sprites.prototype.initialize = function() 
 { 
@@ -28,7 +28,7 @@ Engine.Sprites.prototype.initialize = function()
 
   this.sprites.length = 0;
   this.images.length = 0;
-}
+};
 
 Engine.Sprites.prototype.step = function(dt, object) 
 {
@@ -37,7 +37,7 @@ Engine.Sprites.prototype.step = function(dt, object)
   var initFrame = this.sprites[object.spriteName][Engine.Sprites.SPRITEINFO.INITFRAME];
 
   // If the item wants to be rendered at different frame speed
-  if (object.forceFrameSpeed != 0)
+  if (object.forceFrameSpeed !== 0)
     fps = object.forceFrameSpeed;
 
   // if frames > 1 -> animation
@@ -46,7 +46,7 @@ Engine.Sprites.prototype.step = function(dt, object)
     var now = new Date().getTime();
 
     // If the animation just started
-    if (object.timeLastFrame == 0)
+    if (object.timeLastFrame === 0)
       object.timeLastFrame = now;
 
     // If time enough has passed to change the currentFrame
@@ -64,16 +64,16 @@ Engine.Sprites.prototype.step = function(dt, object)
       // If the animation restarts, increment loop counter
       if (preFrame == frames - 1) {
         object.numLoops += 1;
-        if (object.eventAnimationRestart != undefined)
+        if (typeof(object.eventAnimationRestart) !== 'undefined')
           object.eventAnimationRestart();
       }
     }
   }
-}
+};
 
 Engine.Sprites.prototype.draw = function(ctx, object) 
 {
-  if (object.getVisible() == false)
+  if (object.getVisible() === false)
     return;
 
   // sprites[i] -> [imagePath, xStart, yStart, width, height, frames, initFrame, speed]
@@ -89,7 +89,7 @@ Engine.Sprites.prototype.draw = function(ctx, object)
   // Set transparency
   ctx.globalAlpha = object.globalAlpha;
 
-  if (object.rotation.getAngle() != 0)
+  if (object.rotation.getAngle() !== 0)
   {
     ctx.save();
 
@@ -116,64 +116,64 @@ Engine.Sprites.prototype.draw = function(ctx, object)
 
   // restore, just in case
   ctx.globalAlpha = 1;
-}
+};
 
 Engine.Sprites.prototype.imageExists = function(path)
 {
   return this.images.hasOwnProperty(path);
-}
+};
 
 Engine.Sprites.prototype.spriteExists = function(name)
 {
   return this.sprites.hasOwnProperty(name);
-}
+};
 
 Engine.Sprites.prototype.addImage = function(path, object)
 {
   this.images[path] = object;
-}
+};
 
 Engine.Sprites.prototype.addSprite = function(name, path, xStart, yStart, width, height, frames, initFrame, speed)
 {
   this.sprites[name] = [path, xStart, yStart, width, height, frames, initFrame, speed];
-}
+};
 
 // Returns the object to be painted in the context
 Engine.Sprites.prototype.getImage = function(spriteName)
 {
   // this.sprites[spriteName][0] -> full path from the spriteName
   return this.images[this.sprites[spriteName][Engine.Sprites.SPRITEINFO.PATH]];
-}
+};
 
 Engine.Sprites.prototype.getImageFromPath = function(path)
 {
   return this.images[path];
-}
+};
 
 Engine.Sprites.prototype.getSpriteData = function(spriteName)
 {
   var ret = this.sprites[spriteName];
 
-  if (ret != undefined)
+  if (typeof(ret) !== 'undefined')
       return ret;
 
   return null;
-}
+};
 
 Engine.Sprites.prototype.getSpriteInfo = function(spriteName, value)
 {
   var ret = this.sprites[spriteName];
 
-  if (ret != undefined)
+  if (typeof(ret) !== 'undefined')
   {
     var info = ret[value];
 
-    if (info != undefined)
+    if (typeof(info) !== 'undefined')
       return info;
   }
 
   return null;
-}
+};
 
 Engine.Sprites.prototype.getSpriteSize = function(spriteName)
 {
@@ -181,12 +181,11 @@ Engine.Sprites.prototype.getSpriteSize = function(spriteName)
   var w = 0;
   var h = 0;
 
-  if (ret != undefined)
+  if (typeof(ret) !== 'undefined')
   {
     w = ret[ Engine.Sprites.SPRITEINFO.WIDTH ];
     h = ret[ Engine.Sprites.SPRITEINFO.HEIGTH ];
   }
 
   return new Engine.MATH.Point(w,h);    
-}
-
+};

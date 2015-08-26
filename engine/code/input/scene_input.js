@@ -1,4 +1,6 @@
 
+/* jshint -W069 */
+
 Engine.INPUT.SceneInput = function()
 {
   // List of combos to detect
@@ -27,12 +29,12 @@ Engine.INPUT.SceneInput = function()
   this.clickableZones = {};
 
   this.clickListeners = []; // array of elements listening to click events
-}
+};
 
 Engine.INPUT.SceneInput.prototype.initialize = function() 
 {
 
-}
+};
 
 Engine.INPUT.SceneInput.prototype.activate = function() 
 {
@@ -40,7 +42,7 @@ Engine.INPUT.SceneInput.prototype.activate = function()
 
   // Always have the common controls
   this.addKeyListener( engine.core, 'eventKeyPressed', [ Engine.INPUT.KEYS.P, Engine.INPUT.KEYS.ESC, Engine.INPUT.KEYS.F ], true );
-}
+};
 
 // Engine.INPUT.SceneInput.prototype.testLog = function()
 // {
@@ -54,7 +56,7 @@ Engine.INPUT.SceneInput.prototype.activate = function()
 
 Engine.INPUT.SceneInput.prototype.addKeyListener = function(object, funcName, keyList, onPause)
 {
-  if (onPause == undefined)
+  if (typeof(onPause) == 'undefined')
     onPause = false;
 
   var element = [];
@@ -64,16 +66,16 @@ Engine.INPUT.SceneInput.prototype.addKeyListener = function(object, funcName, ke
 
   for (var i = 0, len = keyList.length; i < len; i++)
   {
-    if (this.keyListeners[keyList[i]] == undefined)
+    if (typeof(this.keyListeners[keyList[i]]) === 'undefined')
       this.keyListeners[keyList[i]] = [ element ];
     else
       this.keyListeners[keyList[i]].push(element);
   }
-}
+};
 
 Engine.INPUT.SceneInput.prototype.addClickListener = function(object, funcName, onPause)
 {
-  if (onPause == undefined)
+  if (typeof(onPause) === 'undefined')
     onPause = false;
 
   var element = [];
@@ -82,21 +84,21 @@ Engine.INPUT.SceneInput.prototype.addClickListener = function(object, funcName, 
   element['onPause'] = onPause;
 
   this.clickListeners.push(element);
-}
+};
 
 Engine.INPUT.SceneInput.prototype.informKeyPressed = function(keyCode)
 {
   var listeners = [];
   
   // Objects listening to the actual key pressed
-  if (this.keyListeners[keyCode] != undefined)
+  if (typeof(this.keyListeners[keyCode]) != 'undefined')
     listeners = listeners.concat(this.keyListeners[keyCode]);
 
   // Objects listening to ANY key pressed
-  if (this.keyListeners[Engine.INPUT.KEYS.ANY_KEY] != undefined)
+  if (typeof(this.keyListeners[Engine.INPUT.KEYS.ANY_KEY]) != 'undefined')
     listeners = listeners.concat(this.keyListeners[Engine.INPUT.KEYS.ANY_KEY]);
 
-  if (listeners == undefined)
+  if (typeof(listeners) == 'undefined')
     return;
 
   for (var i = 0, len = listeners.length; i < len; i++)
@@ -108,10 +110,10 @@ Engine.INPUT.SceneInput.prototype.informKeyPressed = function(keyCode)
       continue;
 
     // If the object has the function, inform
-    if (which.listeningOb[which.listeningFunc] != undefined)
+    if (typeof(which.listeningOb[which.listeningFunc]) != 'undefined')
       which.listeningOb[which.listeningFunc](keyCode);
   }
-}
+};
 
 Engine.INPUT.SceneInput.prototype.informClick = function(id)
 {  
@@ -130,16 +132,16 @@ Engine.INPUT.SceneInput.prototype.informClick = function(id)
     if (typeof(which.listeningOb[which.listeningFunc]) !== 'undefined')
       which.listeningOb[which.listeningFunc](id);
   }
-}
+};
 
 Engine.INPUT.SceneInput.prototype.defineCombo = function(name, type, list)
 {
   this.combos[name] = { comboType: type, comboKeys: list, lastTime: 0 };
-}
+};
 
 Engine.INPUT.SceneInput.prototype.addComboListener = function(object, funcName, comboNames, onPause)
 {
-  if (onPause == undefined)
+  if (typeof(onPause) === 'undefined')
     onPause = false;
 
   var element = [];
@@ -149,16 +151,16 @@ Engine.INPUT.SceneInput.prototype.addComboListener = function(object, funcName, 
 
   for (var i = 0, len = comboNames.length; i < len; i++)
   {
-    if (this.comboListeners[comboNames[i]] == undefined)
+    if (typeof(this.comboListeners[comboNames[i]]) === 'undefined')
       this.comboListeners[comboNames[i]] = [ element ];
     else
       this.comboListeners[comboNames[i]].push(element);
   }
-}
+};
 
 Engine.INPUT.SceneInput.prototype.informComboPerformed = function(comboName, time)
 {
-  if (engine.options.outputPressedCombos == true)
+  if (engine.options.outputPressedCombos === true)
     engine.logs.log('Input.informComboPerformed', 'Combo activated: ' + comboName, time);
 
   // Update last time performed
@@ -166,7 +168,7 @@ Engine.INPUT.SceneInput.prototype.informComboPerformed = function(comboName, tim
 
   var listeners = this.comboListeners[comboName];
 
-  if (listeners == undefined)
+  if (typeof(listeners) === 'undefined')
     return;
 
   for (var i = 0, len = listeners.length; i < len; i++)
@@ -178,24 +180,25 @@ Engine.INPUT.SceneInput.prototype.informComboPerformed = function(comboName, tim
       continue;
 
     // If the object has the function, inform
-    if (which.listeningOb[which.listeningFunc] != undefined)
+    if (typeof(which.listeningOb[which.listeningFunc]) !== 'undefined')
       which.listeningOb[which.listeningFunc](comboName);
   }
 
   // Control of combo result should be done in Controls.informComboPerformed
   return;
-}
+};
 
 Engine.INPUT.SceneInput.prototype.detectCombo = function()
 {
   for (var comboName in this.combos)
   {
     var combo = this.combos[comboName];
+    var j;
 
     // All the keys pressed at the same time
     if (combo.comboType == Engine.INPUT.COMBO_TYPES.SIMULTANEOUS)
     {
-      for (var j = 0, len_j = combo.comboKeys.length; j < len_j; j++)
+      for (j = 0, len_j = combo.comboKeys.length; j < len_j; j++)
       {
         // Any of the keys is not pressed, combo failed
         if (!engine.input.isKeyPressed(combo.comboKeys[j]))
@@ -215,7 +218,7 @@ Engine.INPUT.SceneInput.prototype.detectCombo = function()
       if (lp_len < ck_len)
         return null;
 
-      for (var j = 1; (j <= ck_len) && (j <= lp_len); j++)
+      for (j = 1; (j <= ck_len) && (j <= lp_len); j++)
       {
         // Non-match
         if (combo.comboKeys[ck_len - j] != engine.input.lastPressed[lp_len - j])
@@ -230,7 +233,7 @@ Engine.INPUT.SceneInput.prototype.detectCombo = function()
 
   // No combos found
   return null;
-}
+};
 
 Engine.INPUT.SceneInput.prototype.addClickZone = function(id, location, rectangleSize, ch)
 {
@@ -238,8 +241,8 @@ Engine.INPUT.SceneInput.prototype.addClickZone = function(id, location, rectangl
     position : location,
     size : rectangleSize,
     character : ch
-  }
-}
+  };
+};
 
 Engine.INPUT.SceneInput.prototype.detectClick = function(position)
 {
@@ -259,10 +262,10 @@ Engine.INPUT.SceneInput.prototype.detectClick = function(position)
       // engine.gui.get('console').addText('touch', clickId); 
 
       // Save the emulated key
-      if (clickZone.character != null)
+      if (clickZone.character !== null)
         engine.input.addLastPressed(clickZone.character);
 
       engine.input.addClick(clickId);
     }
   }
-}
+};

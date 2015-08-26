@@ -29,7 +29,7 @@ Engine.Localization = function()
       'spanish' : 'Español'
     }
   };  
-}
+};
 
 Engine.Localization.prototype.initialize = function() 
 { 
@@ -44,7 +44,7 @@ Engine.Localization.prototype.initialize = function()
   }
 
   // engine.controls.addKeyListener( this, 'eventKeyPressed', [Engine.INPUT.KEYS.L, ] ); // change language
-}
+};
 
 // Engine.Localization.prototype.eventKeyPressed = function(keyCode)
 // {
@@ -63,29 +63,29 @@ Engine.Localization.prototype.get = function(stringId)
 {
   var text = this.stringTables[this.selectedLanguage][stringId];
 
-  if ( text != undefined )
+  if ( typeof(text) !== 'undefined' )
     return text;
   else 
     return this.stringTables[this.fallbackLanguage][stringId];
-}
+};
 
 Engine.Localization.prototype.addStringTable = function(language, table) 
 {
   this.stringTables[language] = table;
-}
+};
 
 Engine.Localization.prototype.setBaseTexts = function(table) 
 {
   this.baseTexts = table;
-}
+};
 
 Engine.Localization.prototype.addTextsToStringTable = function(language, table)
 {
   for (var prop in table)
     this.stringTables[language][prop] = table[prop];
-}
+};
 
 Engine.Localization.prototype.selectLanguage = function(language) 
 {
   this.selectedLanguage = language;
-}
+};
