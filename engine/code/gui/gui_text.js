@@ -91,7 +91,8 @@ Engine.GUI.GuiText.prototype.setText = function(txt)
   this._innerChange = true;
 };
 
-Engine.GUI.GuiText.prototype._updateInnerRender = function()
+// receives global context just to compare values if necessary
+Engine.GUI.GuiText.prototype._updateInnerRender = function(ctx)
 {
   var pos = this.getPosition();
   var size = this.getSize();
@@ -107,6 +108,9 @@ Engine.GUI.GuiText.prototype._updateInnerRender = function()
   {
     where.x = this.size.x - this.horizontalOffset;
   }
+
+  // use global context values
+  this._innerContext.lineWidth = ctx.lineWidth;
 
   this._innerContext.clearRect(0, 0, this.size.x, this.size.y);
   this._innerContext.strokeStyle = this.fontBorderColor;
@@ -157,7 +161,7 @@ Engine.GUI.GuiText.prototype.draw = function(ctx)
     else
     {    
       if (this._innerChange === true)
-        this._updateInnerRender();
+        this._updateInnerRender(ctx);
 
       ctx.drawImage(this._innerCanvas, pos.x - this.size.x / 2, pos.y - this.size.y / 2);
     }
