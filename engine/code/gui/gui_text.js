@@ -91,6 +91,11 @@ Engine.GUI.GuiText.prototype.setText = function(txt)
   this._innerChange = true;
 };
 
+Engine.GUI.GuiText.prototype.getText = function()
+{
+  return this.text;
+};
+
 // receives global context just to compare values if necessary
 Engine.GUI.GuiText.prototype._updateInnerRender = function(ctx)
 {
@@ -119,10 +124,10 @@ Engine.GUI.GuiText.prototype._updateInnerRender = function(ctx)
   this._innerContext.font        = 'bold '+this.fontSize+'px '+this.font;
 
   // print the full string
-  // this._innerContext.strokeText(this.text, where.x, where.y); 
-  // this._innerContext.fillText(this.text, where.x, where.y); 
+  // this._innerContext.strokeText(this.getText(), where.x, where.y); 
+  // this._innerContext.fillText(this.getText(), where.x, where.y); 
 
-  var pieces = this.text.split('\n');
+  var pieces = this.getText().split('\n');
 
   for (var i = 0, len = pieces.length; i < len; i++)
   {
@@ -162,15 +167,15 @@ Engine.GUI.GuiText.prototype.draw = function(ctx)
       ctx.font = 'bold '+this.fontSize+'px '+this.font;
 
       // print the full string
-      // ctx.strokeText( this.text, 
+      // ctx.strokeText( this.getText(), 
       //                 pos.x - (size.x / 2) + offset.x, 
       //                 pos.y - (size.y / 2) + offset.y);
 
-      // ctx.fillText( this.text,
+      // ctx.fillText( this.getText(),
       //               pos.x - (size.x / 2) + offset.x, 
       //               pos.y - (size.y / 2) + offset.y);
 
-      var pieces = this.text.split('\n');
+      var pieces = this.getText().split('\n');
 
       for (var i = 0, len = pieces.length; i < len; i++)
       {
