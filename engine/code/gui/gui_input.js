@@ -55,7 +55,9 @@ Engine.GUI.GuiInput.prototype._eventKeyPressed = function(keyCode)
   {
     var txt = this.text;
     this.setText('');
-    this._callback(txt); 
+
+    if (typeof( this._callback ) == 'function')
+      this._callback(txt); 
   }
 };
 
