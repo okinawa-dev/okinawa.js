@@ -112,6 +112,19 @@ Engine.Item.prototype.detachAllItems = function()
   this._finalizeRemoved();
 };
 
+Engine.Item.prototype.children = function() 
+{ 
+  var chs = [];
+
+  for (var i = 0, len = this._attachedItems.length; i < len; i++)
+  {
+    chs = chs.concat(this._attachedItems[i]);
+    chs = chs.concat(this._attachedItems[i].children());
+  }
+
+  return chs; 
+};
+
 Engine.Item.prototype._resetItems = function()
 {
   this._attachedItems.length = 0;
