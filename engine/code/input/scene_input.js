@@ -59,7 +59,7 @@ Engine.INPUT.SceneInput.prototype.addKeyListener = function(object, funcName, ke
   if (typeof(onPause) == 'undefined')
     onPause = false;
 
-  var element = [];
+  var element = {};
   element['listeningOb'] = object;
   element['listeningFunc'] = funcName;
   element['onPause'] = onPause;
@@ -78,12 +78,36 @@ Engine.INPUT.SceneInput.prototype.addClickListener = function(object, funcName, 
   if (typeof(onPause) === 'undefined')
     onPause = false;
 
-  var element = [];
+  var element = {};
   element['listeningOb'] = object;
   element['listeningFunc'] = funcName;
   element['onPause'] = onPause;
 
   this.clickListeners.push(element);
+};
+
+Engine.INPUT.SceneInput.prototype.removeListeners = function(obj)
+{
+  var i, j, len_i, len_j;
+
+  for (i in this.keyListeners)
+  {
+    for (j = 0, len_j = this.keyListeners[i].length; j < len_j; j++)
+      if (this.keyListeners[i][j].listeningOb == obj)
+      {
+        this.keyListeners[i].splice(j, 1);
+
+        if (!this.keyListeners[i].length)
+          delete(this.keyListeners[i]);
+      }
+  }
+
+  for (i = 0, len_i = this.clickListeners.length; i < len_i; i++)
+  {
+    for (j = 0, len_j = this.clickListeners[i].length; j < len_j; j++)
+      if (this.clickListeners[i][j].listeningOb == obj)
+        this.clickListeners[i].splice(j, 1);
+  }
 };
 
 Engine.INPUT.SceneInput.prototype.informKeyPressed = function(keyCode)

@@ -90,6 +90,16 @@ Engine.Item.prototype.attachItem = function(what)
 
 Engine.Item.prototype.detachItem = function(what)
 {
+  var scene = this.getParentScene();
+
+  // stop listening to input events
+  scene.input.removeListeners(what);
+
+  var list = what.children();
+
+  for (var i = 0, len = list.length; i < len; i++) 
+    scene.input.removeListeners(list[i]);
+
   this._removedItems.push(what);
   what.setParent(null);
   // delete this.items[index]; // mark the position as undefined, does not change the array size
