@@ -68,7 +68,7 @@ Engine.Item.prototype.setParent = function(parent)
 
 Engine.Item.prototype.getParentScene = function()
 {
-  var p = this._parent;
+  var p = this;
   while ((typeof(p) !== 'undefined') && (p !== null))
   {
     if (Engine.Scene.prototype.isPrototypeOf(p))
