@@ -30,7 +30,14 @@ Engine.INPUT.Controller.prototype.initialize = function()
 
   addEvent('keydown', document, function(event) { 
     engine.input.onKeydown(event); 
-    if (engine.options.preventDefaultKeyStrokes === true)
+
+    // don't trap keys if the focus is in a html input (outside the game canvas)
+    if (engine.input.isTargetInput(event))
+      return;
+
+    if ((engine.options.preventDefaultKeyStrokes === true) ||
+        // delete or backspace
+        (event.keyCode == 8) || (event.keyCode == 46))
       event.preventDefault();
   });
 
@@ -263,3 +270,15 @@ Engine.INPUT.Controller.prototype.convertNumberToKey = function(number)
   return Engine.INPUT.KEYS.ZERO;
 };
 
+Engine.INPUT.Controller.prototype.isTargetInput = function(event) 
+{
+  return event.target.type == 'textarea' || 
+         event.target.type == 'text' ||
+         event.target.type == 'number' || 
+         event.target.type == 'email' ||
+         event.target.type == 'password' || 
+         event.target.type == 'search' ||
+         event.target.type == 'tel' || 
+         event.target.type == 'url' ||
+         event.target.isContentEditable;
+};
