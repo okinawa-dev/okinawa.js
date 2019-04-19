@@ -1,7 +1,7 @@
 Okinawa
 =======
 
-A simple javascript 2D game engine. Test it on https://dev.neverbot.com/okinawa.js
+A simple javascript 2D game engine.
 
 Current list of features:
  * [x] Multiple scenes/levels
@@ -21,6 +21,7 @@ Current list of features:
 
 Tests (in separate projects):
  * [Asteroids clone](https://github.com/neverbot/okinawa-asteroids)
+  Test it in https://dev.neverbot.com/okinawa-asteroids
 
 To do:
  * [ ] Better audio system
