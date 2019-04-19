@@ -21,7 +21,7 @@ Current list of features:
 
 Tests (in separate projects):
  * [Asteroids clone](https://github.com/neverbot/okinawa-asteroids)
-  Test it in https://dev.neverbot.com/okinawa-asteroids
+  Test it in https://dev.neverbot.com/okinawa.js
 
 To do:
  * [ ] Better audio system
