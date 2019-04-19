@@ -7,7 +7,7 @@ Engine.GUI.GuiNumberMenu = function(txt)
   this._menuIds = []; // keys of this._menuOptions
 
   this._optionsPlaced = false;
-}
+};
 
 Engine.GUI.GuiNumberMenu.prototype = Object.create(Engine.GUI.GuiElement.prototype);
 Engine.GUI.GuiNumberMenu.prototype.constructor = Engine.GUI.GuiNumberMenu;
@@ -16,7 +16,7 @@ Engine.GUI.GuiNumberMenu.prototype.constructor = Engine.GUI.GuiNumberMenu;
 Engine.GUI.GuiNumberMenu.prototype.initialize = function()
 {
   Engine.GUI.GuiElement.prototype.initialize.call(this);
-}
+};
 
 Engine.GUI.GuiNumberMenu.prototype.activate = function()
 {
@@ -24,7 +24,7 @@ Engine.GUI.GuiNumberMenu.prototype.activate = function()
 
   var scene = this.getParentScene();
 
-  if (scene == null)
+  if (scene === null)
     return;
 
   // Build a list with the keys we will use to select from the menu
@@ -34,22 +34,31 @@ Engine.GUI.GuiNumberMenu.prototype.activate = function()
   {
     case 9:
       keyList.push( Engine.INPUT.KEYS.NINE );
+      /* falls through */
     case 8:
       keyList.push( Engine.INPUT.KEYS.EIGHT );
+      /* falls through */
     case 7:
       keyList.push( Engine.INPUT.KEYS.SEVEN );
+      /* falls through */
     case 6:
       keyList.push( Engine.INPUT.KEYS.SIX );
+      /* falls through */
     case 5:
       keyList.push( Engine.INPUT.KEYS.FIVE );
+      /* falls through */
     case 4:
       keyList.push( Engine.INPUT.KEYS.FOUR );
+      /* falls through */
     case 3:
       keyList.push( Engine.INPUT.KEYS.THREE );
+      /* falls through */
     case 2:
       keyList.push( Engine.INPUT.KEYS.TWO );
+      /* falls through */
     case 1:
       keyList.push( Engine.INPUT.KEYS.ONE );
+      /* falls through */
     default:
       break;
   }
@@ -74,13 +83,13 @@ Engine.GUI.GuiNumberMenu.prototype.activate = function()
         engine.input.convertNumberToKey(i + 1));
     }     
   }
-}
+};
 
 Engine.GUI.GuiNumberMenu.prototype.placeOptions = function()
 {
   var len = this._menuIds.length;
 
-  if (len == 0)
+  if (len === 0)
     return;
 
   // var pos = this.getPosition();
@@ -96,30 +105,30 @@ Engine.GUI.GuiNumberMenu.prototype.placeOptions = function()
     text.setPosition(xPos, yPos);
     // text.draw(ctx);
 
-    if (engine.device.isTouchDevice == true)
+    if (engine.device.isTouchDevice === true)
       yPos = yPos + 50;
     else
       yPos = yPos + 20;
   }  
 
   this._optionsPlaced = true;
-}
+};
 
 
 Engine.GUI.GuiNumberMenu.prototype.draw = function(ctx)
 {
-  if (this._optionsPlaced == false)
+  if (this._optionsPlaced === false)
     this.placeOptions();
 
   // Call inherited function 
   Engine.GUI.GuiElement.prototype.draw.call(this, ctx);
-}
+};
 
 Engine.GUI.GuiNumberMenu.prototype.step = function(dt)
 {
   // Call inherited function 
   Engine.GUI.GuiElement.prototype.step.call(this, dt);
-}
+};
 
 Engine.GUI.GuiNumberMenu.prototype.addMenuOption = function(id, text, ob)
 {
@@ -132,7 +141,7 @@ Engine.GUI.GuiNumberMenu.prototype.addMenuOption = function(id, text, ob)
 
   this._optionsPlaced = false;
 
-  if (this._menuOptions[id] != undefined)
+  if (typeof(this._menuOptions[id]) !== 'undefined')
   {
     if (this._menuOptions[id][0] != text)
     {
@@ -154,7 +163,7 @@ Engine.GUI.GuiNumberMenu.prototype.addMenuOption = function(id, text, ob)
     // So step and draw are autocalled
     this.attachItem(txt, id);
   }
-}
+};
 
 Engine.GUI.GuiNumberMenu.prototype.eventKeyPressed = function(keyCode)
 {
@@ -167,11 +176,8 @@ Engine.GUI.GuiNumberMenu.prototype.eventKeyPressed = function(keyCode)
   var id = (number - 1).toString();
   var option = this._menuOptions[ this._menuIds[ id ] ];
 
-  if (option[3] != undefined)
+  if (typeof(option[3]) !== 'undefined')
     if (option[3].eventGuiAction)
       option[3].eventGuiAction(this.guiId, Engine.GUI.EVENTS.SELECTION, option[0]);
 
-}
-
-
-
+};

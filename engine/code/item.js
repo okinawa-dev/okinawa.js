@@ -42,11 +42,11 @@ Engine.Item = function()
   this._attachedItems  = [];   // objects attached to current position
   this._removedItems   = [];   // objects to be removed at the end of step() 
   this._parent         = null; // object this item is attached to
-}
+};
 
 Engine.Item.prototype.initialize = function()
 {
-}
+};
 
 Engine.Item.prototype.activate = function()
 {
@@ -55,21 +55,21 @@ Engine.Item.prototype.activate = function()
     var what = this._attachedItems[i];
     what.activate();
   }
-}
+};
 
-Engine.Item.prototype.getVisible = function() { return this._visible; }
-Engine.Item.prototype.setVisible = function(value) { this._visible = value; }
+Engine.Item.prototype.getVisible = function() { return this._visible; };
+Engine.Item.prototype.setVisible = function(value) { this._visible = value; };
 
-Engine.Item.prototype.getParent = function() { return this._parent; }
+Engine.Item.prototype.getParent = function() { return this._parent; };
 Engine.Item.prototype.setParent = function(parent)
 {
   this._parent = parent;
-}
+};
 
 Engine.Item.prototype.getParentScene = function()
 {
-  var p = this._parent;
-  while ((p != undefined) && (p != null))
+  var p = this;
+  while ((typeof(p) !== 'undefined') && (p !== null))
   {
     if (Engine.Scene.prototype.isPrototypeOf(p))
       return p;
@@ -78,23 +78,33 @@ Engine.Item.prototype.getParentScene = function()
   }
 
   return null;
-}
+};
 
-Engine.Item.prototype.getAttachedItems = function() { return this._attachedItems; }
+Engine.Item.prototype.getAttachedItems = function() { return this._attachedItems; };
 Engine.Item.prototype.attachItem = function(what)
 {
   // this._attachedItems[this._attachedItems.length] = what;
   this._attachedItems.push(what);
   what.setParent(this);
-}
+};
 
 Engine.Item.prototype.detachItem = function(what)
 {
+  var scene = this.getParentScene();
+
+  // stop listening to input events
+  scene.input.removeListeners(what);
+
+  var list = what.children();
+
+  for (var i = 0, len = list.length; i < len; i++) 
+    scene.input.removeListeners(list[i]);
+
   this._removedItems.push(what);
   what.setParent(null);
   // delete this.items[index]; // mark the position as undefined, does not change the array size
   // this.items.splice(index, 1);
-}
+};
 
 Engine.Item.prototype.detachAllItems = function()
 {
@@ -110,18 +120,31 @@ Engine.Item.prototype.detachAllItems = function()
   }
 
   this._finalizeRemoved();
-}
+};
+
+Engine.Item.prototype.children = function() 
+{ 
+  var chs = [];
+
+  for (var i = 0, len = this._attachedItems.length; i < len; i++)
+  {
+    chs = chs.concat(this._attachedItems[i]);
+    chs = chs.concat(this._attachedItems[i].children());
+  }
+
+  return chs; 
+};
 
 Engine.Item.prototype._resetItems = function()
 {
   this._attachedItems.length = 0;
-}
+};
 
 // Reset the list of removed items
 Engine.Item.prototype._resetRemoved = function() 
 {
   this._removedItems.length = 0; 
-}
+};
 
 // Remove any items marked for removal
 Engine.Item.prototype._finalizeRemoved = function() 
@@ -139,21 +162,21 @@ Engine.Item.prototype._finalizeRemoved = function()
   }
   // Reset the list of removed objects
   this._resetRemoved();
-}
+};
 
 Engine.Item.prototype.setImage = function(spriteName)
 {
   this.spriteName = spriteName;
 
   this.size = engine.sprites.getSpriteSize(spriteName);
-}
+};
 
 Engine.Item.prototype.getOrigin = function()
 {
   var center = this.getPosition();
 
   return new Engine.MATH.Point(center.x - this.size.x/2, center.y - this.size.y/2);
-}
+};
 
 Engine.Item.prototype.getPosition = function()
 {
@@ -161,7 +184,7 @@ Engine.Item.prototype.getPosition = function()
   var parentPosition = new Engine.MATH.Point();
   var transformedPosition = new Engine.MATH.Point();
   
-  if (this._parent != null)
+  if (this._parent !== null)
   {
     parentPosition = this._parent.getPosition();
     transformedPosition = this._parent.rotation.transformPosition(this.position);
@@ -175,120 +198,120 @@ Engine.Item.prototype.getPosition = function()
   }
 
   return result;
-}
+};
 
 Engine.Item.prototype.setPosition = function(x, y)
 {
   this.position.x = x;
   this.position.y = y;  
-}
+};
 
-Engine.Item.prototype.getSize = function() { return this.size; }
+Engine.Item.prototype.getSize = function() { return this.size; };
 Engine.Item.prototype.setSize = function(x, y)
 {
   this.size.x = x;
   this.size.y = y;  
-}
+};
 
-Engine.Item.prototype.getScaling = function() { return this.scaling; }
+Engine.Item.prototype.getScaling = function() { return this.scaling; };
 Engine.Item.prototype.setScaling = function(x, y)
 {
   this.scaling.x = x;
   this.scaling.y = y;  
-}
+};
 
-Engine.Item.prototype.getSpeed = function() { return this.speed; }
+Engine.Item.prototype.getSpeed = function() { return this.speed; };
 Engine.Item.prototype.setSpeed = function(x, y)
 {
   this.speed.x = x;
   this.speed.y = y;  
-}
+};
 
 Engine.Item.prototype.getParentPosition = function()
 {
-  if (this._parent != null)
+  if (this._parent !== null)
     return this._parent.getPosition();
   else
     return new Engine.MATH.Point();
-}
+};
 
 Engine.Item.prototype.getParentSpeed = function()
 {
-  if (this._parent != null)
+  if (this._parent !== null)
     return this._parent.getSpeed();
   else
     return new Engine.MATH.Point();
-}
+};
 
 Engine.Item.prototype.getRadius = function()
 {
   return Math.sqrt(Math.pow(this.size.x/2, 2) + Math.pow(this.size.y/2, 2));
-}
+};
 
 Engine.Item.prototype.getMagnitude = function() 
 {
   return Math.sqrt(this.speed.x * this.speed.x + this.speed.y * this.speed.y);
-}
+};
 
 Engine.Item.prototype.move = function(dx, dy)
 {
   this.position.x += dx;
   this.position.y += dy;
-}
+};
 
 Engine.Item.prototype.rotate = function(dRot)
 {
   this.rotation.rotate(dRot);
-}
+};
 
 Engine.Item.prototype.setRotation = function(rot)
 {
   this.rotation.update(rot);
-}
+};
 
 Engine.Item.prototype.getRotation = function()
 {  
-  if (this._parent != null)
+  if (this._parent !== null)
     return this.rotation.getAngle() + this._parent.getRotation();
   else
     return this.rotation.getAngle();
-}
+};
 
 Engine.Item.prototype.draw = function(ctx)
 {
-  if (this._visible == true)
+  if (this._visible === true)
   {
     for (var i = 0, len = this._attachedItems.length; i < len; i++)
       this._attachedItems[i].draw(ctx);
 
-    if (this.spriteName != null)
+    if (this.spriteName !== null)
       engine.sprites.draw(ctx, this);
 
-    if (engine.options.drawBoundingBoxes == true)
+    if (engine.options.drawBoundingBoxes === true)
       this.drawHelper(ctx, 'spriteBox');
-    if (engine.options.drawMaxRadius == true)
+    if (engine.options.drawMaxRadius === true)
       this.drawHelper(ctx, 'maxRadius');
-    if (engine.options.drawCollisionRadius == true)
+    if (engine.options.drawCollisionRadius === true)
       this.drawHelper(ctx, 'collisionRadius');
-    if (engine.options.drawOrigins == true)
+    if (engine.options.drawOrigins === true)
       this.drawHelper(ctx, 'origin');
-    if (engine.options.drawCenters == true)
+    if (engine.options.drawCenters === true)
       this.drawHelper(ctx, 'center');
-    if (engine.options.drawDirectionVectors == true)
+    if (engine.options.drawDirectionVectors === true)
       this.drawHelper(ctx, 'direction');
   }
-}
+};
 
 Engine.Item.prototype.step = function(dt)
 {
-  if ((this.speed.x != 0) || (this.speed.y != 0))
+  if ((this.speed.x !== 0) || (this.speed.y !== 0))
     this.move(this.speed.x * dt / engine.core.TIME_PER_FRAME, this.speed.y * dt / engine.core.TIME_PER_FRAME);
   
-  if (this.vRot != 0)
+  if (this.vRot !== 0)
     this.rotate(this.vRot * dt / engine.core.TIME_PER_FRAME);
 
   // Advance the necessary frames in the animation if needed
-  if ((this.isAnimated == true) && (this.spriteName != null))
+  if ((this.isAnimated === true) && (this.spriteName !== null))
     engine.sprites.step(dt, this);
 
   for (var i = 0, len = this._attachedItems.length; i < len; i++)
@@ -296,11 +319,11 @@ Engine.Item.prototype.step = function(dt)
 
   // Remove any objects marked for removal
   this._finalizeRemoved();
-}
+};
 
 Engine.Item.prototype.eventAnimationRestart = function() 
 {
-}
+};
 
 Engine.Item.prototype.drawHelper = function(ctx, what)
 {
@@ -358,7 +381,7 @@ Engine.Item.prototype.drawHelper = function(ctx, what)
     ctx.lineTo(pos.x + speed.x * 10, pos.y + speed.y * 10);
     ctx.stroke();    
   }
-}
+};
 
 // By default, when an item collides, it is deleted
 // Objects which inherit from Item must implement their own collide method
@@ -369,4 +392,4 @@ Engine.Item.prototype.collide = function()
 
   // true if object should be removed, false otherwise
   return true;
-}
+};

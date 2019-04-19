@@ -10,7 +10,7 @@ Engine.TrackerSine = function(callback)
   this.phaseVector     = new Engine.MATH.Point(0, 0);   // { x: 1, y: 1};
 
   this.initTime = 0;
-}
+};
 
 Engine.TrackerSine.prototype = Object.create(Engine.Tracker.prototype);
 Engine.TrackerSine.prototype.constructor = Engine.TrackerSine;
@@ -21,14 +21,14 @@ Engine.TrackerSine.prototype.initialize = function()
   Engine.Tracker.prototype.initialize.call(this);
 
   this.initTime = new Date().getTime();
-}
+};
 
 Engine.TrackerSine.prototype.activate = function()
 {
   Engine.Tracker.prototype.activate.call(this);
 
   this.initTime = new Date().getTime();
-}
+};
 
 Engine.TrackerSine.prototype.step = function (dt)
 {
@@ -48,14 +48,14 @@ Engine.TrackerSine.prototype.step = function (dt)
 
   // Call inherited function 
   Engine.Tracker.prototype.step.call(this, dt);
-}
+};
 
 Engine.TrackerSine.prototype.draw = function (ctx) 
 {
   // Call inherited function 
   Engine.Tracker.prototype.draw.call(this, ctx); 
 
-  if (engine.options.drawTrackers == true)
+  if (engine.options.drawTrackers === true)
   {
     var pos = this.getParentPosition();
     ctx.strokeStyle = '#FF0000';
@@ -67,5 +67,4 @@ Engine.TrackerSine.prototype.draw = function (ctx)
     ctx.closePath();
     ctx.stroke();
   }
-}
-
+};

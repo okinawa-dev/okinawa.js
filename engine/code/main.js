@@ -1,6 +1,5 @@
 
-
-function Okinawa(canvasId, gameClassName, callbackFunction) 
+var Okinawa = function(canvasId, gameClassName, callbackFunction) 
 {
   // Global variable
   engine = new Engine();
@@ -22,4 +21,4 @@ function Okinawa(canvasId, gameClassName, callbackFunction)
     });
 
   return engine;
-}
+};

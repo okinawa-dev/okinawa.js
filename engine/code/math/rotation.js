@@ -16,17 +16,17 @@ Engine.MATH.Rotation = function()
   this.b = 0;
   this.c = 0;
   this.d = 1;
-}
+};
 
 Engine.MATH.Rotation.prototype.getAngle = function()
 {
   return this.angle;
-}
+};
 
 Engine.MATH.Rotation.prototype.rotate = function(dRot)
 {
   this.update(this.angle + dRot);
-}
+};
 
 Engine.MATH.Rotation.prototype.update = function(newAngle)
 {
@@ -36,9 +36,9 @@ Engine.MATH.Rotation.prototype.update = function(newAngle)
   this.b = -Math.sin(this.angle);
   this.c = Math.sin(this.angle);
   this.d = Math.cos(this.angle);
-}
+};
 
 Engine.MATH.Rotation.prototype.transformPosition = function(point)
 {
   return new Engine.MATH.Point(point.x * this.a + point.y * this.b, point.x * this.c + point.y * this.d);
-}
+};

@@ -1,4 +1,6 @@
 
+/* jshint -W084 */
+
 Engine.ParticleCollection = function() 
 {
   this.particles         = [];
@@ -11,14 +13,14 @@ Engine.ParticleCollection = function()
   this.effectField.ctx = this.effectField.getContext('2d');
   // this.effectField.ctx.globalCompositeOperation = 'darker';
   // this.effectField.ctx.fillStyle = 'rgba(' + this.particleColor.join(',') + ')';
-}
+};
 
 Engine.ParticleCollection.prototype.initialize = function()
 {
   this.particles         = [];
   this.maxParticles      = 10000;
   this._removedParticles = [];
-}
+};
 
 Engine.ParticleCollection.prototype.addParticle = function(particle)
 {
@@ -26,23 +28,23 @@ Engine.ParticleCollection.prototype.addParticle = function(particle)
     return;
 
   this.particles.push(particle);
-}
+};
 
 Engine.ParticleCollection.prototype.removeParticle = function(what)
 {
   this._removedParticles.push(what);
-}
+};
 
 Engine.ParticleCollection.prototype._resetItems = function()
 {
   this.particles.length = 0;
-}
+};
 
 // Reset the list of removed items
 Engine.ParticleCollection.prototype._resetRemoved = function() 
 {
   this._removedParticles.length = 0; 
-}
+};
 
 // Remove any items marked for removal
 Engine.ParticleCollection.prototype._finalizeRemoved = function() 
@@ -58,13 +60,13 @@ Engine.ParticleCollection.prototype._finalizeRemoved = function()
       this.particles.splice(idx, 1);
     }
   }
-}
+};
 
 Engine.ParticleCollection.prototype.step = function (dt)
 {
   var i, len = this.particles.length, p;
 
-  for (var i = 0; i < len; i++)
+  for (i = 0; i < len; i++)
   {
     p = this.particles[i];
 
@@ -78,7 +80,7 @@ Engine.ParticleCollection.prototype.step = function (dt)
   this._finalizeRemoved();
   // Reset the list of removed objects
   // this._resetRemoved();
-}
+};
 
 Engine.ParticleCollection.prototype.draw = function (ctx) 
 {
@@ -103,5 +105,4 @@ Engine.ParticleCollection.prototype.draw = function (ctx)
 
     ctx.drawImage(this.effectField, 0, 0, engine.core.size.x, engine.core.size.y);
   }
-}
-
+};

@@ -24,7 +24,7 @@ Engine.Effect = function(effectType, x, y, vx, vy)
 
   this.transparencyMethod = 0; // 0 -> no, 1->appear, 2->disappear
   this.globalAlpha        = 1;
-}
+};
 
 Engine.Effect.prototype = Object.create(Engine.Item.prototype);
 Engine.Effect.prototype.constructor = Engine.Effect;
@@ -50,29 +50,29 @@ Engine.Effect.prototype.step = function(dt)
 
   if (this.transparencyMethod == 2) // disappearing
   {
-    if (this.lifeTime != 0)
+    if (this.lifeTime !== 0)
       this.globalAlpha = 1 - this.lived / this.lifeTime;
     else
       this.globalAlpha = 1 - this.currentFrame / this.numFrames;
   }
   else if (this.transparencyMethod == 1) // appearing
   {
-    if (this.lifeTime != 0)
+    if (this.lifeTime !== 0)
       this.globalAlpha = this.lived / this.lifeTime;
     else
       this.globalAlpha = this.currentFrame / this.numFrames;
   }
   
   // If the effect is animated, advance its frames
-  if (this.isAnimated == true)
+  if (this.isAnimated === true)
     engine.sprites.step(dt, this);
 
   // if (preFrame != this.currentFrame)
   //   engine.logs.log('Effect', 'pre ' + preFrame + ' current ' + this.currentFrame);
-}
+};
 
 Engine.Effect.prototype.draw = function(ctx) 
 {
   // Call inherited function 
   Engine.Item.prototype.draw.call(this, ctx);
-}
+};

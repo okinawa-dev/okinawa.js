@@ -24,6 +24,7 @@ Engine.Options = function()
   // Console inform
   this.outputPressedKeys = false;
   this.outputPressedCombos = false;
+  this.outputClicks = false;
 
   // Show LogHandler info in the navigator console
   this.debugInConsole = false;
@@ -48,12 +49,13 @@ Engine.Options = function()
   // should start with the protocol, i.e. 'http://whatever.com/assets/'
   // if null, window.location will be used
   this.assetsURLPrefix = null;
-}
+};
 
 Engine.Options.prototype.addOptions = function(opts) 
 {    
   // Merge engine options and local game options in a single object
-  for (var attr in opts) { 
+  for (var attr in opts) 
+  { 
     this[attr] = opts[attr]; 
   }
-}
+};

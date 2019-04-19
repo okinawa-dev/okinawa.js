@@ -20,14 +20,14 @@ Engine.Emitter = function(particleSpeed, magnitude, spread)
 
   this.spread        = spread;
   this.emissionRate  = 3;
-}
+};
 
 Engine.Emitter.prototype = Object.create(Engine.Item.prototype);
 Engine.Emitter.prototype.constructor = Engine.Emitter;
 
 
-Engine.Emitter.prototype.start = function() { this.started = true; }
-Engine.Emitter.prototype.stop = function() { this.started = false; }
+Engine.Emitter.prototype.start = function() { this.started = true; };
+Engine.Emitter.prototype.stop = function() { this.started = false; };
 
 Engine.Emitter.prototype.createParticle = function()
 {
@@ -53,7 +53,7 @@ Engine.Emitter.prototype.createParticle = function()
 
   // this.particles.push(particle);
   engine.particles.addParticle(particle);
-}
+};
 
 Engine.Emitter.prototype.step = function (dt)
 {
@@ -61,22 +61,22 @@ Engine.Emitter.prototype.step = function (dt)
   
   // this.emissionCount = this.emissionCount++ % this.emissionRate;
 
-  if (this.started == true) 
+  if (this.started === true) 
   {
     for (var i = 0; i < this.emissionRate; i++)
     {
       this.createParticle();
     }
   }
-}
+};
 
 Engine.Emitter.prototype.draw = function (ctx) 
 {
   Engine.Item.prototype.draw.call(this, ctx);
-}
+};
 
 Engine.Emitter.prototype.collide = function(what)
 {
   // Emitters are not physical objects
   return false;
-}
+};

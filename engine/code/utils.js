@@ -1,4 +1,6 @@
 
+/* jshint -W030 */
+
 // Global addEvent to fix old IE way of attaching events
 function addEvent(evnt, elem, func) 
 {
@@ -23,7 +25,7 @@ function getProtocolAndHost()
   if (window.location.protocol != 'file:')
     result += window.location.protocol + '//';
 
-  if (window.location.host != '')
+  if (window.location.host !== '')
     result += window.location.host + '/';
 
   return result;
@@ -31,7 +33,7 @@ function getProtocolAndHost()
 
 // Polyfill for the Array.isArray function
 Array.isArray || (Array.isArray = function ( a ) {
-    return'' + a !== a && {}.toString.call( a ) == '[object Array]'
+    return'' + a !== a && {}.toString.call( a ) == '[object Array]';
 });
 
 // Polyfill for the Object.create function

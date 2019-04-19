@@ -12,7 +12,7 @@ Engine.Preloader = function()
   this.totalFonts       = 0;  // Number of fonts to be loaded
 
   this.message          = null;
-}
+};
 
 Engine.Preloader.prototype = Object.create(Engine.Scene.prototype);
 Engine.Preloader.prototype.constructor = Engine.Preloader;
@@ -20,7 +20,7 @@ Engine.Preloader.prototype.constructor = Engine.Preloader;
 Engine.Preloader.prototype.initialize = function()
 {
   Engine.Scene.prototype.initialize.call(this);
-}
+};
 
 Engine.Preloader.prototype.activate = function()
 {
@@ -30,16 +30,18 @@ Engine.Preloader.prototype.activate = function()
 
   this.timeStarted = new Date().getTime();
 
-  for (var i = 0, len = this.imageAssets.length; i < len; i++) 
+  var i, what;
+
+  for (i = 0, len = this.imageAssets.length; i < len; i++) 
   {
-    var what = this.imageAssets[i];
+    what = this.imageAssets[i];
 
     this.addImageToLoad(what);
   }
 
-  for (var i = 0, len = this.soundAssets.length; i < len; i++) 
+  for (i = 0, len = this.soundAssets.length; i < len; i++) 
   {
-    var what = this.soundAssets[i];
+    what = this.soundAssets[i];
 
     this.addSoundToLoad(what);
   }
@@ -51,12 +53,12 @@ Engine.Preloader.prototype.activate = function()
   // this.message.setFontSize(20);
   this.message.setFontColor('#FF2222');
   this.gui.attachItem(this.message, 'msg_loading');
-}
+};
 
 Engine.Preloader.prototype.addAnimation = function(data)
 {
   this.imageAssets.push(data);
-}
+};
 
 Engine.Preloader.prototype.addSprite = function(data)
 {
@@ -69,7 +71,7 @@ Engine.Preloader.prototype.addSprite = function(data)
   data.speed = 0;
 
   this.addAnimation(data);
-}
+};
 
 Engine.Preloader.prototype.addImageToLoad = function(data) 
 {
@@ -85,7 +87,7 @@ Engine.Preloader.prototype.addImageToLoad = function(data)
     });
 
     // src always have to be set after adding the event listener, due to bug in IE8
-    if (engine.options.assetsURLPrefix != null)
+    if (engine.options.assetsURLPrefix !== null)
       image.src = engine.options.assetsURLPrefix + data.path;
     else
       image.src = getProtocolAndHost() + data.path;
@@ -101,12 +103,12 @@ Engine.Preloader.prototype.addImageToLoad = function(data)
     engine.sprites.addSprite(data.name, data.path, data.xStart, data.yStart, 
                              data.width, data.height, data.frames, data.initFrame, data.speed);
   }
-}
+};
 
 Engine.Preloader.prototype.addSound = function(data)
 {
   this.soundAssets.push(data);
-}
+};
 
 Engine.Preloader.prototype.addSoundToLoad = function(data)
 {
@@ -117,7 +119,7 @@ Engine.Preloader.prototype.addSoundToLoad = function(data)
   {
     var path = data.path;
 
-    if (engine.options.assetsURLPrefix != null)
+    if (engine.options.assetsURLPrefix !== null)
       path = engine.options.assetsURLPrefix + path;
     else
       path = getProtocolAndHost() + path;
@@ -132,7 +134,7 @@ Engine.Preloader.prototype.addSoundToLoad = function(data)
 
     engine.sounds.addSound(data.name, data.path, sound);
   }
-}
+};
 
 Engine.Preloader.prototype.addFont = function(url, fontFamily, flag)
 {
@@ -144,12 +146,12 @@ Engine.Preloader.prototype.addFont = function(url, fontFamily, flag)
   font.onerror = function(err) 
   {
     engine.logs.log('Preloader.addFont', 'Error loading a font: ' + err);
-  }
+  };
   font.onload = function() 
   {
     engine.logs.log('Preloader.addFont', 'Font loaded');
     engine.preloader.incrementalLoader('font'); 
-  }
+  };
 
   font.fontFamily = fontFamily;
 
@@ -157,12 +159,12 @@ Engine.Preloader.prototype.addFont = function(url, fontFamily, flag)
     font.src = url;
   else
   {
-    if (engine.options.assetsURLPrefix != null)
+    if (engine.options.assetsURLPrefix !== null)
       font.src = engine.options.assetsURLPrefix + url;
     else
       font.src = getProtocolAndHost() + url;
   }
-}
+};
 
 Engine.Preloader.prototype.incrementalLoader = function(info)
 {
@@ -171,7 +173,7 @@ Engine.Preloader.prototype.incrementalLoader = function(info)
   this.incremental += 1;
 
   this.percentageLoaded = Math.floor(this.incremental * 100 / total);
-}
+};
 
 Engine.Preloader.prototype.draw = function(ctx)
 {
@@ -190,7 +192,7 @@ Engine.Preloader.prototype.draw = function(ctx)
   ctx.strokeRect((engine.core.size.x - barWidth) / 2, 
                   engine.core.size.y/2 + 50, 
                   barWidth + 2, 16);
-}
+};
 
 Engine.Preloader.prototype.step = function(dt)
 {
@@ -206,4 +208,4 @@ Engine.Preloader.prototype.step = function(dt)
     engine.core.activate();
     engine.external('LOADED', null, null);
   }
-}
+};

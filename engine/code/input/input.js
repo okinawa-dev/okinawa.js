@@ -115,7 +115,10 @@ Engine.INPUT.KEYS = {
   OPEN_BRACKET: 219,
   BACK_SLASH: 220,
   CLOSE_BRAKET: 221,
-  SINGLE_QUOTE: 222
+  SINGLE_QUOTE: 222,
+
+  // spanish keyboard
+  NTILDE: 209
 
 };
 

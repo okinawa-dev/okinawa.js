@@ -11,7 +11,7 @@ Engine.INPUT.Controller = function()
   this.lastPressedTime = new Date().getTime(); // Time when a key was pressed last time
 
   this.currentInputController = null;
-}
+};
 
 Engine.INPUT.Controller.prototype.initialize = function() 
 {
@@ -30,7 +30,14 @@ Engine.INPUT.Controller.prototype.initialize = function()
 
   addEvent('keydown', document, function(event) { 
     engine.input.onKeydown(event); 
-    if (engine.options.preventDefaultKeyStrokes == true)
+
+    // don't trap keys if the focus is in a html input (outside the game canvas)
+    if (engine.input.isTargetInput(event))
+      return;
+
+    if ((engine.options.preventDefaultKeyStrokes === true) ||
+        // delete or backspace
+        (event.keyCode == 8) || (event.keyCode == 46))
       event.preventDefault();
   });
 
@@ -46,7 +53,7 @@ Engine.INPUT.Controller.prototype.initialize = function()
   // Capture touch events
   addEvent('touchstart', engine.core.canvas, function(event) {
     
-    engine.input.onTouchStart(event.touches[0].clientX, event.touches[0].clientY);
+    engine.input.onClickStart(event.touches[0].clientX, event.touches[0].clientY);
 
     // So touch would work in Android browser
     if ( navigator.userAgent.match(/Android/i) )
@@ -79,31 +86,31 @@ Engine.INPUT.Controller.prototype.initialize = function()
 
   // To avoid selections
   // document.onselectstart = function() { return false; }
-}
+};
 
 Engine.INPUT.Controller.prototype.activate = function()
 {
-}
+};
 
 Engine.INPUT.Controller.prototype.getCurrentInputcontroller = function() 
 { 
   return this.currentInputController; 
-}
+};
 
 Engine.INPUT.Controller.prototype.setCurrentInputController = function(controller)
 {
   this.currentInputController = controller;
-}
+};
 
 Engine.INPUT.Controller.prototype.isKeyPressed = function(keyCode) 
 {
   return this.pressed[keyCode];
-}
+};
 
 Engine.INPUT.Controller.prototype.onKeydown = function(event) 
 {
   // Avoid multiple events when holding keys
-  if (this.pressed[event.keyCode] == true)
+  if (this.pressed[event.keyCode] === true)
     return;
 
   // The key is pressed
@@ -111,17 +118,17 @@ Engine.INPUT.Controller.prototype.onKeydown = function(event)
 
   // Add to the array of last pressed keys, and update times
   this.addLastPressed(event.keyCode);
-}
+};
 
 Engine.INPUT.Controller.prototype.onKeyup = function(event) 
 {
   delete this.pressed[event.keyCode];
-}
+};
 
 Engine.INPUT.Controller.prototype.onClickStart = function(x, y)
 {
   // If the screen is being modified, ignore touch events for safety
-  if (engine.device.isResizing == true)
+  if (engine.device.isResizing === true)
     return;
 
   var position = new Engine.MATH.Point(x, y);
@@ -152,20 +159,20 @@ Engine.INPUT.Controller.prototype.onClickStart = function(x, y)
 
     this.currentInputController.detectClick(position);
   }
-}
+};
 
 Engine.INPUT.Controller.prototype.resetKeys = function() 
 {
   for(var key in this.pressed)
     this.pressed[key] = false;
-}
+};
 
 Engine.INPUT.Controller.prototype.addLastPressed = function(keyCode)
 {  
   // Inform to listening objects in the current scene
   this.currentInputController.informKeyPressed(keyCode);
 
-  var now = new Date().getTime()
+  var now = new Date().getTime();
 
   // If a second has passed, clear the pressed keys list
   if (now - this.lastPressedTime > 1000)
@@ -178,20 +185,28 @@ Engine.INPUT.Controller.prototype.addLastPressed = function(keyCode)
   if (this.lastPressed.length > 10)
     this.lastPressed.shift();
 
-  if (engine.options.outputPressedKeys == true)
+  if (engine.options.outputPressedKeys === true)
     engine.logs.log('Input.addLastPressed', 'Pressed key: ' + this.inverseKeyboard[keyCode], now);
 
   // Inform combo performed to currentInputController if needed
   var whichCombo = this.currentInputController.detectCombo();
 
-  if (whichCombo != null)
+  if (whichCombo !== null)
     this.currentInputController.informComboPerformed(whichCombo, now);
-}
+};
+
+Engine.INPUT.Controller.prototype.addClick = function(id)
+{
+  this.currentInputController.informClick(id);
+
+  if (engine.options.outputClicks === true)
+    engine.logs.log('Input.addClick', 'Click over: ' + id);
+};
 
 Engine.INPUT.Controller.prototype.getKeyFromCode = function(keyCode)
 {
   return this.inverseKeyboard[keyCode];
-}
+};
 
 Engine.INPUT.Controller.prototype.convertKeyToNumber = function(keyCode)
 {
@@ -220,8 +235,9 @@ Engine.INPUT.Controller.prototype.convertKeyToNumber = function(keyCode)
     default:
       break;
   }
+
   return -1;
-}
+};
 
 Engine.INPUT.Controller.prototype.convertNumberToKey = function(number)
 {
@@ -250,6 +266,19 @@ Engine.INPUT.Controller.prototype.convertNumberToKey = function(number)
     default:
       break;
   }
-  return Engine.INPUT.KEYS.ZERO;
-}
 
+  return Engine.INPUT.KEYS.ZERO;
+};
+
+Engine.INPUT.Controller.prototype.isTargetInput = function(event) 
+{
+  return event.target.type == 'textarea' || 
+         event.target.type == 'text' ||
+         event.target.type == 'number' || 
+         event.target.type == 'email' ||
+         event.target.type == 'password' || 
+         event.target.type == 'search' ||
+         event.target.type == 'tel' || 
+         event.target.type == 'url' ||
+         event.target.isContentEditable;
+};

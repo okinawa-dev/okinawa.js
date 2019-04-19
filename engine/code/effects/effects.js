@@ -3,25 +3,25 @@ Engine.Effects = function()
 {
   this.effects = [];
   this.removed = [];
-}
+};
 
 Engine.Effects.prototype.initialize = function() 
 { 
   // engine.logs.log('effectHandler.initialize', 'Initializing effects Handler');
 
   this.effects.length = 0;
-}
+};
 
 Engine.Effects.prototype.removeEffect = function(eff)
 {
   this.removed.push(eff);
-}
+};
 
 // Reset the list of removed objects
 Engine.Effects.prototype._resetRemoved = function() 
 {
   this.removed.length = 0; 
-}
+};
 
 // Remove any objects marked for removal
 Engine.Effects.prototype._finalizeRemoved = function() 
@@ -32,7 +32,7 @@ Engine.Effects.prototype._finalizeRemoved = function()
     if(idx != -1) 
       this.effects.splice(idx, 1);
   }
-}
+};
 
 Engine.Effects.prototype.step = function(dt) 
 {
@@ -54,7 +54,7 @@ Engine.Effects.prototype.step = function(dt)
   }
 
   this._finalizeRemoved();
-}
+};
 
 Engine.Effects.prototype.draw = function(ctx) 
 {
@@ -62,7 +62,7 @@ Engine.Effects.prototype.draw = function(ctx)
   {
     this.effects[i].draw(ctx);
   }
-}
+};
 
 // The coordinates passed are the ones from the center
 Engine.Effects.prototype.addEffect= function(type, x, y, vx, vy) 
@@ -75,5 +75,5 @@ Engine.Effects.prototype.addEffect= function(type, x, y, vx, vy)
 
   // Returns the effect to add further changes
   return eff;
-}
+};
 

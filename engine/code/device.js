@@ -1,4 +1,6 @@
 
+/* jshint -W084 */
+
 // Object to store screen, graphical, and browser auxiliar 
 // functions that have no other place to be ;)
 
@@ -9,7 +11,7 @@ Engine.Device = function()
 
   this.isResizing = false;
   this._clearTimeOutId = null;
-}
+};
 
 Engine.Device.prototype.initialize = function()
 {
@@ -27,7 +29,7 @@ Engine.Device.prototype.initialize = function()
 
     engine.device.isResizing = true;
 
-    if (engine.options.showResizeMessage == true)
+    if (engine.options.showResizeMessage === true)
       engine.gui.get('console').addText('resize', 'Resizing!'); 
     // engine.logs.log('Engine.INPUT.Controller.onResize', 'Window resized');        
 
@@ -39,21 +41,21 @@ Engine.Device.prototype.initialize = function()
 
   });
 
-  if (engine.options.avoidLeavingPage == true)
+  if (engine.options.avoidLeavingPage === true)
     this.avoidLeavingPage();
-}
+};
 
 Engine.Device.prototype.doneResizing = function()
 {
   engine.device.isResizing = false;
 
-  if (engine.options.showResizeMessage == true)
+  if (engine.options.showResizeMessage === true)
     engine.gui.get('console').addText('resize', 'Resizing done');   
-}
+};
 
 Engine.Device.prototype.activate = function()
 {
-}
+};
 
 Engine.Device.prototype.getGlobalScroll = function()
 {
@@ -79,7 +81,7 @@ Engine.Device.prototype.getGlobalScroll = function()
   }
 
   return pos;
-}
+};
 
 // Distance in pixels of a DOM element from the origin of the navigator
 Engine.Device.prototype.getGlobalOffset = function(element)
@@ -95,26 +97,26 @@ Engine.Device.prototype.getGlobalOffset = function(element)
   }
 
   return pos;
-}
+};
 
 Engine.Device.prototype.detectTouchDevice = function()
 {
   if (('ontouchstart' in window) || window.DocumentTouch && (document instanceof DocumentTouch))
     return true;
   return false;
-}
+};
 
 Engine.Device.prototype.getUserAgent = function()
 {
   return navigator.userAgent;
-}
+};
 
 Engine.Device.prototype.avoidLeavingPage = function()
 {
   window.onbeforeunload = function() {
     return '';
-  }
-}
+  };
+};
 
 // Tricks got from stackoverflow
 // http://stackoverflow.com/questions/3665115/create-a-file-in-memory-for-user-to-download-not-through-server
@@ -127,7 +129,7 @@ Engine.Device.prototype.createAndDownloadFile = function(filename, text)
         type: 'text/csv;charset=utf-8;',
     });
 
-    window.navigator.msSaveOrOpenBlob(blob, filename)
+    window.navigator.msSaveOrOpenBlob(blob, filename);
   }
   // Other browsers
   else
@@ -138,11 +140,11 @@ Engine.Device.prototype.createAndDownloadFile = function(filename, text)
     link.setAttribute('download', filename);    
 
     // In Firefox the element has to be placed inside the DOM
-    document.body.appendChild(link)
+    document.body.appendChild(link);
     link.click();  
-    document.body.removeChild(link)  
+    document.body.removeChild(link) ; 
   }
-}
+};
 
 // Duplicated in utils.js, as a global function, just for really, really old IEs
 Engine.Device.prototype.detectIE = function()
@@ -156,7 +158,7 @@ Engine.Device.prototype.detectIE = function()
     return 11;
 
   return -1;
-}
+};
 
 Engine.Device.prototype.isIE = function()
 {
@@ -165,6 +167,5 @@ Engine.Device.prototype.isIE = function()
     return true;
 
   return false;
-}
-
+};
 
