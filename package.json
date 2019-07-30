@@ -6,7 +6,7 @@
   "homepage": "http://dev.neverbot.com/okinawa.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/neverbot/okinawa.js.git"
+    "url": "git://github.com/okinawajs/okinawa.js.git"
   },
   "dependencies": {
     "jshint": "^2.8.0",
