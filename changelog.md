@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 After resuming work in the project, the architecture is going to change, so here it is the
 original content of the readme file.
 
-### readme.md contents when reaching version 1.0.0
+**readme.md contents when reaching version 1.0.0**
 
 A simple javascript 2D game engine.
 
@@ -54,3 +54,4 @@ I started this just to learn something about javascript, so...
 - Initial commit... a long time ago, in a galaxy far, far away.
 
 [1.0.0]: https://github.com/okinawajs/okinawa.js/releases/tag/1.0.0
+[0.1.0]: https://github.com/okinawajs/okinawa.js/releases/tag/0.1.0
