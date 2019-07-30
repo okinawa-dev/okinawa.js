@@ -1,8 +1,8 @@
-# Okinawa
+# okinawa.js
 
 ![semver](https://img.shields.io/npm/v/okinawa.js)
 
-## A simple javascript 2D game engine.
+## A simple javascript 2D game engine
 
 Current list of features:
 
@@ -21,12 +21,12 @@ Current list of features:
 - [x] Clock subcriptions to wait for certain events
 - [x] Basic audio support
 
-## Tests (in separate projects):
+## Tests (in separate projects)
 
 - [Asteroids clone](https://github.com/neverbot/okinawa-asteroids)
   Test it in https://dev.neverbot.com/okinawa.js
 
-## To do:
+## To Do
 
 - [ ] Better audio system
 - [ ] Item collections in the scene (multiple layers of items)
