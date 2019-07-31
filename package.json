@@ -8,18 +8,20 @@
     "type": "git",
     "url": "git://github.com/okinawajs/okinawa.js.git"
   },
-  "dependencies": {
-    "jshint": "^2.8.0",
-    "uglify-js": "^2.4.24"
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babelify": "^10.0.0",
+    "browserify": "^16.3.0",
+    "eslint": "^6.1.0"
   },
-  "devDependencies": {},
   "optionalDependencies": {},
   "engines": {
     "node": "*"
   },
   "scripts": {
-    "lint": "jshint engine/code/",
-    "build": "./scripts/build.sh .",
-    "postbuild": "uglifyjs ./build/okinawa.js -o ./build/okinawa.min.js"
+    "lint": "eslint .",
+    "build": "browserify index.js -o build/bundle.js -t [ babelify --presets [ @babel/preset-env ] --plugins [ ] ]"
   }
 }
