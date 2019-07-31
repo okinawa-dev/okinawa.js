@@ -2,6 +2,8 @@ import Options from './options';
 import Logs from './logs';
 import Core from './core';
 import * as MATH from './math/math';
+import Device from './device';
+
 import Localization from './localization';
 
 class Engine {
@@ -32,8 +34,8 @@ class Engine {
     this.logs = new Logs();
     this.core = new Core();
     this.math = new MATH.Math();
+    this.device = new Device();
 
-    this.device = new Engine.Device();
     this.effects = new Engine.Effects();
     this.particles = new Engine.ParticleCollection();
     this.sprites = new Engine.Sprites();

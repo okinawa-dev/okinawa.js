@@ -17,7 +17,7 @@ export function addEvent(evnt, elem, func) {
 
 // get protocol and hostname
 export function getProtocolAndHost() {
-  var result = '';
+  let result = '';
 
   if (window.location.protocol != 'file:') {
     result += window.location.protocol + '//';
@@ -55,7 +55,7 @@ Object.create ||
 if (!Object.keys) {
   Object.keys = (function() {
     'use strict';
-    var hasOwnProperty = Object.prototype.hasOwnProperty,
+    let hasOwnProperty = Object.prototype.hasOwnProperty,
       hasDontEnumBug = !{ toString: null }.propertyIsEnumerable('toString'),
       dontEnums = [
         'toString',
@@ -76,7 +76,7 @@ if (!Object.keys) {
         throw new TypeError('Object.keys called on non-object');
       }
 
-      var result = [],
+      let result = [],
         prop,
         i;
 
@@ -100,7 +100,7 @@ if (!Object.keys) {
 */
 
 export function detectIE() {
-  var userAgent = navigator.userAgent.toLowerCase();
+  let userAgent = navigator.userAgent.toLowerCase();
 
   if (/msie/.test(userAgent)) {
     return parseFloat(
