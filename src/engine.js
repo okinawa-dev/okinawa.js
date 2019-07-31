@@ -5,8 +5,9 @@ import * as MATH from './math/math';
 import Device from './device';
 import Effects from './effects/effects';
 import Particles from './effects/particles';
+import Sprites from './assets/sprites';
 
-import Localization from './localization';
+import Localization from './localization/localization';
 
 class Engine {
   constructor() {
@@ -39,8 +40,8 @@ class Engine {
     this.device = new Device();
     this.effects = new Effects();
     this.particles = new Particles();
+    this.sprites = new Sprites();
 
-    this.sprites = new Engine.Sprites();
     this.sounds = new Engine.Sounds();
     this.clock = new Engine.Clock();
 

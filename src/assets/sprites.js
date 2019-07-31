@@ -1,191 +1,215 @@
- 
-Engine.Sprites = function()
-{
-  // Information related to each sprite, as it was configured in the preloader, indexed by 
-  // the sprite id/name
-  // sprites[spriteName] = [imagePath, xStart, yStart, width, height, frames, initFrame, speed]
-  this.sprites = {};
+import * as MATH from '../math/math';
 
-  // List of Image() objects used in the game, indexed by original URL
-  // images[path] = object;
-  this.images  = {};
+const SPRITEINFO = {
+  PATH: 0,
+  XSTART: 1,
+  YSTART: 2,
+  WIDTH: 3,
+  HEIGTH: 4,
+  FRAMES: 5,
+  INITFRAME: 6,
+  FRAMESPEED: 7
 };
 
-Engine.Sprites.SPRITEINFO = {
-  PATH : 0,
-  XSTART : 1,
-  YSTART : 2,
-  WIDTH : 3,
-  HEIGTH : 4,
-  FRAMES : 5,
-  INITFRAME : 6,
-  FRAMESPEED : 7
-};
+export default class Sprites {
+  constructor() {
+    // Information related to each sprite, as it was configured in the preloader, indexed by
+    // the sprite id/name
+    // sprites[spriteName] = [imagePath, xStart, yStart, width, height, frames, initFrame, speed]
+    this.sprites = {};
 
-Engine.Sprites.prototype.initialize = function() 
-{ 
-  // engine.logs.log('engine.sprites.initialize', 'Initializing sprites Handler');
+    // List of Image() objects used in the game, indexed by original URL
+    // images[path] = object;
+    this.images = {};
+  }
 
-  this.sprites.length = 0;
-  this.images.length = 0;
-};
+  initialize() {
+    // engine.logs.log('engine.sprites.initialize', 'Initializing sprites Handler');
 
-Engine.Sprites.prototype.step = function(dt, object) 
-{
-  var fps       = this.sprites[object.spriteName][Engine.Sprites.SPRITEINFO.FRAMESPEED];
-  var frames    = this.sprites[object.spriteName][Engine.Sprites.SPRITEINFO.FRAMES];
-  var initFrame = this.sprites[object.spriteName][Engine.Sprites.SPRITEINFO.INITFRAME];
+    this.sprites.length = 0;
+    this.images.length = 0;
+  }
 
-  // If the item wants to be rendered at different frame speed
-  if (object.forceFrameSpeed !== 0)
-    fps = object.forceFrameSpeed;
+  step(dt, object) {
+    let fps = this.sprites[object.spriteName][SPRITEINFO.FRAMESPEED];
+    let frames = this.sprites[object.spriteName][SPRITEINFO.FRAMES];
+    let initFrame = this.sprites[object.spriteName][SPRITEINFO.INITFRAME];
 
-  // if frames > 1 -> animation
-  if (frames > 1)
-  {
-    var now = new Date().getTime();
+    // If the item wants to be rendered at different frame speed
+    if (object.forceFrameSpeed !== 0) {
+      fps = object.forceFrameSpeed;
+    }
 
-    // If the animation just started
-    if (object.timeLastFrame === 0)
-      object.timeLastFrame = now;
+    // if frames > 1 -> animation
+    if (frames > 1) {
+      let now = new Date().getTime();
 
-    // If time enough has passed to change the currentFrame
-    if (now - object.timeLastFrame > 1000 / fps)
-    {
-      var preFrame = object.currentFrame;
+      // If the animation just started
+      if (object.timeLastFrame === 0) {
+        object.timeLastFrame = now;
+      }
 
-      object.currentFrame++;
-      
-      if (object.currentFrame >= initFrame + frames)
-        object.currentFrame = initFrame;
+      // If time enough has passed to change the currentFrame
+      if (now - object.timeLastFrame > 1000 / fps) {
+        let preFrame = object.currentFrame;
 
-      object.timeLastFrame = now;
+        object.currentFrame++;
 
-      // If the animation restarts, increment loop counter
-      if (preFrame == frames - 1) {
-        object.numLoops += 1;
-        if (typeof(object.eventAnimationRestart) !== 'undefined')
-          object.eventAnimationRestart();
+        if (object.currentFrame >= initFrame + frames) {
+          object.currentFrame = initFrame;
+        }
+
+        object.timeLastFrame = now;
+
+        // If the animation restarts, increment loop counter
+        if (preFrame == frames - 1) {
+          object.numLoops += 1;
+          if (typeof object.eventAnimationRestart !== 'undefined') {
+            object.eventAnimationRestart();
+          }
+        }
       }
     }
   }
-};
 
-Engine.Sprites.prototype.draw = function(ctx, object) 
-{
-  if (object.getVisible() === false)
-    return;
+  draw(ctx, object) {
+    if (object.getVisible() === false) {
+      return;
+    }
 
-  // sprites[i] -> [imagePath, xStart, yStart, width, height, frames, initFrame, speed]
-  var image     = this.sprites[object.spriteName][Engine.Sprites.SPRITEINFO.PATH];
-  var xStart    = this.sprites[object.spriteName][Engine.Sprites.SPRITEINFO.XSTART];
-  var yStart    = this.sprites[object.spriteName][Engine.Sprites.SPRITEINFO.YSTART];
-  var width     = this.sprites[object.spriteName][Engine.Sprites.SPRITEINFO.WIDTH];
-  var height    = this.sprites[object.spriteName][Engine.Sprites.SPRITEINFO.HEIGTH];
-  var frames    = this.sprites[object.spriteName][Engine.Sprites.SPRITEINFO.FRAMES];
+    // sprites[i] -> [imagePath, xStart, yStart, width, height, frames, initFrame, speed]
+    let image = this.sprites[object.spriteName][SPRITEINFO.PATH];
+    let xStart = this.sprites[object.spriteName][SPRITEINFO.XSTART];
+    let yStart = this.sprites[object.spriteName][SPRITEINFO.YSTART];
+    let width = this.sprites[object.spriteName][SPRITEINFO.WIDTH];
+    let height = this.sprites[object.spriteName][SPRITEINFO.HEIGTH];
+    // let frames = this.sprites[object.spriteName][SPRITEINFO.FRAMES];
 
-  var position = object.getPosition();
+    let position = object.getPosition();
 
-  // Set transparency
-  ctx.globalAlpha = object.globalAlpha;
+    // Set transparency
+    ctx.globalAlpha = object.globalAlpha;
 
-  if (object.rotation.getAngle() !== 0)
-  {
-    ctx.save();
+    if (object.rotation.getAngle() !== 0) {
+      ctx.save();
 
-    ctx.translate(position.x, position.y);
-    ctx.rotate(object.rotation.getAngle());
+      ctx.translate(position.x, position.y);
+      ctx.rotate(object.rotation.getAngle());
 
-    ctx.drawImage(this.images[image],
-                  xStart + object.currentFrame * width, yStart, 
-                  width, height, 
-                  -width/2 * object.scaling.x, -height/2 * object.scaling.y,
-                  width * object.scaling.x, height * object.scaling.y);
+      ctx.drawImage(
+        this.images[image],
+        xStart + object.currentFrame * width,
+        yStart,
+        width,
+        height,
+        (-width / 2) * object.scaling.x,
+        (-height / 2) * object.scaling.y,
+        width * object.scaling.x,
+        height * object.scaling.y
+      );
 
-    ctx.restore();
+      ctx.restore();
+    }
+    // Draw without rotation
+    else {
+      ctx.drawImage(
+        this.images[image],
+        xStart + object.currentFrame * width,
+        yStart,
+        width,
+        height,
+        position.x - (width / 2) * object.scaling.x,
+        position.y - (height / 2) * object.scaling.y,
+        width * object.scaling.x,
+        height * object.scaling.y
+      );
+    }
+
+    // restore, just in case
+    ctx.globalAlpha = 1;
   }
-  // Draw without rotation
-  else
-  {
-    ctx.drawImage(this.images[image],
-                  xStart + object.currentFrame * width, yStart, 
-                  width, height, 
-                  position.x - width / 2 * object.scaling.x, position.y - height / 2 * object.scaling.y,
-                  width * object.scaling.x, height * object.scaling.y);
+
+  imageExists(path) {
+    return Object.prototype.hasOwnProperty.call(this.images, path);
+    // return this.images.hasOwnProperty(path);
   }
 
-  // restore, just in case
-  ctx.globalAlpha = 1;
-};
+  spriteExists(name) {
+    return Object.prototype.hasOwnProperty.call(this.sprites, name);
+    // return this.sprites.hasOwnProperty(name);
+  }
 
-Engine.Sprites.prototype.imageExists = function(path)
-{
-  return this.images.hasOwnProperty(path);
-};
+  addImage(path, object) {
+    this.images[path] = object;
+  }
 
-Engine.Sprites.prototype.spriteExists = function(name)
-{
-  return this.sprites.hasOwnProperty(name);
-};
+  addSprite(
+    name,
+    path,
+    xStart,
+    yStart,
+    width,
+    height,
+    frames,
+    initFrame,
+    speed
+  ) {
+    this.sprites[name] = [
+      path,
+      xStart,
+      yStart,
+      width,
+      height,
+      frames,
+      initFrame,
+      speed
+    ];
+  }
 
-Engine.Sprites.prototype.addImage = function(path, object)
-{
-  this.images[path] = object;
-};
+  // Returns the object to be painted in the context
+  getImage(spriteName) {
+    // this.sprites[spriteName][0] -> full path from the spriteName
+    return this.images[this.sprites[spriteName][SPRITEINFO.PATH]];
+  }
 
-Engine.Sprites.prototype.addSprite = function(name, path, xStart, yStart, width, height, frames, initFrame, speed)
-{
-  this.sprites[name] = [path, xStart, yStart, width, height, frames, initFrame, speed];
-};
+  getImageFromPath(path) {
+    return this.images[path];
+  }
 
-// Returns the object to be painted in the context
-Engine.Sprites.prototype.getImage = function(spriteName)
-{
-  // this.sprites[spriteName][0] -> full path from the spriteName
-  return this.images[this.sprites[spriteName][Engine.Sprites.SPRITEINFO.PATH]];
-};
+  getSpriteData(spriteName) {
+    let ret = this.sprites[spriteName];
 
-Engine.Sprites.prototype.getImageFromPath = function(path)
-{
-  return this.images[path];
-};
-
-Engine.Sprites.prototype.getSpriteData = function(spriteName)
-{
-  var ret = this.sprites[spriteName];
-
-  if (typeof(ret) !== 'undefined')
+    if (typeof ret !== 'undefined') {
       return ret;
+    }
 
-  return null;
-};
-
-Engine.Sprites.prototype.getSpriteInfo = function(spriteName, value)
-{
-  var ret = this.sprites[spriteName];
-
-  if (typeof(ret) !== 'undefined')
-  {
-    var info = ret[value];
-
-    if (typeof(info) !== 'undefined')
-      return info;
+    return null;
   }
 
-  return null;
-};
+  getSpriteInfo(spriteName, value) {
+    let ret = this.sprites[spriteName];
 
-Engine.Sprites.prototype.getSpriteSize = function(spriteName)
-{
-  var ret = this.sprites[spriteName];
-  var w = 0;
-  var h = 0;
+    if (typeof ret !== 'undefined') {
+      let info = ret[value];
 
-  if (typeof(ret) !== 'undefined')
-  {
-    w = ret[ Engine.Sprites.SPRITEINFO.WIDTH ];
-    h = ret[ Engine.Sprites.SPRITEINFO.HEIGTH ];
+      if (typeof info !== 'undefined') {
+        return info;
+      }
+    }
+
+    return null;
   }
 
-  return new Engine.MATH.Point(w,h);    
-};
+  getSpriteSize(spriteName) {
+    let ret = this.sprites[spriteName];
+    let w = 0;
+    let h = 0;
+
+    if (typeof ret !== 'undefined') {
+      w = ret[SPRITEINFO.WIDTH];
+      h = ret[SPRITEINFO.HEIGTH];
+    }
+
+    return new MATH.Point(w, h);
+  }
+}
