@@ -1,4 +1,4 @@
-import engine from './engine';
+import engine from '../engine';
 import Item from '../item';
 
 export default class Particle extends Item {

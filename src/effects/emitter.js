@@ -1,4 +1,4 @@
-import engine from './engine';
+import engine from '../engine';
 import Item from '../item';
 import * as MATH from '../math/math';
 import Particle from './particle';

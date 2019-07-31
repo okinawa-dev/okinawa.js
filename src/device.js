@@ -3,7 +3,7 @@
 
 import engine from './engine';
 import * as MATH from './math/math';
-import { addEvent } from './src/utils';
+import { addEvent } from './utils';
 
 export default class Device {
   constructor() {

@@ -1,4 +1,4 @@
-import engine from './engine';
+import engine from '../engine';
 
 export default class Particles {
   constructor() {
