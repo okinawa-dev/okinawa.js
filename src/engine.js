@@ -4,6 +4,7 @@ import Core from './core';
 import * as MATH from './math/math';
 import Device from './device';
 import Effects from './effects/effects';
+import Particles from './effects/particles';
 
 import Localization from './localization';
 
@@ -37,8 +38,8 @@ class Engine {
     this.math = new MATH.Math();
     this.device = new Device();
     this.effects = new Effects();
+    this.particles = new Particles();
 
-    this.particles = new Engine.ParticleCollection();
     this.sprites = new Engine.Sprites();
     this.sounds = new Engine.Sounds();
     this.clock = new Engine.Clock();

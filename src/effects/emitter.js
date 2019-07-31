@@ -1,82 +1,78 @@
+import engine from './engine';
+import Item from '../item';
+import * as MATH from '../math/math';
+import Particle from './particle';
 
-Engine.Emitter = function(particleSpeed, magnitude, spread) 
-{
-  Engine.Item.call(this);
-  
-  // this.position = new Engine.MATH.Point(0, 0);
-  // this.speed    = new Engine.MATH.Point(0, 0);
-  this.size     = new Engine.MATH.Point(10, 10);
+export default class Emitter extends Item {
+  constructor(particleSpeed, magnitude, spread) {
+    super();
 
-  // velocity vector of the particles
-  this.particleSpeed = particleSpeed;
+    // this.position = new MATH.Point(0, 0);
+    // this.speed    = new MATH.Point(0, 0);
+    this.size = new MATH.Point(10, 10);
 
-  this.magnitude     = magnitude;
+    // velocity vector of the particles
+    this.particleSpeed = particleSpeed;
 
-  this.particleColor = [255,255,255,255]; // [255,47,30,255]; // [66,167,222,255];
-  this.particleLife  = 100;
-  this.particleSize  = 3;
+    this.magnitude = magnitude;
 
-  this.started       = false;
+    this.particleColor = [255, 255, 255, 255]; // [255,47,30,255]; // [66,167,222,255];
+    this.particleLife = 100;
+    this.particleSize = 3;
 
-  this.spread        = spread;
-  this.emissionRate  = 3;
-};
+    this.started = false;
 
-Engine.Emitter.prototype = Object.create(Engine.Item.prototype);
-Engine.Emitter.prototype.constructor = Engine.Emitter;
+    this.spread = spread;
+    this.emissionRate = 3;
+  }
 
+  start() {
+    this.started = true;
+  }
+  stop() {
+    this.started = false;
+  }
 
-Engine.Emitter.prototype.start = function() { this.started = true; };
-Engine.Emitter.prototype.stop = function() { this.started = false; };
+  createParticle() {
+    let modifier = Math.random() * this.spread - this.spread / 2;
+    let angle = this.getRotation() + modifier;
+    let direction = engine.math.angleToDirectionVector(angle);
+    direction = direction.normalize();
 
-Engine.Emitter.prototype.createParticle = function()
-{
-  var modifier = Math.random() * this.spread - this.spread / 2;
+    let particleSpeed = new MATH.Point(
+      direction.x * this.particleSpeed,
+      direction.y * this.particleSpeed
+    );
 
-  var angle = this.getRotation() + modifier;
-  
-  var direction = engine.math.angleToDirectionVector(angle);
-  direction = direction.normalize();
+    // Initial position of the particle
+    let position = this.getPosition();
+    let particle = new Particle(position, particleSpeed);
 
-  var particleSpeed = new Engine.MATH.Point(direction.x * this.particleSpeed,
-                                            direction.y * this.particleSpeed);
+    particle.ttl = Math.random() * this.particleLife;
+    particle.color = this.particleColor;
+    particle.size = this.particleSize;
 
+    // this.particles.push(particle);
+    engine.particles.addParticle(particle);
+  }
 
-  // Initial position of the particle
-  var position = this.getPosition();
+  step(dt) {
+    super.step(dt);
+    // this.emissionCount = this.emissionCount++ % this.emissionRate;
 
-  var particle = new Engine.Particle(position, particleSpeed);
-
-  particle.ttl = Math.random() * this.particleLife;
-  particle.color = this.particleColor;
-  particle.size = this.particleSize;
-
-  // this.particles.push(particle);
-  engine.particles.addParticle(particle);
-};
-
-Engine.Emitter.prototype.step = function (dt)
-{
-  Engine.Item.prototype.step.call(this, dt);
-  
-  // this.emissionCount = this.emissionCount++ % this.emissionRate;
-
-  if (this.started === true) 
-  {
-    for (var i = 0; i < this.emissionRate; i++)
-    {
-      this.createParticle();
+    if (this.started === true) {
+      for (let i = 0; i < this.emissionRate; i++) {
+        this.createParticle();
+      }
     }
   }
-};
 
-Engine.Emitter.prototype.draw = function (ctx) 
-{
-  Engine.Item.prototype.draw.call(this, ctx);
-};
+  draw(ctx) {
+    super.draw(ctx);
+  }
 
-Engine.Emitter.prototype.collide = function(what)
-{
-  // Emitters are not physical objects
-  return false;
-};
+  collide() {
+    // Emitters are not physical objects
+    return false;
+  }
+}
