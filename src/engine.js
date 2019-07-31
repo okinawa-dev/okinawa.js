@@ -7,7 +7,7 @@ import Effects from './effects/effects';
 import Particles from './effects/particles';
 import Sprites from './assets/sprites';
 import Sounds from './assets/sounds';
-import { Clock } from './clock';
+import Clock from './clocks/clock';
 import Localization from './localization/localization';
 import * as INPUT from './input/input';
 import * as GUI from './gui/gui';

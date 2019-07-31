@@ -1,7 +1,7 @@
 import engine from '../engine';
 import Item from '../item';
 import * as GUI from '../gui/gui';
-import UnalignedClock from '../clock';
+import UnalignedClock from '../clocks/unaligned';
 import * as INPUT from '../input/input';
 
 export default class Scene extends Item {
