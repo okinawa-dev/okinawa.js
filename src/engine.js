@@ -19,7 +19,6 @@ class Engine {
     this.options = null;
     this.logs = null;
     this.core = null;
-    this.math = null;
     this.device = null;
     this.effects = null;
     this.particles = null;
@@ -41,7 +40,6 @@ class Engine {
     this.options = new Options();
     this.logs = new Logs();
     this.core = new Core();
-    this.math = new MATH.Math();
     this.device = new Device();
     this.effects = new Effects();
     this.particles = new Particles();
