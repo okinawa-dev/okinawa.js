@@ -1,5 +1,8 @@
 {
-  "author": "Ivan Alonso (@neverbot)",
+  "author": {
+    "name": "Ivan Alonso",
+    "url": "https://www.neverbot.com"
+  },
   "name": "okinawa.js",
   "description": "Javascript 2D game engine",
   "version": "2.0.0",
@@ -17,9 +20,6 @@
     "eslint": "^6.1.0"
   },
   "optionalDependencies": {},
-  "engines": {
-    "node": "*"
-  },
   "scripts": {
     "lint": "eslint .",
     "build:test": "browserify index.js --list -t [ babelify --presets [ @babel/preset-env ] --plugins [ ] ]",
