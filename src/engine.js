@@ -37,7 +37,7 @@ class Engine {
     this.externalCallback = null;
   }
 
-  initialize(canvasElementId, gameClassName, callbackFunction) {
+  initialize(canvasElementId, gameObject, callbackFunction) {
     this.options = new Options();
     this.logs = new Logs();
     this.core = new Core();
@@ -56,12 +56,13 @@ class Engine {
 
     this.logs.log('Engine::initialize', 'Initializing starts...');
 
-    try {
-      this.game = new window[gameClassName]();
-    } catch (err) {
-      this.logs.log('Engine::initialize', 'Error instantiating game class');
-      return;
-    }
+    // try {
+    //   this.game = new window[gameObject]();
+    // } catch (err) {
+    //   this.logs.log('Engine::initialize', 'Error instantiating game class');
+    //   return;
+    // }
+    this.game = gameObject;
 
     if (callbackFunction !== null) {
       this.externalCallback = callbackFunction;
