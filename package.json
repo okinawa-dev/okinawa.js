@@ -22,7 +22,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "build:test": "browserify index.js lib/font.js/Font.js --list -t [ babelify --presets [ @babel/preset-env ] --plugins [ ] ]",
-    "build": "browserify index.js lib/font.js/Font.js -o build/bundle.js -t [ babelify --presets [ @babel/preset-env ] --plugins [ ] ]"
+    "build:test": "browserify index.js --list -t [ babelify --presets [ @babel/preset-env ] --plugins [ ] ]",
+    "build": "browserify index.js -o build/bundle.js -t [ babelify --presets [ @babel/preset-env ] --plugins [ ] ]"
   }
 }
