@@ -40,7 +40,9 @@ export default class Engine {
     this.sprites = new Engine.Sprites();
     this.sounds = new Engine.Sounds();
     this.clock = new Engine.Clock();
-    this.localization = new Engine.Localization();
+
+    this.localization = new Localization();
+
     this.input = new Engine.INPUT.Controller();
     this.gui = new Engine.GUI.GuiElement();
     this.scenes = new Engine.SceneCollection();
