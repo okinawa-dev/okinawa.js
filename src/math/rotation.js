@@ -1,5 +1,4 @@
-
-// Rotation matrix = 
+// Rotation matrix =
 //   | cos(r)  -sin(r) |
 //   | sin(r)   cos(r) |
 
@@ -7,38 +6,40 @@
 //   | a b |
 //   | c d |
 
-Engine.MATH.Rotation = function() 
-{
-  this.angle = 0;
+import Point from './point';
 
-  // Matrix for zero degrees rotation
-  this.a = 1;
-  this.b = 0;
-  this.c = 0;
-  this.d = 1;
-};
+export default class Rotation {
+  constructor() {
+    this.angle = 0;
 
-Engine.MATH.Rotation.prototype.getAngle = function()
-{
-  return this.angle;
-};
+    // Matrix for zero degrees rotation
+    this.a = 1;
+    this.b = 0;
+    this.c = 0;
+    this.d = 1;
+  }
 
-Engine.MATH.Rotation.prototype.rotate = function(dRot)
-{
-  this.update(this.angle + dRot);
-};
+  getAngle() {
+    return this.angle;
+  }
 
-Engine.MATH.Rotation.prototype.update = function(newAngle)
-{
-  this.angle = newAngle;
+  rotate(dRot) {
+    this.update(this.angle + dRot);
+  }
 
-  this.a = Math.cos(this.angle);
-  this.b = -Math.sin(this.angle);
-  this.c = Math.sin(this.angle);
-  this.d = Math.cos(this.angle);
-};
+  update(newAngle) {
+    this.angle = newAngle;
 
-Engine.MATH.Rotation.prototype.transformPosition = function(point)
-{
-  return new Engine.MATH.Point(point.x * this.a + point.y * this.b, point.x * this.c + point.y * this.d);
-};
+    this.a = Math.cos(this.angle);
+    this.b = -Math.sin(this.angle);
+    this.c = Math.sin(this.angle);
+    this.d = Math.cos(this.angle);
+  }
+
+  transformPosition(point) {
+    return new Point(
+      point.x * this.a + point.y * this.b,
+      point.x * this.c + point.y * this.d
+    );
+  }
+}

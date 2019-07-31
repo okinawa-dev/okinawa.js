@@ -1,5 +1,6 @@
 import GuiElement from './gui_element';
-import { ORDENATION, EVENTS, ALIGN } from './gui';
+import { ALIGN } from './gui';
+import * as MATH from '../math/math';
 
 export default class GuiText extends GuiElement {
   constructor(txt, x, y) {
@@ -43,182 +44,180 @@ export default class GuiText extends GuiElement {
   activate() {
     super.activate();
   }
-}
 
-// Engine.GUI.GuiText.prototype = Object.create(Engine.GUI.GuiElement.prototype);
-// Engine.GUI.GuiText.prototype.constructor = Engine.GUI.GuiText;
+  // Mask Item.getSize
+  // getSize()
+  // {
+  //   var size = super.getSize(this);
 
-// Mask Item.getSize
-// Engine.GUI.GuiText.prototype.getSize = function()
-// {
-//   var size = Engine.GUI.GuiElement.prototype.getSize.call(this);
+  //   // Be sure the size is never zero, or we will have an exception
+  //   // when trying to render the innerCanvas
+  //   if ((size.x == 0) || (size.y == 0))
+  //     return new MATH.Point(100, 30);
+  //   else
+  //     return size;
+  // }
 
-//   // Be sure the size is never zero, or we will have an exception
-//   // when trying to render the innerCanvas
-//   if ((size.x == 0) || (size.y == 0))
-//     return new Engine.MATH.Point(100, 30);
-//   else
-//     return size;
-// }
-
-Engine.GUI.GuiText.prototype.setSize = function(x, y) {
-  Engine.GUI.GuiElement.prototype.setSize.call(this, x, y);
-  this._innerCanvas.width = this.size.x;
-  this._innerCanvas.height = this.size.y;
-  this._innerChange = true;
-};
-
-// Mask Item.getPosition
-// Engine.GUI.GuiText.prototype.getPosition = function()
-// {
-//   if (this.getParent() != undefined)
-//   {
-//     return this.getParent().getPosition();
-//   }
-
-//   return new Engine.MATH.Point(0, 0);
-// }
-
-Engine.GUI.GuiText.prototype.setText = function(txt) {
-  if (this.text == txt) return;
-
-  this.text = txt;
-  this._innerChange = true;
-};
-
-Engine.GUI.GuiText.prototype.getText = function() {
-  return this.text;
-};
-
-// receives global context just to compare values if necessary
-Engine.GUI.GuiText.prototype._updateInnerRender = function(ctx) {
-  var pos = this.getPosition();
-  var size = this.getSize();
-  var scale = this.getScaling();
-
-  var where = new Engine.MATH.Point(this.horizontalOffset, this.verticalOffset);
-
-  if (this.textAlign == Engine.GUI.ALIGN.CENTER) {
-    where.x = this.size.x / 2;
-  } else if (this.textAlign == Engine.GUI.ALIGN.RIGHT) {
-    where.x = this.size.x - this.horizontalOffset;
+  setSize(x, y) {
+    super.setSize(x, y);
+    this._innerCanvas.width = this.size.x;
+    this._innerCanvas.height = this.size.y;
+    this._innerChange = true;
   }
 
-  // use global context values
-  this._innerContext.lineWidth = ctx.lineWidth;
+  // Mask Item.getPosition
+  // getPosition()
+  // {
+  //   if (this.getParent() != undefined)
+  //   {
+  //     return this.getParent().getPosition();
+  //   }
 
-  this._innerContext.clearRect(0, 0, this.size.x, this.size.y);
-  this._innerContext.strokeStyle = this.fontBorderColor;
-  this._innerContext.fillStyle = this.fontColor;
-  this._innerContext.textAlign = this.textAlign;
-  this._innerContext.font = 'bold ' + this.fontSize + 'px ' + this.font;
+  //   return new MATH.Point(0, 0);
+  // }
 
-  // print the full string
-  // this._innerContext.strokeText(this.getText(), where.x, where.y);
-  // this._innerContext.fillText(this.getText(), where.x, where.y);
-
-  var pieces = this.getText().split('\n');
-
-  for (var i = 0, len = pieces.length; i < len; i++) {
-    this._innerContext.strokeText(pieces[i], where.x, where.y);
-    this._innerContext.fillText(pieces[i], where.x, where.y);
-
-    where.y += this.verticalOffset; // + this.fontSize;
-  }
-
-  this._innerChange = false;
-};
-
-Engine.GUI.GuiText.prototype.draw = function(ctx) {
-  if (this.getVisible() === true) {
-    var pos = this.getPosition();
-    var size = this.getSize();
-
-    if (this._canvasRendering === false) {
-      // var scale = this.getScaling();
-      var offset = new Engine.MATH.Point(
-        this.horizontalOffset,
-        this.verticalOffset
-      );
-
-      if (this.textAlign == Engine.GUI.ALIGN.CENTER) {
-        offset.x = this.size.x / 2;
-      } else if (this.textAlign == Engine.GUI.ALIGN.RIGHT) {
-        offset.x = this.size.x - this.horizontalOffset;
-      }
-
-      ctx.strokeStyle = this.fontBorderColor;
-      ctx.fillStyle = this.fontColor;
-      ctx.textAlign = this.textAlign;
-      ctx.font = 'bold ' + this.fontSize + 'px ' + this.font;
-
-      // print the full string
-      // ctx.strokeText( this.getText(),
-      //                 pos.x - (size.x / 2) + offset.x,
-      //                 pos.y - (size.y / 2) + offset.y);
-
-      // ctx.fillText( this.getText(),
-      //               pos.x - (size.x / 2) + offset.x,
-      //               pos.y - (size.y / 2) + offset.y);
-
-      var pieces = this.getText().split('\n');
-
-      for (var i = 0, len = pieces.length; i < len; i++) {
-        ctx.strokeText(
-          pieces[i],
-          pos.x - size.x / 2 + offset.x,
-          pos.y - size.y / 2 + offset.y
-        );
-
-        ctx.fillText(
-          pieces[i],
-          pos.x - size.x / 2 + offset.x,
-          pos.y - size.y / 2 + offset.y
-        );
-
-        offset.y += this.verticalOffset; // + this.fontSize;
-      }
-    } else {
-      if (this._innerChange === true) this._updateInnerRender(ctx);
-
-      ctx.drawImage(
-        this._innerCanvas,
-        pos.x - this.size.x / 2,
-        pos.y - this.size.y / 2
-      );
+  setText(txt) {
+    if (this.text == txt) {
+      return;
     }
+
+    this.text = txt;
+    this._innerChange = true;
   }
 
-  // Call inherited function
-  Engine.GUI.GuiElement.prototype.draw.call(this, ctx);
-};
+  getText() {
+    return this.text;
+  }
 
-Engine.GUI.GuiText.prototype.step = function(dt) {
-  // Call inherited function
-  Engine.GUI.GuiElement.prototype.step.call(this, dt);
-};
+  // receives global context just to compare values if necessary
+  _updateInnerRender(ctx) {
+    // let pos = this.getPosition();
+    // let size = this.getSize();
+    // let scale = this.getScaling();
 
-Engine.GUI.GuiText.prototype.setFont = function(font) {
-  this.font = font;
-};
-Engine.GUI.GuiText.prototype.setFontSize = function(size) {
-  this.fontSize = size;
-};
-Engine.GUI.GuiText.prototype.setFontColor = function(color) {
-  this.fontColor = color;
-};
-Engine.GUI.GuiText.prototype.setFontBorderColor = function(color) {
-  this.fontBorderColor = color;
-};
-Engine.GUI.GuiText.prototype.setAlign = function(align) {
-  this.textAlign = align;
-};
-Engine.GUI.GuiText.prototype.setCanvasRendering = function(value) {
-  this._canvasRendering = value;
-};
-Engine.GUI.GuiText.prototype.setVerticalOffset = function(offset) {
-  this.verticalOffset = offset;
-};
-Engine.GUI.GuiText.prototype.setHorizontalOffset = function(offset) {
-  this.horizontalOffset = offset;
-};
+    let where = new MATH.Point(this.horizontalOffset, this.verticalOffset);
+
+    if (this.textAlign == ALIGN.CENTER) {
+      where.x = this.size.x / 2;
+    } else if (this.textAlign == ALIGN.RIGHT) {
+      where.x = this.size.x - this.horizontalOffset;
+    }
+
+    // use global context values
+    this._innerContext.lineWidth = ctx.lineWidth;
+
+    this._innerContext.clearRect(0, 0, this.size.x, this.size.y);
+    this._innerContext.strokeStyle = this.fontBorderColor;
+    this._innerContext.fillStyle = this.fontColor;
+    this._innerContext.textAlign = this.textAlign;
+    this._innerContext.font = 'bold ' + this.fontSize + 'px ' + this.font;
+
+    // print the full string
+    // this._innerContext.strokeText(this.getText(), where.x, where.y);
+    // this._innerContext.fillText(this.getText(), where.x, where.y);
+
+    let pieces = this.getText().split('\n');
+
+    for (let i = 0, len = pieces.length; i < len; i++) {
+      this._innerContext.strokeText(pieces[i], where.x, where.y);
+      this._innerContext.fillText(pieces[i], where.x, where.y);
+
+      where.y += this.verticalOffset; // + this.fontSize;
+    }
+
+    this._innerChange = false;
+  }
+
+  draw(ctx) {
+    if (this.getVisible() === true) {
+      let pos = this.getPosition();
+      let size = this.getSize();
+
+      if (this._canvasRendering === false) {
+        // let scale = this.getScaling();
+        let offset = new MATH.Point(this.horizontalOffset, this.verticalOffset);
+
+        if (this.textAlign == ALIGN.CENTER) {
+          offset.x = this.size.x / 2;
+        } else if (this.textAlign == ALIGN.RIGHT) {
+          offset.x = this.size.x - this.horizontalOffset;
+        }
+
+        ctx.strokeStyle = this.fontBorderColor;
+        ctx.fillStyle = this.fontColor;
+        ctx.textAlign = this.textAlign;
+        ctx.font = 'bold ' + this.fontSize + 'px ' + this.font;
+
+        // print the full string
+        // ctx.strokeText( this.getText(),
+        //                 pos.x - (size.x / 2) + offset.x,
+        //                 pos.y - (size.y / 2) + offset.y);
+
+        // ctx.fillText( this.getText(),
+        //               pos.x - (size.x / 2) + offset.x,
+        //               pos.y - (size.y / 2) + offset.y);
+
+        let pieces = this.getText().split('\n');
+
+        for (let i = 0, len = pieces.length; i < len; i++) {
+          ctx.strokeText(
+            pieces[i],
+            pos.x - size.x / 2 + offset.x,
+            pos.y - size.y / 2 + offset.y
+          );
+
+          ctx.fillText(
+            pieces[i],
+            pos.x - size.x / 2 + offset.x,
+            pos.y - size.y / 2 + offset.y
+          );
+
+          offset.y += this.verticalOffset; // + this.fontSize;
+        }
+      } else {
+        if (this._innerChange === true) {
+          this._updateInnerRender(ctx);
+        }
+
+        ctx.drawImage(
+          this._innerCanvas,
+          pos.x - this.size.x / 2,
+          pos.y - this.size.y / 2
+        );
+      }
+    }
+
+    // Call inherited function
+    super.draw(ctx);
+  }
+
+  step(dt) {
+    // Call inherited function
+    super.step(dt);
+  }
+
+  setFont(font) {
+    this.font = font;
+  }
+  setFontSize(size) {
+    this.fontSize = size;
+  }
+  setFontColor(color) {
+    this.fontColor = color;
+  }
+  setFontBorderColor(color) {
+    this.fontBorderColor = color;
+  }
+  setAlign(align) {
+    this.textAlign = align;
+  }
+  setCanvasRendering(value) {
+    this._canvasRendering = value;
+  }
+  setVerticalOffset(offset) {
+    this.verticalOffset = offset;
+  }
+  setHorizontalOffset(offset) {
+    this.horizontalOffset = offset;
+  }
+}

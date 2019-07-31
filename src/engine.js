@@ -1,6 +1,7 @@
 import Options from './options';
 import Logs from './logs';
 import Core from './core';
+import * as MATH from './math/math';
 
 export default class Engine {
   constructor() {
@@ -31,8 +32,8 @@ export default class Engine {
     this.options = new Options();
     this.logs = new Logs(this);
     this.core = new Core(this);
+    this.math = new MATH.Math();
 
-    this.math = new Engine.MATH.Math();
     this.device = new Engine.Device();
     this.effects = new Engine.Effects();
     this.particles = new Engine.ParticleCollection();
