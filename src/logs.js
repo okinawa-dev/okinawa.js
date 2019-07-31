@@ -1,17 +1,16 @@
+import engine from './engine';
+
 export class Logs {
-  constructor(engine) {
-    // references to the external objects
-    this._engine = engine;
-  }
+  constructor() {}
 
   log(fileName, message, object) {
     let result = [];
 
-    if (this._engine.options.debugInConsole === false) {
+    if (engine.options.debugInConsole === false) {
       return;
     }
 
-    if (this._engine.options.debugFunctionNames === true) {
+    if (engine.options.debugFunctionNames === true) {
       result.push(fileName);
     }
 
@@ -26,12 +25,12 @@ export class Logs {
     }
 
     if (
-      this._engine.options.debugInHtml === true &&
-      this._engine.core.canvas !== undefined
+      engine.options.debugInHtml === true &&
+      engine.core.canvas !== undefined
     ) {
       let e = document.createElement('div');
       e.innerHTML = result;
-      this._engine.core.canvas.parentNode.appendChild(e);
+      engine.core.canvas.parentNode.appendChild(e);
     }
     // Old IE, console is not initialized by default
     else if (

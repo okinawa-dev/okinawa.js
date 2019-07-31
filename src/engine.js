@@ -4,7 +4,7 @@ import Core from './core';
 import * as MATH from './math/math';
 import Localization from './localization';
 
-export default class Engine {
+class Engine {
   constructor() {
     this.options = null;
     this.logs = null;
@@ -28,11 +28,9 @@ export default class Engine {
   }
 
   initialize(canvasElementId, gameClassName, callbackFunction) {
-    // elements created from the global engine object will receive a reference
-    // to this object, to be able to reach its "siblings"
     this.options = new Options();
-    this.logs = new Logs(this);
-    this.core = new Core(this);
+    this.logs = new Logs();
+    this.core = new Core();
     this.math = new MATH.Math();
 
     this.device = new Engine.Device();
@@ -113,3 +111,7 @@ export default class Engine {
     }
   }
 }
+
+// singleton pattern
+const engine = new Engine();
+export default engine;
