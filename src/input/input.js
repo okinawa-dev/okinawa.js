@@ -1,10 +1,8 @@
-
 // Init namespace
-Engine.INPUT = {};
+// const INPUT = {};
 
 // Keyboard key codes
-Engine.INPUT.KEYS = {
-
+const KEYS = {
   // Engine Control
   ANY_KEY: -1,
 
@@ -74,7 +72,7 @@ Engine.INPUT.KEYS = {
 
   // Others
   LEFT_WINDOW_KEY: 91,
-  RIGHT_WINDOW_KEY : 92,
+  RIGHT_WINDOW_KEY: 92,
   SELECT_KEY: 93,
   NUMPAD_0: 96,
   NUMPAD_1: 97,
@@ -91,15 +89,15 @@ Engine.INPUT.KEYS = {
   SUBTRACT: 109,
   DECIMAL_POINT: 110,
   DIVIDE: 111,
-  F1 : 112,
-  F2 : 113,
-  F3 : 114,
-  F4 : 115,
-  F5 : 116,
-  F6 : 117,
-  F7 : 118,
-  F8 : 119,
-  F9 : 120,
+  F1: 112,
+  F2: 113,
+  F3: 114,
+  F4: 115,
+  F5: 116,
+  F6: 117,
+  F7: 118,
+  F8: 119,
+  F9: 120,
   F10: 121,
   F11: 122,
   F12: 123,
@@ -119,12 +117,12 @@ Engine.INPUT.KEYS = {
 
   // spanish keyboard
   NTILDE: 209
-
 };
 
 // Types of combos
-Engine.INPUT.COMBO_TYPES = {
-  CONSECUTIVE: 1,   // One key after the other
-  SIMULTANEOUS: 2  // Keys pressed at the same time
+const COMBO_TYPES = {
+  CONSECUTIVE: 1, // One key after the other
+  SIMULTANEOUS: 2 // Keys pressed at the same time
 };
 
+export { KEYS, COMBO_TYPES };
