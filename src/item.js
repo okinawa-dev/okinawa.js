@@ -3,6 +3,7 @@
  *  Everything on screen should inherit from here
  */
 
+import engine from './engine';
 import * as MATH from './math/math';
 
 export default class Item {
