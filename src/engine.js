@@ -1,7 +1,6 @@
 import Options from './options';
 import Logs from './logs';
 import Core from './core';
-// import * as MATH from './math/math';
 import Device from './device';
 import Effects from './effects/effects';
 import Particles from './effects/particles';
@@ -67,7 +66,6 @@ class Engine {
     }
 
     this.core.initialize(canvasElementId);
-    this.math.initialize();
     this.device.initialize();
     this.effects.initialize();
     this.particles.initialize();
