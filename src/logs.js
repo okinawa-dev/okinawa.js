@@ -1,6 +1,6 @@
 import engine from './engine';
 
-export class Logs {
+export default class Logs {
   constructor() {}
 
   log(fileName, message, object) {

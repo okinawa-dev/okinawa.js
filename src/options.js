@@ -1,4 +1,4 @@
-export class Options {
+export default class Options {
   constructor() {
     // Use requestAnimationFrame instead of SetTimeOut in the main game loop
     this.useAnimationFrame = false;
