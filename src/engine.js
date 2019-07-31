@@ -12,6 +12,7 @@ import Localization from './localization/localization';
 import * as INPUT from './input/input';
 import * as GUI from './gui/gui';
 import Scenes from './scenes/scenes';
+import Preloader from './scenes/preloader';
 
 class Engine {
   constructor() {
@@ -51,8 +52,7 @@ class Engine {
     this.input = new INPUT.Controller();
     this.gui = new GUI.GuiElement();
     this.scenes = new Scenes();
-
-    this.preloader = new Engine.Preloader();
+    this.preloader = new Preloader();
 
     this.logs.log('Engine::initialize', 'Initializing starts...');
 
