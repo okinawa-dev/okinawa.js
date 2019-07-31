@@ -88,7 +88,7 @@ class Engine {
     let console = new GUI.GuiConsole();
     console.setSize(170, 30);
     console.setPosition(15 + console.size.x / 2, 15 + console.size.y / 2); // left down
-    console.order = Engine.GUI.ORDENATION.UP;
+    console.order = GUI.ORDENATION.UP;
 
     this.gui.initialize();
     this.gui.attachItem(console, 'console');
