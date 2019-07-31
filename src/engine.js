@@ -85,7 +85,7 @@ class Engine {
 
     // TODO maybe remove this from global engine someday
     // Global GUI
-    let console = new Engine.GUI.GuiConsole();
+    let console = new GUI.GuiConsole();
     console.setSize(170, 30);
     console.setPosition(15 + console.size.x / 2, 15 + console.size.y / 2); // left down
     console.order = Engine.GUI.ORDENATION.UP;
