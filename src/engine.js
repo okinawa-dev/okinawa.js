@@ -2,6 +2,7 @@ import Options from './options';
 import Logs from './logs';
 import Core from './core';
 import * as MATH from './math/math';
+import Localization from './localization';
 
 export default class Engine {
   constructor() {
