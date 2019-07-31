@@ -9,6 +9,8 @@ import Sprites from './assets/sprites';
 import Sounds from './assets/sounds';
 import Clock from './clock';
 import Localization from './localization/localization';
+import * as INPUT from './input/input';
+import * as GUI from './gui/gui';
 
 class Engine {
   constructor() {
@@ -45,9 +47,9 @@ class Engine {
     this.sounds = new Sounds();
     this.clock = new Clock();
     this.localization = new Localization();
+    this.input = new INPUT.Controller();
+    this.gui = new GUI.GuiElement();
 
-    this.input = new Engine.INPUT.Controller();
-    this.gui = new Engine.GUI.GuiElement();
     this.scenes = new Engine.SceneCollection();
     this.preloader = new Engine.Preloader();
 
