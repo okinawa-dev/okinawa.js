@@ -1,13 +1,13 @@
 import Options from './options';
 import Logs from './logs';
 import Core from './core';
-import * as MATH from './math/math';
+// import * as MATH from './math/math';
 import Device from './device';
 import Effects from './effects/effects';
 import Particles from './effects/particles';
 import Sprites from './assets/sprites';
 import Sounds from './assets/sounds';
-import Clock from './clock';
+import { Clock } from './clock';
 import Localization from './localization/localization';
 import * as INPUT from './input/input';
 import * as GUI from './gui/gui';
