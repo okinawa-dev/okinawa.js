@@ -11,6 +11,7 @@ import Clock from './clock';
 import Localization from './localization/localization';
 import * as INPUT from './input/input';
 import * as GUI from './gui/gui';
+import Scenes from './scenes/scenes';
 
 class Engine {
   constructor() {
@@ -49,8 +50,8 @@ class Engine {
     this.localization = new Localization();
     this.input = new INPUT.Controller();
     this.gui = new GUI.GuiElement();
+    this.scenes = new Scenes();
 
-    this.scenes = new Engine.SceneCollection();
     this.preloader = new Engine.Preloader();
 
     this.logs.log('Engine::initialize', 'Initializing starts...');

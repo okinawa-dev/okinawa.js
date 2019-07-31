@@ -1,73 +1,68 @@
+import engine from '../engine';
+import Item from '../item';
+import * as GUI from '../gui/gui';
+import UnalignedClock from '../clock';
+import * as INPUT from '../input/input';
 
-Engine.Scene = function()
-{
-  Engine.Item.call(this);
+export default class Scene extends Item {
+  constructor() {
+    super();
 
-  this.playable    = false; // This screen is playable
-  this.backgrounds = [];    
+    this.playable = false; // This screen is playable
+    this.backgrounds = [];
 
-  this.isCurrent   = false; // Is the screen being used now
+    this.isCurrent = false; // Is the screen being used now
 
-  this.gui         = new Engine.GUI.GuiElement(this); // Different Gui for each scene
+    this.gui = new GUI.GuiElement(this); // Different Gui for each scene
 
-  this.clock       = new Engine.UnalignedClock();
-  this.input       = new Engine.INPUT.SceneInput();
-};
-
-Engine.Scene.prototype = Object.create(Engine.Item.prototype);
-Engine.Scene.prototype.constructor = Engine.Scene;
-
-
-Engine.Scene.prototype.initialize = function()
-{
-  Engine.Item.prototype.initialize.call(this);
-
-  this.gui.initialize();
-  this.clock.initialize();
-  this.input.initialize();
-};
-
-Engine.Scene.prototype.activate = function()
-{
-  Engine.Item.prototype.activate.call(this);
-
-  this.gui.activate();
-  this.clock.activate();
-  this.input.activate();
-
-  for (var i = 0, len = this.backgrounds.length; i < len; i++) 
-    this.backgrounds[i].activate();
-};
-
-Engine.Scene.prototype.draw = function(ctx)
-{
-  // Test for safety: clean the full scene
-  // If everything is well coded in the game, in theory this could be removed
-  ctx.clearRect(0, 0, engine.core.size.x, engine.core.size.y);  
-
-  for (var i = 0, len = this.backgrounds.length; i < len; i++) 
-    this.backgrounds[i].draw(ctx);
-
-  Engine.Item.prototype.draw.call(this, ctx);
-
-  this.gui.draw(ctx);
-};
-
-Engine.Scene.prototype.step = function(dt)
-{
-  for (var i = 0, len = this.backgrounds.length; i < len; i++) 
-  {
-    this.backgrounds[i].step(dt);
+    this.clock = new UnalignedClock();
+    this.input = new INPUT.SceneInput();
   }
 
-  this.clock.step(dt);
+  initialize() {
+    super.initialize();
 
-  Engine.Item.prototype.step.call(this, dt);
+    this.gui.initialize();
+    this.clock.initialize();
+    this.input.initialize();
+  }
 
-  this.gui.step(dt);
-};
+  activate() {
+    super.activate();
 
-Engine.Scene.prototype.addBackground = function(background)
-{
-  this.backgrounds.push(background);
-};
+    this.gui.activate();
+    this.clock.activate();
+    this.input.activate();
+
+    for (let i = 0, len = this.backgrounds.length; i < len; i++) {
+      this.backgrounds[i].activate();
+    }
+  }
+
+  draw(ctx) {
+    // Test for safety: clean the full scene
+    // If everything is well coded in the game, in theory this could be removed
+    ctx.clearRect(0, 0, engine.core.size.x, engine.core.size.y);
+
+    for (let i = 0, len = this.backgrounds.length; i < len; i++) {
+      this.backgrounds[i].draw(ctx);
+    }
+
+    super.draw(ctx);
+    this.gui.draw(ctx);
+  }
+
+  step(dt) {
+    for (let i = 0, len = this.backgrounds.length; i < len; i++) {
+      this.backgrounds[i].step(dt);
+    }
+
+    this.clock.step(dt);
+    super.step(dt);
+    this.gui.step(dt);
+  }
+
+  addBackground(background) {
+    this.backgrounds.push(background);
+  }
+}
