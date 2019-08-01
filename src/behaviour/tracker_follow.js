@@ -1,126 +1,117 @@
+import engine from '../engine';
+import Tracker from './tracker';
+import * as MATH from '../math/math';
 
-Engine.TrackerFollow = function(callback) 
-{
-  Engine.Tracker.call(this, callback);
+export default class TrackerFollow extends Tracker {
+  constructor(callback) {
+    super(callback);
 
-  this.targetOb = null;
-  this.lastDirection = null; // In case target disappears
+    this.targetOb = null;
+    this.lastDirection = null; // In case target disappears
 
-  this.trackSpeed = 1;
-};
-
-Engine.TrackerFollow.prototype = Object.create(Engine.Tracker.prototype);
-Engine.TrackerFollow.prototype.constructor = Engine.TrackerFollow;
-
-
-Engine.TrackerFollow.prototype.initialize = function()
-{
-  Engine.Tracker.prototype.initialize.call(this);
-};
-
-Engine.TrackerFollow.prototype.activate = function()
-{
-  Engine.Tracker.prototype.activate.call(this);
-};
-
-Engine.TrackerFollow.prototype.setTarget = function(target)
-{
-  this.targetOb = target;
-};
-
-Engine.TrackerFollow.prototype.step = function(dt)
-{
-  var pos = this.getPosition();
-  var targetPos = this.targetOb.getPosition();
-  var direction = null;
-  var forceDetach = false;
-
-  // The target has been removed from the scene
-  if (this.targetOb.getParent() === null)
-  {
-    direction = this.lastDirection;
-    forceDetach = true;
-  }
-  else
-  {
-    direction = new Engine.MATH.Point(targetPos.x - pos.x,
-                                      targetPos.y - pos.y);
-
-    direction = direction.normalize();
-    this.lastDirection = direction;
+    this.trackSpeed = 1;
   }
 
-  var movement = new Engine.MATH.Point(direction.x * this.trackSpeed, 
-                                       direction.y * this.trackSpeed);
-  var futurePos = new Engine.MATH.Point(pos.x + movement.x,
-                                        pos.y + movement.y);
-
-  var distanceToTarget = engine.math.pointDistance(pos, targetPos);
-  var distanceToFuture = engine.math.pointDistance(pos, futurePos);
-
-  if ((forceDetach === false) && (distanceToTarget > distanceToFuture))
-  {
-    this.position.x = futurePos.x;
-    this.position.y = futurePos.y;
+  initialize() {
+    super.initialize();
   }
-  else
-  {
-    if (this.getParent() !== null)
-    {
-      this.position.x = targetPos.x;
-      this.position.y = targetPos.y;
 
-      // Move all children from here to the parent
-      for (var i = 0, len = this.getAttachedItems().length; i < len; i++)
-      {
-        var element = this.getAttachedItems()[i];
+  activate() {
+    super.activate();
+  }
 
-        element.position.x += this.position.x;
-        element.position.y += this.position.y;
+  setTarget(target) {
+    this.targetOb = target;
+  }
 
-        // Exit speed, so the element does not stop
-        element.speed.x = direction.x * this.trackSpeed;
-        element.speed.y = direction.y * this.trackSpeed;
+  step(dt) {
+    let pos = this.getPosition();
+    let targetPos = this.targetOb.getPosition();
+    let direction = null;
+    let forceDetach = false;
 
-        this.detachItem(element);
-        this.getParent().attachItem(element);
-      }
+    // The target has been removed from the scene
+    if (this.targetOb.getParent() === null) {
+      direction = this.lastDirection;
+      forceDetach = true;
+    } else {
+      direction = new MATH.Point(targetPos.x - pos.x, targetPos.y - pos.y);
 
-      // Suicide!
-      this.getParent().detachItem(this);
+      direction = direction.normalize();
+      this.lastDirection = direction;
     }
 
-    if (this.callback)
-      this.callback();
+    let movement = new MATH.Point(
+      direction.x * this.trackSpeed,
+      direction.y * this.trackSpeed
+    );
+    let futurePos = new MATH.Point(pos.x + movement.x, pos.y + movement.y);
+
+    let distanceToTarget = engine.math.pointDistance(pos, targetPos);
+    let distanceToFuture = engine.math.pointDistance(pos, futurePos);
+
+    if (forceDetach === false && distanceToTarget > distanceToFuture) {
+      this.position.x = futurePos.x;
+      this.position.y = futurePos.y;
+    } else {
+      if (this.getParent() !== null) {
+        this.position.x = targetPos.x;
+        this.position.y = targetPos.y;
+
+        // Move all children from here to the parent
+        for (let i = 0, len = this.getAttachedItems().length; i < len; i++) {
+          let element = this.getAttachedItems()[i];
+
+          element.position.x += this.position.x;
+          element.position.y += this.position.y;
+
+          // Exit speed, so the element does not stop
+          element.speed.x = direction.x * this.trackSpeed;
+          element.speed.y = direction.y * this.trackSpeed;
+
+          this.detachItem(element);
+          this.getParent().attachItem(element);
+        }
+
+        // Suicide!
+        this.getParent().detachItem(this);
+      }
+
+      if (this.callback) {
+        this.callback();
+      }
+    }
+
+    // Tracker.step is where the attached items steps are called, so they go
+    // after updating the tracker
+
+    // Call inherited function
+    super.step(dt);
   }
 
-  // Tracker.step is where the attached items steps are called, so they go 
-  // after updating the tracker
+  draw(ctx) {
+    // Call inherited function
+    super.draw(ctx);
 
-  // Call inherited function 
-  Engine.Tracker.prototype.step.call(this, dt);
-};
+    if (engine.options.drawTrackers === true) {
+      let pos = this.getPosition();
+      let targetPos = this.targetOb.getPosition();
+      let gradient = ctx.createLinearGradient(
+        pos.x,
+        pos.y,
+        targetPos.x,
+        targetPos.y
+      );
+      gradient.addColorStop(0, '#009');
+      gradient.addColorStop(1, '#900');
+      ctx.strokeStyle = gradient;
+      // ctx.strokeStyle = '#FF0000';
+      ctx.lineWidth = 1;
 
-Engine.TrackerFollow.prototype.draw = function(ctx) 
-{
-  // Call inherited function 
-  Engine.Tracker.prototype.draw.call(this, ctx); 
-
-  if (engine.options.drawTrackers === true)
-  {
-    var pos = this.getPosition();
-    var targetPos = this.targetOb.getPosition();
-    var gradient = ctx.createLinearGradient(pos.x, pos.y, 
-                                            targetPos.x, targetPos.y);
-    gradient.addColorStop(0, '#009');
-    gradient.addColorStop(1, '#900');
-    ctx.strokeStyle = gradient;
-    // ctx.strokeStyle = '#FF0000';
-    ctx.lineWidth = 1;
-    
-    ctx.beginPath();
-    ctx.moveTo(pos.x, pos.y);
-    ctx.lineTo(targetPos.x, targetPos.y);
-    ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(pos.x, pos.y);
+      ctx.lineTo(targetPos.x, targetPos.y);
+      ctx.stroke();
+    }
   }
-};
+}
