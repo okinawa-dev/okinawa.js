@@ -78,7 +78,7 @@ class Engine {
     this.sounds.initialize();
 
     this.clock.initialize();
-    this.clock.suscribeOneSecond('testFPS', function() {
+    this.clock.suscribeOneSecond('testFPS', () => {
       if (this.options.showFps) {
         this.gui.get('console').addText('fps', this.core.fpsPassed + ' fps');
       }
@@ -107,7 +107,7 @@ class Engine {
 
   external(eventType, id, message) {
     if (this.externalCallback !== null) {
-      setTimeout(function() {
+      setTimeout(() => {
         try {
           this.externalCallback(eventType, id, message);
         } catch (err) {
