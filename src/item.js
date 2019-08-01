@@ -72,15 +72,12 @@ export default class Item {
 
   getParentScene() {
     let p = this;
-    while (typeof p !== 'undefined' && p !== null) {
-      if (p.constructor.name === 'Scene') {
-        return p;
-      } else {
-        p = p.getParent();
-      }
+
+    while (p.getParent() !== null) {
+      p = p.getParent();
     }
 
-    return null;
+    return p;
   }
 
   getAttachedItems() {
