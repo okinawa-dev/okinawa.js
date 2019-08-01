@@ -158,7 +158,7 @@ export default class Preloader extends Scene {
 
     font.fontFamily = data.name;
 
-    if (typeof flag != 'undefined') {
+    if (typeof data.flag != 'undefined') {
       font.src = data.path;
     } else {
       if (engine.options.assetsURLPrefix !== null) {
