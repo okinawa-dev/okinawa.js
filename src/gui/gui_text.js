@@ -8,7 +8,7 @@ export default class GuiText extends GuiElement {
     super();
 
     this.text = txt;
-    this.font = 'BaseFont,"Courier New"';
+    this.font = 'base,BaseFont,"Courier New"';
     this.fontSize = 20;
     this.fontColor = '#FFFFFF'; // white
     this.fontBorderColor = '#000000'; // black
