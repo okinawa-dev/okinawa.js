@@ -1,37 +1,28 @@
+import engine from './engine';
 
-Engine.Player = function ()
-{ 
-  engine.logs.log('Player.initialize', 'Initializing player object');
+export default class Player {
+  constructor() {
+    engine.logs.log('Player::initialize', 'Initializing player object');
+    this.avatar = null;
+  }
 
-  this.avatar = null;
-};
+  getAvatar() {
+    return this.avatar;
+  }
 
-Engine.Player.prototype.getAvatar = function()
-{
-  return this.avatar;
-};
+  setAvatar(item) {
+    this.avatar = item;
+  }
 
-Engine.Player.prototype.setAvatar = function(item)
-{
-  this.avatar = item;
-};
+  initialize() {}
 
-Engine.Player.prototype.initialize = function()
-{
-};
+  activate() {}
 
-Engine.Player.prototype.activate = function()
-{
-};
+  step() {}
 
-Engine.Player.prototype.step = function(dt)
-{
-};
-
-Engine.Player.prototype.draw = function(ctx)
-{
-  // This object is not drawn, its avatar should be 
-  // added as an attached item inside any screen
-  return;
-};
-
+  draw() {
+    // This object is not drawn, its avatar should be
+    // added as an attached item inside any screen
+    return;
+  }
+}

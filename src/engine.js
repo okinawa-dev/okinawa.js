@@ -12,6 +12,7 @@ import * as INPUT from './input/input';
 import * as GUI from './gui/gui';
 import Scenes from './scenes/scenes';
 import Preloader from './scenes/preloader';
+import Player from './player';
 
 class Engine {
   constructor() {
@@ -33,6 +34,7 @@ class Engine {
     this.game = null;
 
     this.externalCallback = null;
+    this.player = null;
   }
 
   initialize(canvasElementId, gameObject, callbackFunction) {
@@ -50,6 +52,9 @@ class Engine {
     this.gui = new GUI.GuiElement();
     this.scenes = new Scenes();
     this.preloader = new Preloader();
+    // empty player object, probably it will be crushed by
+    // a specific game player object
+    this.player = new Player();
 
     this.logs.log('Engine::initialize', 'Initializing starts...');
 
