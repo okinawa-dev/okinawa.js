@@ -82,7 +82,7 @@ export default class Preloader extends Scene {
     if (!engine.sprites.imageExists(data.path)) {
       image = new Image();
 
-      addEvent('load', image, function() {
+      addEvent('load', image, () => {
         engine.preloader.incrementalLoader();
       });
 
@@ -134,7 +134,7 @@ export default class Preloader extends Scene {
       // sound.src = data.path;
       sound.load();
 
-      addEvent('canplaythrough', sound, function() {
+      addEvent('canplaythrough', sound, () => {
         engine.preloader.incrementalLoader('sound');
       });
 
@@ -142,31 +142,33 @@ export default class Preloader extends Scene {
     }
   }
 
-  addFont(url, fontFamily, flag) {
+  addFont(data) {
     // load a font asynchonously using the Font.js library
     let font = new Font();
 
     this.totalFonts++;
 
-    font.onerror = function(err) {
+    font.onerror = err => {
       engine.logs.log('Preloader::addFont', 'Error loading a font: ' + err);
     };
-    font.onload = function() {
+    font.onload = () => {
       engine.logs.log('Preloader::addFont', 'Font loaded');
       engine.preloader.incrementalLoader('font');
     };
 
-    font.fontFamily = fontFamily;
+    font.fontFamily = data.name;
 
     if (typeof flag != 'undefined') {
-      font.src = url;
+      font.src = data.path;
     } else {
       if (engine.options.assetsURLPrefix !== null) {
-        font.src = engine.options.assetsURLPrefix + url;
+        font.src = engine.options.assetsURLPrefix + data.path;
       } else {
-        font.src = getProtocolAndHost() + url;
+        font.src = getProtocolAndHost() + data.path;
       }
     }
+
+    engine.fonts.addFont(data.name, data.path, font);
   }
 
   incrementalLoader() {

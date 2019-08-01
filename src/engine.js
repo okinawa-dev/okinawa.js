@@ -6,6 +6,7 @@ import Effects from './effects/effects';
 import Particles from './effects/particles';
 import Sprites from './assets/sprites';
 import Sounds from './assets/sounds';
+import Fonts from './assets/fonts';
 import Clock from './clocks/clock';
 import Localization from './localization/localization';
 import * as INPUT from './input/input';
@@ -24,6 +25,7 @@ class Engine {
     this.particles = null;
     this.sprites = null;
     this.sounds = null;
+    this.fonts = null;
     this.clock = null;
     this.localization = null;
     this.input = null;
@@ -46,6 +48,7 @@ class Engine {
     this.particles = new Particles();
     this.sprites = new Sprites();
     this.sounds = new Sounds();
+    this.fonts = new Fonts();
     this.clock = new Clock();
     this.localization = new Localization();
     this.input = new INPUT.Controller();
