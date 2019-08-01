@@ -121,27 +121,32 @@ export default class Core {
 
   // Game Loop
   loop() {
-    var now = new Date().getTime();
-    var dt = now - this.timeLastRender;
+    let now = new Date().getTime();
+    let dt = now - this.timeLastRender;
 
     if (dt >= engine.core.TIME_PER_FRAME) {
       this.timeLastRender = now;
-      var sc = engine.scenes.getCurrentScene();
+      let sc = engine.scenes.getCurrentScene();
 
-      if (this.halted) return;
+      if (this.halted) {
+        return;
+      }
 
       // Only the current scene
       if (sc && sc.isCurrent === true) {
         // Only advance game logic if game is not paused
         if (this.paused === false) {
           sc.step(dt);
-          if (engine.game !== undefined) engine.game.step(dt);
+          if (engine.game !== undefined) {
+            engine.game.step(dt);
+          }
           engine.effects.step(dt);
           engine.particles.step(dt);
         }
 
         engine.clock.step(dt);
         engine.gui.step(dt);
+        engine.player.step(dt);
 
         // Render current level
         sc.draw(this.ctx);
@@ -153,7 +158,7 @@ export default class Core {
         this.fpsPassed++;
 
         if (engine.options.showStatistics === true) {
-          if (sc.getAttachedItems().length > 0)
+          if (sc.getAttachedItems().length > 0) {
             engine.gui
               .get('console')
               .addText(
@@ -162,7 +167,8 @@ export default class Core {
                   ' ' +
                   engine.localization.get('items')
               );
-          if (engine.effects.effects.length > 0)
+          }
+          if (engine.effects.effects.length > 0) {
             engine.gui
               .get('console')
               .addText(
@@ -171,7 +177,8 @@ export default class Core {
                   ' ' +
                   engine.localization.get('effects')
               );
-          if (engine.particles.particles.length > 0)
+          }
+          if (engine.particles.particles.length > 0) {
             engine.gui
               .get('console')
               .addText(
@@ -180,6 +187,7 @@ export default class Core {
                   ' ' +
                   engine.localization.get('particles')
               );
+          }
         }
 
         engine.gui.draw(this.ctx);
@@ -189,11 +197,11 @@ export default class Core {
       dt = 0;
     }
 
-    if (this.useAnimationFrame === true)
+    if (this.useAnimationFrame === true) {
       window.requestAnimationFrame(function() {
         engine.core.loop();
       });
-    else {
+    } else {
       setTimeout(function() {
         engine.core.loop();
       }, engine.core.TIME_PER_FRAME - dt);
@@ -210,7 +218,7 @@ export default class Core {
     this.paused = true;
 
     if (engine.gui.get('pause') === null) {
-      var text = new GUI.GuiText(engine.localization.get('paused'), 500, 30);
+      let text = new GUI.GuiText(engine.localization.get('paused'), 500, 30);
       text.setFontColor('#FF2222');
       text.setAlign(GUI.ALIGN.CENTER);
       text.setPosition(this.size.x / 2, this.size.y / 2 + 100);

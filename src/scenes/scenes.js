@@ -43,11 +43,8 @@ export default class Scenes {
     this.currentScene.isCurrent = true;
     this.currentScene.activate();
 
-    if (
-      typeof engine.game.player !== 'undefined' &&
-      engine.game.player !== null
-    ) {
-      engine.game.player.activate();
+    if (typeof engine.player !== 'undefined' && engine.player !== null) {
+      engine.player.activate();
     }
 
     engine.logs.log(
