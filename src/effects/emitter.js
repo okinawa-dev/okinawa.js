@@ -36,7 +36,7 @@ export default class Emitter extends Item {
   createParticle() {
     let modifier = Math.random() * this.spread - this.spread / 2;
     let angle = this.getRotation() + modifier;
-    let direction = engine.math.angleToDirectionVector(angle);
+    let direction = MATH.angleToDirectionVector(angle);
     direction = direction.normalize();
 
     let particleSpeed = new MATH.Point(
