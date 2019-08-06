@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2019-08-07
+
+### Changed
+
+- Code ported to current JavaScript standards (clases, import/export modules, etc)
+- Linting now done with [eslint](https://github.com/eslint/eslint)
+- [Font.js](https://github.com/Pomax/Font.js) lib updated to last version available
+- Bundle building now done with [browserify](https://github.com/browserify/browserify) + [babelify](https://github.com/babel/babelify)
+
 ## [1.0.0] - 2019-07-30
 
 After resuming work in the project, the architecture is going to change, so here it is the
@@ -53,5 +62,6 @@ I started this just to learn something about javascript, so...
 
 - Initial commit... a long time ago, in a galaxy far, far away.
 
+[2.0.0]: https://github.com/okinawajs/okinawa.js/releases/tag/2.0.0
 [1.0.0]: https://github.com/okinawajs/okinawa.js/releases/tag/1.0.0
 [0.1.0]: https://github.com/okinawajs/okinawa.js/releases/tag/0.1.0
