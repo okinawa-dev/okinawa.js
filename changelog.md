@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.0] - 2019-08-07
 
-### Changed
+### Changed
 
 - Code ported to current JavaScript standards (clases, import/export modules, etc)
 - Linting now done with [eslint](https://github.com/eslint/eslint)
