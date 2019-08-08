@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Code ported to current JavaScript standards (clases, import/export modules, etc)
+- Code ported to current JavaScript standards (classes, import/export modules, etc)
 - Linting now done with [eslint](https://github.com/eslint/eslint)
 - [Font.js](https://github.com/Pomax/Font.js) lib updated to last version available
 - Bundle building now done with [browserify](https://github.com/browserify/browserify) + [babelify](https://github.com/babel/babelify)
