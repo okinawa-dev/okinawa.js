@@ -19,6 +19,10 @@ export function addEvent(evnt, elem, func) {
 export function getProtocolAndHost() {
   let result = '';
 
+  if (window.location.href) {
+    return window.location.href;
+  }
+
   if (window.location.protocol != 'file:') {
     result += window.location.protocol + '//';
   }
