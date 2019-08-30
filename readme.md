@@ -23,8 +23,8 @@ Current list of features:
 
 ## Tests (in separate projects)
 
-- [Asteroids clone](https://github.com/neverbot/okinawa-asteroids)
-  Test it in https://dev.neverbot.com/okinawa.js
+- [Asteroids clone](https://github.com/okinawajs/okinawa-asteroids)
+  Test it in https://dev.neverbot.com/okinawa-asteroids/
 
 ## To Do
 
