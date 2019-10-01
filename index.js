@@ -1,8 +1,8 @@
 // engine already instanced
-import engine from './src/engine';
-import { addEvent } from './src/utils';
+var engine = require('./src/engine') ;
+var { addEvent } = require('./src/utils') ;
 
-export default function Okinawa(canvasId, gameObject, callbackFunction) {
+module.exports = function Okinawa(canvasId, gameObject, callbackFunction) {
   // Game initialization
 
   // parameters:
