@@ -1,4 +1,4 @@
-Engine.GUI.GuiBubble = function(txt) {
+Engine.GUI.GuiBubble = function() {
   Engine.GUI.GuiElement.call(this);
 
   this.position.x = engine.core.size.x / 2;

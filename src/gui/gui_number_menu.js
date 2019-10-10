@@ -1,4 +1,4 @@
-Engine.GUI.GuiNumberMenu = function(txt) {
+Engine.GUI.GuiNumberMenu = function() {
   Engine.GUI.GuiElement.call(this);
 
   this._menuOptions = {}; // { id : [ 'text to show on scene', GuiText object, object to inform ] }
@@ -86,7 +86,7 @@ Engine.GUI.GuiNumberMenu.prototype.placeOptions = function() {
   if (len === 0) return;
 
   // var pos = this.getPosition();
-  var size = this.getSize();
+  // var size = this.getSize();
   var yPos = 0;
   var xPos = 0;
 

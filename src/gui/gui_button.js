@@ -1,4 +1,4 @@
-Engine.GUI.GuiButton = function(txt) {
+Engine.GUI.GuiButton = function() {
   Engine.GUI.GuiElement.call(this);
 
   this.buttonToEmulate = null;

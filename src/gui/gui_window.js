@@ -1,4 +1,4 @@
-Engine.GUI.GuiWindow = function(txt) {
+Engine.GUI.GuiWindow = function() {
   Engine.GUI.GuiElement.call(this);
 
   this.size.x = 200;

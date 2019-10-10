@@ -1,4 +1,4 @@
-Engine.GUI.GuiMenu = function(txt) {
+Engine.GUI.GuiMenu = function() {
   Engine.GUI.GuiElement.call(this);
 
   this._menuOptions = {}; // { id : [ 'text to show on scene', GuiText object, object to inform ] }
