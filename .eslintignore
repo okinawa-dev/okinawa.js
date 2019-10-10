@@ -4,3 +4,6 @@ package-lock.json
 
 # Ignore lib/ files
 lib/*
+
+# Ignore build/ files
+build/*
