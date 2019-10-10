@@ -1,6 +1,9 @@
 # okinawa.js
 
-![semver](https://img.shields.io/npm/v/okinawa.js)
+
+![npm](https://img.shields.io/npm/dt/okinawa.js)
+![npm](https://img.shields.io/npm/dw/okinawa.jsp)
+![npm](https://img.shields.io/npm/v/okinawa.js)
 
 ## A simple javascript 2D game engine
 
