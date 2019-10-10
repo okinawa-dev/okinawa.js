@@ -5,8 +5,8 @@
   },
   "name": "okinawa.js",
   "description": "Javascript 2D game engine",
-  "version": "2.0.3",
-  "homepage": "http://dev.neverbot.com/okinawa.js",
+  "version": "2.0.4",
+  "homepage": "https://github.com/okinawajs/okinawa.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/okinawajs/okinawa.js.git"
