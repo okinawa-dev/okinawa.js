@@ -8,12 +8,6 @@
   "bracketSpacing": true,
   "overrides": [
     {
-      "files": "*.vue",
-      "options": {
-        "htmlWhitespaceSensitivity": "ignore"
-      }
-    },
-    {
       "files": "*.json",
       "options": {
         "parser": "json"
