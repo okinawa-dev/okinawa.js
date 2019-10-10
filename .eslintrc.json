@@ -10,7 +10,10 @@
       "experimentalObjectRestSpread": true
     }
   },
-  "globals": {},
+  "globals": {
+    "Engine": true,
+    "engine": true
+  },
   "extends": [
     "eslint:recommended",
     "plugin:prettier/recommended"
