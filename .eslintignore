@@ -1,2 +1,6 @@
+!.*.json
+package.json
+package-lock.json
+
 # Ignore lib/ files
 lib/*
