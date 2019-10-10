@@ -24,7 +24,9 @@ export default class Device {
     }
 
     // Get the offset of the DOM element used to capture the touch events
-    this.canvasGlobalOffset = engine.device.getGlobalOffset(engine.core.canvas);
+    this.canvasGlobalOffset = engine.device.getGlobalOffset(
+      engine.core.canvas
+    );
 
     addEvent('resize', window, () => {
       engine.device.isResizing = true;

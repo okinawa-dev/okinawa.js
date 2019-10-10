@@ -240,7 +240,9 @@ export default class Item {
   }
 
   getMagnitude() {
-    return Math.sqrt(this.speed.x * this.speed.x + this.speed.y * this.speed.y);
+    return Math.sqrt(
+      this.speed.x * this.speed.x + this.speed.y * this.speed.y
+    );
   }
 
   move(dx, dy) {

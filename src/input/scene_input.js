@@ -233,7 +233,10 @@ export default class SceneInput {
             break;
           }
           // All pressed, this is the last one and it's also pressed, combo win!
-          if (j == len_j - 1 && engine.input.isKeyPressed(combo.comboKeys[j])) {
+          if (
+            j == len_j - 1 &&
+            engine.input.isKeyPressed(combo.comboKeys[j])
+          ) {
             return comboName;
           }
         }

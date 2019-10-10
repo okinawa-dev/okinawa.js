@@ -148,7 +148,7 @@ export default class Preloader extends Scene {
 
     this.totalFonts++;
 
-    font.onerror = err => {
+    font.onerror = (err) => {
       engine.logs.log('Preloader::addFont', 'Error loading a font: ' + err);
     };
     font.onload = () => {

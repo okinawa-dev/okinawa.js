@@ -135,7 +135,10 @@ export default class GuiText extends GuiElement {
 
       if (this._canvasRendering === false) {
         // let scale = this.getScaling();
-        let offset = new MATH.Point(this.horizontalOffset, this.verticalOffset);
+        let offset = new MATH.Point(
+          this.horizontalOffset,
+          this.verticalOffset
+        );
 
         if (this.textAlign == ALIGN.CENTER) {
           offset.x = this.size.x / 2;

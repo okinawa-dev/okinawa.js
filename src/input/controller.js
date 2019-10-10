@@ -28,12 +28,12 @@ export default class Controller {
     // Using document instead of window in the key-press events
     // because old IEs did not implement them in the window object
 
-    addEvent('keyup', document, event => {
+    addEvent('keyup', document, (event) => {
       engine.input.onKeyup(event);
       // event.preventDefault();
     });
 
-    addEvent('keydown', document, event => {
+    addEvent('keydown', document, (event) => {
       engine.input.onKeydown(event);
 
       // don't trap keys if the focus is in a html input (outside the game canvas)
@@ -58,7 +58,7 @@ export default class Controller {
     });
 
     // Capture touch events
-    addEvent('touchstart', engine.core.canvas, event => {
+    addEvent('touchstart', engine.core.canvas, (event) => {
       engine.input.onClickStart(
         event.touches[0].clientX,
         event.touches[0].clientY
@@ -71,24 +71,24 @@ export default class Controller {
       return false;
     });
 
-    addEvent('touchmove', engine.core.canvas, event => {
+    addEvent('touchmove', engine.core.canvas, (event) => {
       event.preventDefault();
       return false;
     });
 
-    addEvent('touchend', engine.core.canvas, event => {
+    addEvent('touchend', engine.core.canvas, (event) => {
       event.preventDefault();
       return false;
     });
 
     // Capture click events
-    addEvent('click', engine.core.canvas, event => {
+    addEvent('click', engine.core.canvas, (event) => {
       engine.input.onClickStart(event.clientX, event.clientY);
       event.preventDefault();
       return false;
     });
 
-    addEvent('mousedown', engine.core.canvas, event => {
+    addEvent('mousedown', engine.core.canvas, (event) => {
       event.preventDefault();
       return false;
     });
@@ -221,28 +221,28 @@ export default class Controller {
 
   convertKeyToNumber(keyCode) {
     switch (keyCode) {
-    case KEYS.NINE:
-      return 9;
-    case KEYS.EIGTH:
-      return 8;
-    case KEYS.SEVEN:
-      return 7;
-    case KEYS.SIX:
-      return 6;
-    case KEYS.FIVE:
-      return 5;
-    case KEYS.FOUR:
-      return 4;
-    case KEYS.THREE:
-      return 3;
-    case KEYS.TWO:
-      return 2;
-    case KEYS.ONE:
-      return 1;
-    case KEYS.ZERO:
-      return 0;
-    default:
-      break;
+      case KEYS.NINE:
+        return 9;
+      case KEYS.EIGTH:
+        return 8;
+      case KEYS.SEVEN:
+        return 7;
+      case KEYS.SIX:
+        return 6;
+      case KEYS.FIVE:
+        return 5;
+      case KEYS.FOUR:
+        return 4;
+      case KEYS.THREE:
+        return 3;
+      case KEYS.TWO:
+        return 2;
+      case KEYS.ONE:
+        return 1;
+      case KEYS.ZERO:
+        return 0;
+      default:
+        break;
     }
 
     return -1;
@@ -250,28 +250,28 @@ export default class Controller {
 
   convertNumberToKey(number) {
     switch (number) {
-    case 9:
-      return KEYS.NINE;
-    case 8:
-      return KEYS.EIGTH;
-    case 7:
-      return KEYS.SEVEN;
-    case 6:
-      return KEYS.SIX;
-    case 5:
-      return KEYS.FIVE;
-    case 4:
-      return KEYS.FOUR;
-    case 3:
-      return KEYS.THREE;
-    case 2:
-      return KEYS.TWO;
-    case 1:
-      return KEYS.ONE;
-    case 0:
-      return KEYS.ZERO;
-    default:
-      break;
+      case 9:
+        return KEYS.NINE;
+      case 8:
+        return KEYS.EIGTH;
+      case 7:
+        return KEYS.SEVEN;
+      case 6:
+        return KEYS.SIX;
+      case 5:
+        return KEYS.FIVE;
+      case 4:
+        return KEYS.FOUR;
+      case 3:
+        return KEYS.THREE;
+      case 2:
+        return KEYS.TWO;
+      case 1:
+        return KEYS.ONE;
+      case 0:
+        return KEYS.ZERO;
+      default:
+        break;
     }
 
     return KEYS.ZERO;

@@ -96,7 +96,10 @@ export default class Core {
       if (this.paused) this.unpauseGame();
       else if (engine.scenes.getCurrentScene().playable !== false)
         this.pauseGame();
-    } else if (keyCode == INPUT.KEYS.ESC && engine.options.allowHalt === true) {
+    } else if (
+      keyCode == INPUT.KEYS.ESC &&
+      engine.options.allowHalt === true
+    ) {
       if (this.halted) {
         this.halted = false;
         engine.logs.log('Engine::eventKeyPressed', 'Engine un-halted');
