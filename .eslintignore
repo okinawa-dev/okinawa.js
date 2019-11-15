@@ -7,3 +7,6 @@ lib/*
 
 # Ignore build/ files
 build/*
+
+# Ignore markdown files
+*.md
