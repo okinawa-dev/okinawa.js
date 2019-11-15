@@ -1,6 +1,6 @@
 // engine already instanced
-import engine from './src/engine';
-import { addEvent } from './src/utils';
+import engine from './engine';
+import { addEvent } from './utils';
 
 export default function Okinawa(canvasId, gameObject, callbackFunction) {
   // Game initialization

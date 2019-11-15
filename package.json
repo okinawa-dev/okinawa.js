@@ -4,6 +4,7 @@
     "url": "https://www.neverbot.com"
   },
   "name": "okinawa.js",
+  "main": "okinawa.js",  
   "description": "Javascript 2D game engine",
   "version": "2.0.5",
   "homepage": "https://github.com/okinawajs/okinawa.js",
@@ -25,8 +26,9 @@
   },
   "optionalDependencies": {},
   "scripts": {
-    "lint": "eslint .",
-    "build:test": "browserify index.js --list -t [ babelify --presets [ @babel/preset-env ] --plugins [ ] ]",
-    "build": "browserify index.js -o build/bundle.js -t [ babelify --presets [ @babel/preset-env ] --plugins [ ] ]"
+    "lint": "./node_modules/eslint/bin/eslint.js .",
+    "lint-fix": "./node_modules/eslint/bin/eslint.js . --fix",
+    "build:test": "browserify ./src/okinawa.js --list -t [ babelify --presets [ @babel/preset-env ] --plugins [ ] ]",
+    "build": "browserify ./src/okinawa.js -o ./okinawa.js -t [ babelify --presets [ @babel/preset-env ] --plugins [ ] ]"
   }
 }
