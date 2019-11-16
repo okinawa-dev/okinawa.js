@@ -24,7 +24,7 @@ export default class Scene extends Item {
     let console = new GUI.GuiConsole();
     console.setSize(170, 30);
     console.setPosition(15 + console.size.x / 2, 15 + console.size.y / 2); // left down
-    console.order = GUI.ORDENATION.UP;
+    console.order = GUI.ORDENATION.DOWN;
     this.gui.initialize();
     this.gui.attachItem(console, 'console');
 

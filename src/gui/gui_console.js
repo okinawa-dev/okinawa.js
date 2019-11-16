@@ -22,13 +22,17 @@ export default class GuiConsole extends GuiElement {
   }
 
   draw(ctx) {
+    // Call inherited function
+    super.draw(ctx);
+  }
+
+  step(dt) {
     let len = this._textKeys.length;
 
     if (len === 0) {
       return;
     }
 
-    // let pos = this.getPosition();
     let yPos = 0;
     let xPos = 0;
     let now = new Date().getTime();
@@ -56,14 +60,9 @@ export default class GuiConsole extends GuiElement {
     }
 
     // Call inherited function
-    super.draw(ctx);
-  }
-
-  step(dt) {
-    // Call inherited function
     super.step(dt);
 
-    let len = this._textsToRemove.length;
+    len = this._textsToRemove.length;
 
     if (len > 0) {
       for (let i = 0; i < len; i++) {
