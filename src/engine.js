@@ -69,7 +69,7 @@ class Engine {
     // }
     this.game = gameObject;
 
-    if (callbackFunction !== null) {
+    if (typeof callbackFunction !== 'undefined') {
       this.externalCallback = callbackFunction;
     }
 
@@ -109,7 +109,7 @@ class Engine {
   }
 
   external(eventType, id, message) {
-    if (this.externalCallback !== null) {
+    if (typeof externalCallback !== 'undefined') {
       setTimeout(() => {
         try {
           this.externalCallback(eventType, id, message);
