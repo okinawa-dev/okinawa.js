@@ -6,7 +6,7 @@
   "name": "okinawa.js",
   "main": "okinawa.js",
   "description": "Javascript 2D game engine",
-  "version": "2.0.5",
+  "version": "3.0.0",
   "homepage": "https://github.com/okinawajs/okinawa.js",
   "repository": {
     "type": "git",
