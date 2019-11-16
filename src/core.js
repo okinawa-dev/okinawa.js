@@ -116,7 +116,9 @@ export default class Core {
       }
     } else if (
       keyCode == INPUT.KEYS.F &&
-      engine.options.allowFForFps === true
+      engine.options.allowFForFps === true &&
+      !this.paused &&
+      !this.halted
     ) {
       if (engine.options.showFps === true) {
         engine.options.showFps = false;
