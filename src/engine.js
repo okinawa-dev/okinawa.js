@@ -7,11 +7,11 @@ import Particles from './effects/particles';
 import Sprites from './handlers/sprites';
 import Sounds from './handlers/sounds';
 import Fonts from './handlers/fonts';
+import Scenes from './handlers/scenes';
 import Clock from './clocks/clock';
 import Localization from './localization/localization';
 import * as INPUT from './input/input';
 import * as GUI from './gui/gui';
-import Scenes from './scenes/scenes';
 import Preloader from './scenes/preloader';
 import Player from './player';
 
