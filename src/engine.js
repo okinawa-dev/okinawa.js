@@ -51,7 +51,7 @@ class Engine {
     this.fonts = new Fonts();
     this.clock = new Clock();
     this.localization = new Localization();
-    this.input = new INPUT.Controller();
+    this.input = new INPUT.Receiver();
     this.gui = new GUI.GuiElement();
     this.scenes = new Scenes();
     this.preloader = new Preloader();

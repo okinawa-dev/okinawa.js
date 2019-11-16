@@ -16,7 +16,7 @@ export default class Scene extends Item {
     this.gui = new GUI.GuiElement(this); // Different Gui for each scene
 
     this.clock = new UnalignedClock();
-    this.input = new INPUT.SceneInput();
+    this.input = new INPUT.Controller();
   }
 
   initialize() {

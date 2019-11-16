@@ -1,5 +1,5 @@
+import Receiver from './receiver';
 import Controller from './controller';
-import SceneInput from './scene_input';
 
 // Keyboard key codes
 const KEYS = {
@@ -125,4 +125,4 @@ const COMBO_TYPES = {
   SIMULTANEOUS: 2 // Keys pressed at the same time
 };
 
-export { KEYS, COMBO_TYPES, Controller, SceneInput };
+export { KEYS, COMBO_TYPES, Receiver, Controller };
