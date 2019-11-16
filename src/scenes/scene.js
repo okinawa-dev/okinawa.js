@@ -29,7 +29,10 @@ export default class Scene extends Item {
     this.gui.attachItem(console, 'console');
 
     this.clock.initialize();
-    this.clock.suscribeOneSecond('FPS', () => {
+
+    // use engine.clock to inform about FPS, because the scene clock
+    // will be stopped on pauses, etc
+    engine.clock.suscribeOneSecond('FPS', () => {
       if (engine.options.showFps) {
         this.gui.get('console').addText('fps', engine.core.fpsPassed + ' fps');
       }
