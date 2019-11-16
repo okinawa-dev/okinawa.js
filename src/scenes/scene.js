@@ -1,7 +1,7 @@
 import engine from '../engine';
 import Item from '../item';
 import * as GUI from '../gui/gui';
-import UnalignedClock from '../clocks/unaligned';
+import Clock from '../clocks/clock';
 import * as INPUT from '../input/input';
 
 export default class Scene extends Item {
@@ -10,20 +10,32 @@ export default class Scene extends Item {
 
     this.playable = false; // This screen is playable
     this.backgrounds = [];
-
     this.isCurrent = false; // Is the screen being used now
 
     this.gui = new GUI.GuiElement(this); // Different Gui for each scene
-
-    this.clock = new UnalignedClock();
+    this.clock = new Clock();
     this.input = new INPUT.Controller();
   }
 
   initialize() {
     super.initialize();
 
+    // Commmon GUI elements in every scene
+    let console = new GUI.GuiConsole();
+    console.setSize(170, 30);
+    console.setPosition(15 + console.size.x / 2, 15 + console.size.y / 2); // left down
+    console.order = GUI.ORDENATION.UP;
     this.gui.initialize();
+    this.gui.attachItem(console, 'console');
+
     this.clock.initialize();
+    this.clock.suscribeOneSecond('FPS', () => {
+      if (engine.options.showFps) {
+        this.gui.get('console').addText('fps', engine.core.fpsPassed + ' fps');
+      }
+      engine.core.fpsPassed = 0;
+    });
+
     this.input.initialize();
   }
 
@@ -64,5 +76,20 @@ export default class Scene extends Item {
 
   addBackground(background) {
     this.backgrounds.push(background);
+  }
+
+  pauseGame() {
+    if (this.gui.get('pause') === null) {
+      let text = new GUI.GuiText(engine.localization.get('paused'), 500, 30);
+      text.setFontColor('#FF2222');
+      text.setAlign(GUI.ALIGN.CENTER);
+      text.setPosition(engine.core.size.x / 2, engine.core.size.y / 2 + 100);
+
+      this.gui.attachItem(text, 'pause');
+    }
+  }
+
+  unpauseGame() {
+    this.gui.detachItem('pause');
   }
 }

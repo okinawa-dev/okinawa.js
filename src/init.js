@@ -3,8 +3,6 @@ import engine from './engine';
 import { addEvent } from './utils';
 
 export default function init(canvasId, gameObject, callbackFunction) {
-  // const engine = new Engine();
-
   // Game initialization
 
   // parameters:

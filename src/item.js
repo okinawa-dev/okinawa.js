@@ -77,6 +77,11 @@ export default class Item {
       p = p.getParent();
     }
 
+    if (p === this) {
+      // global object not in a scene? should not happen
+      return engine.scenes.getCurrentScene();
+    }
+
     return p;
   }
 

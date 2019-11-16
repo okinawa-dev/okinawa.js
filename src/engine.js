@@ -11,7 +11,6 @@ import Scenes from './handlers/scenes';
 import Clock from './clocks/clock';
 import Localization from './localization/localization';
 import * as INPUT from './input/input';
-import * as GUI from './gui/gui';
 import Preloader from './scenes/preloader';
 import Player from './player';
 
@@ -30,7 +29,6 @@ class Engine {
     this.localization = null;
     this.input = null;
     this.controls = null;
-    this.gui = null;
     this.scenes = null;
     this.preloader = null;
     this.game = null;
@@ -52,7 +50,6 @@ class Engine {
     this.clock = new Clock();
     this.localization = new Localization();
     this.input = new INPUT.Receiver();
-    this.gui = new GUI.GuiElement();
     this.scenes = new Scenes();
     this.preloader = new Preloader();
     // empty player object, probably it will be crushed by
@@ -79,28 +76,9 @@ class Engine {
     this.particles.initialize();
     this.sprites.initialize();
     this.sounds.initialize();
-
     this.clock.initialize();
-    this.clock.suscribeOneSecond('testFPS', () => {
-      if (this.options.showFps) {
-        this.gui.get('console').addText('fps', this.core.fpsPassed + ' fps');
-      }
-      this.core.fpsPassed = 0;
-    });
-
     this.input.initialize();
     this.localization.initialize();
-
-    // TODO maybe remove this from global engine someday
-    // Global GUI
-    let console = new GUI.GuiConsole();
-    console.setSize(170, 30);
-    console.setPosition(15 + console.size.x / 2, 15 + console.size.y / 2); // left down
-    console.order = GUI.ORDENATION.UP;
-
-    this.gui.initialize();
-    this.gui.attachItem(console, 'console');
-
     this.scenes.initialize();
 
     this.preloader.playable = false; // Just in case

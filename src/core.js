@@ -1,7 +1,6 @@
 import engine from './engine';
 import Point from './math/point';
 import * as INPUT from './input/input';
-import * as GUI from './gui/gui';
 
 export default class Core {
   constructor() {
@@ -82,10 +81,7 @@ export default class Core {
   // Game Initialization
   activate() {
     engine.logs.log('Engine::activate', 'Starting engine');
-
     engine.game.activate();
-    engine.gui.activate();
-
     engine.scenes.advanceScene();
   }
 
@@ -112,8 +108,11 @@ export default class Core {
       } else {
         this.halted = true;
         engine.logs.log('Engine::eventKeyPressed', 'Engine halted');
-        engine.gui.get('console').addText('halt', 'Engine halted');
-        engine.gui.draw(this.ctx); // Force draw before halting the loop
+        engine.scenes
+          .getCurrentScene()
+          .gui.get('console')
+          .addText('halt', 'Engine halted');
+        engine.scenes.getCurrentScene().gui.draw(this.ctx); // Force draw before halting the loop
       }
     } else if (
       keyCode == INPUT.KEYS.F &&
@@ -153,7 +152,6 @@ export default class Core {
         }
 
         engine.clock.step(dt);
-        engine.gui.step(dt);
         engine.player.step(dt);
 
         // Render current level
@@ -167,7 +165,7 @@ export default class Core {
 
         if (engine.options.showStatistics === true) {
           if (sc.getAttachedItems().length > 0) {
-            engine.gui
+            sc.gui
               .get('console')
               .addText(
                 'numItems',
@@ -177,7 +175,7 @@ export default class Core {
               );
           }
           if (engine.effects.effects.length > 0) {
-            engine.gui
+            sc.gui
               .get('console')
               .addText(
                 'numEffects',
@@ -187,7 +185,7 @@ export default class Core {
               );
           }
           if (engine.particles.particles.length > 0) {
-            engine.gui
+            sc.gui
               .get('console')
               .addText(
                 'numParticles',
@@ -197,8 +195,6 @@ export default class Core {
               );
           }
         }
-
-        engine.gui.draw(this.ctx);
       }
 
       // If the loop has been executed, wait a full TIME_PER_FRAME until next loop step
@@ -226,15 +222,7 @@ export default class Core {
     }
 
     this.paused = true;
-
-    if (engine.gui.get('pause') === null) {
-      let text = new GUI.GuiText(engine.localization.get('paused'), 500, 30);
-      text.setFontColor('#FF2222');
-      text.setAlign(GUI.ALIGN.CENTER);
-      text.setPosition(this.size.x / 2, this.size.y / 2 + 100);
-
-      engine.gui.attachItem(text, 'pause');
-    }
+    engine.scenes.getCurrentScene().pauseGame();
   }
 
   unpauseGame() {
@@ -243,7 +231,6 @@ export default class Core {
     }
 
     this.paused = false;
-
-    engine.gui.detachItem('pause');
+    engine.scenes.getCurrentScene().unpauseGame();
   }
 }
