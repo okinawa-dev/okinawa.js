@@ -4,7 +4,7 @@
     "url": "https://www.neverbot.com"
   },
   "name": "okinawa.js",
-  "main": "okinawa.js",  
+  "main": "okinawa.js",
   "description": "Javascript 2D game engine",
   "version": "2.0.5",
   "homepage": "https://github.com/okinawajs/okinawa.js",
@@ -14,21 +14,21 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.6.4",
-    "@babel/preset-env": "^7.6.3",
-    "babelify": "^10.0.0",
-    "browserify": "^16.5.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-loader": "^8.0.6",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-json-format": "^2.0.1",
     "eslint-plugin-prettier": "^3.1.1",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   },
   "optionalDependencies": {},
   "scripts": {
     "lint": "./node_modules/eslint/bin/eslint.js .",
     "lint-fix": "./node_modules/eslint/bin/eslint.js . --fix",
-    "build:test": "browserify ./src/okinawa.js --list -t [ babelify --presets [ @babel/preset-env ] --plugins [ ] ]",
-    "build": "browserify ./src/okinawa.js -o ./okinawa.js -t [ babelify --presets [ @babel/preset-env ] --plugins [ ] ]"
+    "build": "webpack --config .webpack.config.js --display-modules"
   }
 }
