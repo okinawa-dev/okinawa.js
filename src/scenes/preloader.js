@@ -1,10 +1,8 @@
-/* global Font */
-
 import engine from '../engine';
 import Scene from './scene';
 import * as GUI from '../gui/gui';
 import { addEvent, getProtocolAndHost } from '../utils';
-import '../../lib/font.js/Font';
+import Font from '../../lib/font.js/Font';
 
 export default class Preloader extends Scene {
   constructor() {
