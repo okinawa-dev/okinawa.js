@@ -15,6 +15,8 @@ export default class Clock {
     this.startTime = new Date().getTime(); // Init time
   }
 
+  activate() {}
+
   step(dt) {
     this.ticker1 += dt;
     this.ticker5 += dt;
