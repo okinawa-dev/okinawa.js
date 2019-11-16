@@ -2,7 +2,7 @@
 
 
 ![npm](https://img.shields.io/npm/dt/okinawa.js)
-![npm](https://img.shields.io/npm/v/okinawa.js)
+[![npm](https://img.shields.io/npm/v/okinawa.js)](https://www.npmjs.com/package/okinawa.js)
 
 ## A simple javascript 2D game engine
 
