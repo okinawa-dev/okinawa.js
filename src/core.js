@@ -93,9 +93,11 @@ export default class Core {
     // engine.logs.log('Engine::eventKeyPressed', 'Key Pressed: ' + keyCode);
 
     if (keyCode == INPUT.KEYS.P && engine.options.allowPause === true) {
-      if (this.paused) this.unpauseGame();
-      else if (engine.scenes.getCurrentScene().playable !== false)
+      if (this.paused) {
+        this.unpauseGame();
+      } else if (engine.scenes.getCurrentScene().playable !== false) {
         this.pauseGame();
+      }
     } else if (
       keyCode == INPUT.KEYS.ESC &&
       engine.options.allowHalt === true
@@ -117,8 +119,11 @@ export default class Core {
       keyCode == INPUT.KEYS.F &&
       engine.options.allowFForFps === true
     ) {
-      if (engine.options.showFps === true) engine.options.showFps = false;
-      else engine.options.showFps = true;
+      if (engine.options.showFps === true) {
+        engine.options.showFps = false;
+      } else {
+        engine.options.showFps = true;
+      }
     }
   }
 
@@ -216,7 +221,9 @@ export default class Core {
   }
 
   pauseGame() {
-    if (engine.options.allowPause === false) return;
+    if (engine.options.allowPause === false) {
+      return;
+    }
 
     this.paused = true;
 
@@ -231,7 +238,9 @@ export default class Core {
   }
 
   unpauseGame() {
-    if (engine.options.allowPause === false) return;
+    if (engine.options.allowPause === false) {
+      return;
+    }
 
     this.paused = false;
 
