@@ -6,7 +6,17 @@
   "name": "okinawa.js",
   "main": "okinawa.js",
   "description": "Javascript 2D game engine",
-  "version": "3.1.3",
+  "version": "3.1.4",
+  "keywords": [
+    "okinawajs",
+    "javascript",
+    "game-engine",
+    "html5-game-development",
+    "canvas"
+  ],
+  "engines": {},
+  "bugs": "https://github.com/okinawajs/okinawa.js/issues",
+  "license": "",
   "homepage": "https://github.com/okinawajs/okinawa.js",
   "repository": {
     "type": "git",
@@ -30,5 +40,8 @@
     "lint": "./node_modules/eslint/bin/eslint.js . --ext .js,.json",
     "lint:fix": "./node_modules/eslint/bin/eslint.js . --ext .js,.json --fix",
     "build": "webpack --config .webpack.config.js --display-modules"
-  }
+  },
+  "contributors": [
+    "Ivan Alonso <ivan@neverbot.com> (https://neverbot.com)"
+  ]  
 }
