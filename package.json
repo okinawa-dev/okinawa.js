@@ -27,8 +27,8 @@
   },
   "optionalDependencies": {},
   "scripts": {
-    "lint": "./node_modules/eslint/bin/eslint.js .",
-    "lint:fix": "./node_modules/eslint/bin/eslint.js . --fix",
+    "lint": "./node_modules/eslint/bin/eslint.js . --ext .js,.json",
+    "lint:fix": "./node_modules/eslint/bin/eslint.js . --ext .js,.json --fix",
     "build": "webpack --config .webpack.config.js --display-modules"
   }
 }
