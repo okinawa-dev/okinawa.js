@@ -6,6 +6,8 @@
 
 ## A simple javascript 2D game engine
 
+A javascript game engine with no package dependencies.
+
 Current list of features:
 
 - [x] Multiple scenes/levels
