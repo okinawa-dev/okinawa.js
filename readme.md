@@ -35,10 +35,5 @@ Current list of features:
 - [ ] Better audio system
 - [ ] Item collections in the scene (multiple layers of items)
 - [ ] Upload more examples of how to use the engine
-- [ ] A manual/tutorial would be useful, don't you think?
+- [ ] Some documentation or tutorial would be useful, don't you think?
 
-I started this just to learn something about javascript, so...
-
-- Is the code orthodox? Maybe not, as I'm not used to most javascript coding conventions. Feel free to point anything you found or to improve it.
-- Did I learn a lot? Sure I did.
-- Does it work? Yes it does.
