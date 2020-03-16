@@ -5,8 +5,8 @@ package-lock.json
 # Ignore lib/ files
 lib/*
 
-# Ignore build/ files
-build/*
+# Ignore build files
+okinawa.js
 
 # Ignore markdown files
 *.md
