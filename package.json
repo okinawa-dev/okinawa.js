@@ -37,8 +37,9 @@
   },
   "optionalDependencies": {},
   "scripts": {
-    "lint": "./node_modules/eslint/bin/eslint.js . --ext .js,.json",
-    "lint:fix": "./node_modules/eslint/bin/eslint.js . --ext .js,.json --fix",
+    "eslint": "./node_modules/eslint/bin/eslint.js . --ext .js,.json",
+    "eslint:quiet": "./node_modules/eslint/bin/eslint.js . --ext .js,.json --quiet",
+    "eslint:fix": "./node_modules/eslint/bin/eslint.js . --ext .js,.json --fix",
     "build": "webpack --config .webpack.config.js --display-modules"
   },
   "contributors": [
