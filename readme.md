@@ -4,11 +4,12 @@
 
 # okinawa.js
 
-![npm](https://img.shields.io/npm/dt/okinawa.js)
-[![npm](https://img.shields.io/npm/v/okinawa.js)](https://www.npmjs.com/package/okinawa.js)
-[![Package Quality](https://npm.packagequality.com/badge/okinawa.js.png)](https://packagequality.com/#?package=okinawa.js)
 [![travis](https://img.shields.io/travis/com/okinawajs/okinawa.js/master?label=travis%20build%20%28master%29)](https://travis-ci.com/github/okinawajs/okinawa.js)
 [![travis](https://img.shields.io/travis/com/okinawajs/okinawa.js/develop?label=travis%20build%20%28develop%29)](https://travis-ci.com/github/okinawajs/okinawa.js)
+
+[![npm](https://img.shields.io/npm/v/okinawa.js)](https://www.npmjs.com/package/okinawa.js)
+![npm](https://img.shields.io/npm/dt/okinawa.js)
+[![david](https://david-dm.org/okinawajs/okinawa.js.svg)](https://david-dm.org/okinawajs/okinawa.js)
 
 ## A simple javascript 2D game engine
 
