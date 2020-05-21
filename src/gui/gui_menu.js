@@ -1,4 +1,4 @@
-Engine.GUI.GuiMenu = function() {
+Engine.GUI.GuiMenu = function () {
   Engine.GUI.GuiElement.call(this);
 
   this._menuOptions = {}; // { id : [ 'text to show on scene', GuiText object, object to inform ] }
@@ -15,11 +15,11 @@ Engine.GUI.GuiMenu = function() {
 Engine.GUI.GuiMenu.prototype = Object.create(Engine.GUI.GuiElement.prototype);
 Engine.GUI.GuiMenu.prototype.constructor = Engine.GUI.GuiMenu;
 
-Engine.GUI.GuiMenu.prototype.initialize = function() {
+Engine.GUI.GuiMenu.prototype.initialize = function () {
   Engine.GUI.GuiElement.prototype.initialize.call(this);
 };
 
-Engine.GUI.GuiMenu.prototype.activate = function() {
+Engine.GUI.GuiMenu.prototype.activate = function () {
   Engine.GUI.GuiElement.prototype.activate.call(this);
 
   this.selector.setBlink(true);
@@ -36,7 +36,7 @@ Engine.GUI.GuiMenu.prototype.activate = function() {
   );
 };
 
-Engine.GUI.GuiMenu.prototype.draw = function(ctx) {
+Engine.GUI.GuiMenu.prototype.draw = function (ctx) {
   var len = this._menuIds.length;
 
   if (len === 0) return;
@@ -63,12 +63,12 @@ Engine.GUI.GuiMenu.prototype.draw = function(ctx) {
   Engine.GUI.GuiElement.prototype.draw.call(this, ctx);
 };
 
-Engine.GUI.GuiMenu.prototype.step = function(dt) {
+Engine.GUI.GuiMenu.prototype.step = function (dt) {
   // Call inherited function
   Engine.GUI.GuiElement.prototype.step.call(this, dt);
 };
 
-Engine.GUI.GuiMenu.prototype.addMenuOption = function(id, text, ob) {
+Engine.GUI.GuiMenu.prototype.addMenuOption = function (id, text, ob) {
   // this._menuOptions.push( {
   //   id : ident,
   //   text : txt,
@@ -94,7 +94,7 @@ Engine.GUI.GuiMenu.prototype.addMenuOption = function(id, text, ob) {
   }
 };
 
-Engine.GUI.GuiMenu.prototype.eventKeyPressed = function(keyCode) {
+Engine.GUI.GuiMenu.prototype.eventKeyPressed = function (keyCode) {
   if (keyCode == Engine.INPUT.KEYS.UP) {
     if (this.currentOption > 0) this.currentOption--;
   } else if (keyCode == Engine.INPUT.KEYS.DOWN) {

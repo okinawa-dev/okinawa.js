@@ -204,11 +204,11 @@ export default class Core {
     }
 
     if (this.useAnimationFrame === true) {
-      window.requestAnimationFrame(function() {
+      window.requestAnimationFrame(function () {
         engine.core.loop();
       });
     } else {
-      setTimeout(function() {
+      setTimeout(function () {
         engine.core.loop();
       }, engine.core.TIME_PER_FRAME - dt);
     }

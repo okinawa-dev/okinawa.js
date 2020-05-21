@@ -1,6 +1,6 @@
 const FONTINFO = {
   FONTOBJECT: 0,
-  ORIGINALPATH: 1
+  ORIGINALPATH: 1,
 };
 
 export default class Fonts {

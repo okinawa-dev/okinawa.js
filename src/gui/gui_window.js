@@ -1,4 +1,4 @@
-Engine.GUI.GuiWindow = function() {
+Engine.GUI.GuiWindow = function () {
   Engine.GUI.GuiElement.call(this);
 
   this.size.x = 200;
@@ -13,15 +13,15 @@ Engine.GUI.GuiWindow.prototype = Object.create(
 );
 Engine.GUI.GuiWindow.prototype.constructor = Engine.GUI.GuiWindow;
 
-Engine.GUI.GuiWindow.prototype.initialize = function() {
+Engine.GUI.GuiWindow.prototype.initialize = function () {
   Engine.GUI.GuiElement.prototype.initialize.call(this);
 };
 
-Engine.GUI.GuiWindow.prototype.activate = function() {
+Engine.GUI.GuiWindow.prototype.activate = function () {
   Engine.GUI.GuiElement.prototype.activate.call(this);
 };
 
-Engine.GUI.GuiWindow.prototype.draw = function(ctx) {
+Engine.GUI.GuiWindow.prototype.draw = function (ctx) {
   var pos = this.getPosition();
   var size = this.getSize();
   var scale = this.getScaling();
@@ -50,13 +50,13 @@ Engine.GUI.GuiWindow.prototype.draw = function(ctx) {
   Engine.GUI.GuiElement.prototype.draw.call(this, ctx);
 };
 
-Engine.GUI.GuiWindow.prototype.step = function(dt) {
+Engine.GUI.GuiWindow.prototype.step = function (dt) {
   Engine.GUI.GuiElement.prototype.step.call(this, dt);
 };
 
-Engine.GUI.GuiWindow.prototype.setBorderWidth = function(width) {
+Engine.GUI.GuiWindow.prototype.setBorderWidth = function (width) {
   this._borderWidth = width;
 };
-Engine.GUI.GuiWindow.prototype.setCornerRadius = function(radius) {
+Engine.GUI.GuiWindow.prototype.setCornerRadius = function (radius) {
   this._cornerRadius = radius;
 };

@@ -274,7 +274,7 @@ export default class Controller {
     this.clickableZones[id] = {
       position: location,
       size: rectangleSize,
-      character: ch
+      character: ch,
     };
   }
 

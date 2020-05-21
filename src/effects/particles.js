@@ -91,7 +91,7 @@ export default class Particles {
           particle.color[0] - particle.lived * 3,
           particle.color[1] - particle.lived,
           particle.color[2],
-          particle.color[3]
+          particle.color[3],
         ];
 
         this.effectField.ctx.fillStyle = 'rgba(' + tmpColor.join(',') + ')';

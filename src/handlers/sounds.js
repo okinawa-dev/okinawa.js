@@ -1,6 +1,6 @@
 const SOUNDINFO = {
   AUDIOOBJECT: 0,
-  ORIGINALPATH: 1
+  ORIGINALPATH: 1,
 };
 
 export default class Sounds {

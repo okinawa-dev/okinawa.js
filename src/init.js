@@ -15,7 +15,7 @@ export default function init(canvasId, gameObject, callbackFunction) {
   if (document.readyState === 'complete')
     engine.initialize(canvasId, gameObject, callbackFunction);
   else
-    addEvent('load', window, function() {
+    addEvent('load', window, function () {
       engine.initialize(canvasId, gameObject, callbackFunction);
     });
 

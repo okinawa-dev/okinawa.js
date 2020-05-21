@@ -1,4 +1,4 @@
-Engine.GUI.GuiButton = function() {
+Engine.GUI.GuiButton = function () {
   Engine.GUI.GuiElement.call(this);
 
   this.buttonToEmulate = null;
@@ -12,13 +12,13 @@ Engine.GUI.GuiButton.prototype = Object.create(
 );
 Engine.GUI.GuiButton.prototype.constructor = Engine.GUI.GuiButton;
 
-Engine.GUI.GuiButton.prototype.initialize = function(button) {
+Engine.GUI.GuiButton.prototype.initialize = function (button) {
   Engine.GUI.GuiElement.prototype.initialize.call(this);
 
   if (typeof button !== 'undefined') this.buttonToEmulate = button;
 };
 
-Engine.GUI.GuiButton.prototype.activate = function() {
+Engine.GUI.GuiButton.prototype.activate = function () {
   Engine.GUI.GuiElement.prototype.activate.call(this);
 
   var scene = this.getParentScene();
@@ -44,14 +44,14 @@ Engine.GUI.GuiButton.prototype.activate = function() {
   // scene.input.addKeyListener( this, 'eventKeyPressed', keyList, true );
 };
 
-Engine.GUI.GuiButton.prototype.setButtonToEmulate = function(button) {
+Engine.GUI.GuiButton.prototype.setButtonToEmulate = function (button) {
   this.buttonToEmulate = button;
 };
 
-Engine.GUI.GuiButton.prototype.draw = function(ctx) {
+Engine.GUI.GuiButton.prototype.draw = function (ctx) {
   Engine.GUI.GuiElement.prototype.draw.call(this, ctx);
 };
 
-Engine.GUI.GuiButton.prototype.step = function(dt) {
+Engine.GUI.GuiButton.prototype.step = function (dt) {
   Engine.GUI.GuiElement.prototype.step.call(this, dt);
 };

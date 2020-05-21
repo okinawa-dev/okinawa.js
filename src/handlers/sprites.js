@@ -8,7 +8,7 @@ const SPRITEINFO = {
   HEIGTH: 4,
   FRAMES: 5,
   INITFRAME: 6,
-  FRAMESPEED: 7
+  FRAMESPEED: 7,
 };
 
 export default class Sprites {
@@ -162,7 +162,7 @@ export default class Sprites {
       height,
       frames,
       initFrame,
-      speed
+      speed,
     ];
   }
 

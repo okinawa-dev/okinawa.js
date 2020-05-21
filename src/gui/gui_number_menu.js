@@ -1,4 +1,4 @@
-Engine.GUI.GuiNumberMenu = function() {
+Engine.GUI.GuiNumberMenu = function () {
   Engine.GUI.GuiElement.call(this);
 
   this._menuOptions = {}; // { id : [ 'text to show on scene', GuiText object, object to inform ] }
@@ -12,11 +12,11 @@ Engine.GUI.GuiNumberMenu.prototype = Object.create(
 );
 Engine.GUI.GuiNumberMenu.prototype.constructor = Engine.GUI.GuiNumberMenu;
 
-Engine.GUI.GuiNumberMenu.prototype.initialize = function() {
+Engine.GUI.GuiNumberMenu.prototype.initialize = function () {
   Engine.GUI.GuiElement.prototype.initialize.call(this);
 };
 
-Engine.GUI.GuiNumberMenu.prototype.activate = function() {
+Engine.GUI.GuiNumberMenu.prototype.activate = function () {
   Engine.GUI.GuiElement.prototype.activate.call(this);
 
   var scene = this.getParentScene();
@@ -80,7 +80,7 @@ Engine.GUI.GuiNumberMenu.prototype.activate = function() {
   }
 };
 
-Engine.GUI.GuiNumberMenu.prototype.placeOptions = function() {
+Engine.GUI.GuiNumberMenu.prototype.placeOptions = function () {
   var len = this._menuIds.length;
 
   if (len === 0) return;
@@ -104,19 +104,19 @@ Engine.GUI.GuiNumberMenu.prototype.placeOptions = function() {
   this._optionsPlaced = true;
 };
 
-Engine.GUI.GuiNumberMenu.prototype.draw = function(ctx) {
+Engine.GUI.GuiNumberMenu.prototype.draw = function (ctx) {
   if (this._optionsPlaced === false) this.placeOptions();
 
   // Call inherited function
   Engine.GUI.GuiElement.prototype.draw.call(this, ctx);
 };
 
-Engine.GUI.GuiNumberMenu.prototype.step = function(dt) {
+Engine.GUI.GuiNumberMenu.prototype.step = function (dt) {
   // Call inherited function
   Engine.GUI.GuiElement.prototype.step.call(this, dt);
 };
 
-Engine.GUI.GuiNumberMenu.prototype.addMenuOption = function(id, text, ob) {
+Engine.GUI.GuiNumberMenu.prototype.addMenuOption = function (id, text, ob) {
   // this._menuOptions.push( {
   //   id : ident,
   //   text : txt,
@@ -150,7 +150,7 @@ Engine.GUI.GuiNumberMenu.prototype.addMenuOption = function(id, text, ob) {
   }
 };
 
-Engine.GUI.GuiNumberMenu.prototype.eventKeyPressed = function(keyCode) {
+Engine.GUI.GuiNumberMenu.prototype.eventKeyPressed = function (keyCode) {
   var number = engine.input.convertKeyToNumber(keyCode);
 
   // Should not happen

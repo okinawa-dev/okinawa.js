@@ -1,4 +1,4 @@
-Engine.GUI.GuiInput = function(x, y) {
+Engine.GUI.GuiInput = function (x, y) {
   Engine.GUI.GuiText.call(this, '', x, y);
 
   this._canvasRendering = true;
@@ -14,23 +14,23 @@ Engine.GUI.GuiInput.prototype.constructor = Engine.GUI.GuiInput;
 
 Engine.GUI.GuiInput.BLINK_TIME = 500;
 
-Engine.GUI.GuiInput.prototype.initialize = function() {
+Engine.GUI.GuiInput.prototype.initialize = function () {
   Engine.GUI.GuiText.prototype.initialize.call(this);
 };
 
-Engine.GUI.GuiInput.prototype.activate = function() {
+Engine.GUI.GuiInput.prototype.activate = function () {
   Engine.GUI.GuiText.prototype.activate.call(this);
 
   this.getParentScene().input.addKeyListener(this, '_eventKeyPressed', [
-    Engine.INPUT.KEYS.ANY_KEY
+    Engine.INPUT.KEYS.ANY_KEY,
   ]);
 };
 
-Engine.GUI.GuiInput.prototype.setCallback = function(func) {
+Engine.GUI.GuiInput.prototype.setCallback = function (func) {
   if (typeof func == 'function') this._callback = func;
 };
 
-Engine.GUI.GuiInput.prototype._eventKeyPressed = function(keyCode) {
+Engine.GUI.GuiInput.prototype._eventKeyPressed = function (keyCode) {
   if (engine.core.paused) return;
 
   // console.log('INPUT: ' + keyCode + ' ' + String.fromCharCode(keyCode));
@@ -54,7 +54,7 @@ Engine.GUI.GuiInput.prototype._eventKeyPressed = function(keyCode) {
   }
 };
 
-Engine.GUI.GuiInput.prototype.getText = function() {
+Engine.GUI.GuiInput.prototype.getText = function () {
   // Call inherited function
   var txt = Engine.GUI.GuiText.prototype.getText.call(this);
 
@@ -63,12 +63,12 @@ Engine.GUI.GuiInput.prototype.getText = function() {
   return txt;
 };
 
-Engine.GUI.GuiInput.prototype.draw = function(ctx) {
+Engine.GUI.GuiInput.prototype.draw = function (ctx) {
   // Call inherited function
   Engine.GUI.GuiText.prototype.draw.call(this, ctx);
 };
 
-Engine.GUI.GuiInput.prototype.step = function(dt) {
+Engine.GUI.GuiInput.prototype.step = function (dt) {
   if (!engine.core.paused) {
     var now = new Date().getTime();
 

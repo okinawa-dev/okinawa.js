@@ -1,4 +1,4 @@
-Engine.GUI.GuiBubble = function() {
+Engine.GUI.GuiBubble = function () {
   Engine.GUI.GuiElement.call(this);
 
   this.position.x = engine.core.size.x / 2;
@@ -31,10 +31,10 @@ Engine.GUI.GuiBubble.ARROW_POSITIONS = {
   LOWER_RIGHT: 2,
   UPPER_LEFT: 3,
   UPPER_MIDDLE: 4,
-  UPPER_RIGHT: 5
+  UPPER_RIGHT: 5,
 };
 
-Engine.GUI.GuiBubble.prototype.initialize = function(text) {
+Engine.GUI.GuiBubble.prototype.initialize = function (text) {
   Engine.GUI.GuiElement.prototype.initialize.call(this);
 
   this._text = new Engine.GUI.GuiText();
@@ -49,11 +49,11 @@ Engine.GUI.GuiBubble.prototype.initialize = function(text) {
   this.attachItem(this._text);
 };
 
-Engine.GUI.GuiBubble.prototype.activate = function() {
+Engine.GUI.GuiBubble.prototype.activate = function () {
   Engine.GUI.GuiElement.prototype.activate.call(this);
 };
 
-Engine.GUI.GuiBubble.prototype.draw = function(ctx) {
+Engine.GUI.GuiBubble.prototype.draw = function (ctx) {
   var pos = this.getPosition();
   var size = this.getSize();
   var scale = this.getScaling();
@@ -134,24 +134,24 @@ Engine.GUI.GuiBubble.prototype.draw = function(ctx) {
   Engine.GUI.GuiElement.prototype.draw.call(this, ctx);
 };
 
-Engine.GUI.GuiBubble.prototype.step = function(dt) {
+Engine.GUI.GuiBubble.prototype.step = function (dt) {
   Engine.GUI.GuiElement.prototype.step.call(this, dt);
 };
 
-Engine.GUI.GuiBubble.prototype.setBackgroundColor = function(color) {
+Engine.GUI.GuiBubble.prototype.setBackgroundColor = function (color) {
   this._backgroundColor = color;
 };
-Engine.GUI.GuiBubble.prototype.setBorderColor = function(color) {
+Engine.GUI.GuiBubble.prototype.setBorderColor = function (color) {
   this._borderColor = color;
 };
-Engine.GUI.GuiBubble.prototype.setBorderWidth = function(width) {
+Engine.GUI.GuiBubble.prototype.setBorderWidth = function (width) {
   this._borderWidth = width;
 };
-Engine.GUI.GuiBubble.prototype.setCornerRadius = function(radius) {
+Engine.GUI.GuiBubble.prototype.setCornerRadius = function (radius) {
   this._cornerRadius = radius;
 };
 
-Engine.GUI.GuiBubble.prototype.setArrowPosition = function(pos) {
+Engine.GUI.GuiBubble.prototype.setArrowPosition = function (pos) {
   if (
     pos < 0 ||
     pos > Object.keys(Engine.GUI.GuiBubble.ARROW_POSITIONS).length
@@ -161,6 +161,6 @@ Engine.GUI.GuiBubble.prototype.setArrowPosition = function(pos) {
   this._arrowPosition = pos;
 };
 
-Engine.GUI.GuiBubble.prototype.getText = function() {
+Engine.GUI.GuiBubble.prototype.getText = function () {
   return this._text;
 };

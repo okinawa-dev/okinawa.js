@@ -13,7 +13,7 @@ export default class Localization {
         particles: 'particles',
         choose_language: 'Choose language',
         english: 'English',
-        spanish: 'Spanish'
+        spanish: 'Spanish',
       },
       spanish: {
         paused: 'Pausa, pulsa P para continuar',
@@ -23,8 +23,8 @@ export default class Localization {
         particles: 'partículas',
         choose_language: 'Escoge el idioma',
         english: 'English',
-        spanish: 'Español'
-      }
+        spanish: 'Español',
+      },
     };
   }
 

@@ -32,7 +32,7 @@ export default class UnalignedClock {
       ob: object,
       f: func,
       t: time,
-      dt: 0
+      dt: 0,
     };
   }
 

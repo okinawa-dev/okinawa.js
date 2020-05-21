@@ -116,13 +116,13 @@ const KEYS = {
   SINGLE_QUOTE: 222,
 
   // spanish keyboard
-  NTILDE: 209
+  NTILDE: 209,
 };
 
 // Types of combos
 const COMBO_TYPES = {
   CONSECUTIVE: 1, // One key after the other
-  SIMULTANEOUS: 2 // Keys pressed at the same time
+  SIMULTANEOUS: 2, // Keys pressed at the same time
 };
 
 export { KEYS, COMBO_TYPES, Receiver, Controller };

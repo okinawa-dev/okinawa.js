@@ -112,7 +112,7 @@ export default class Device {
   }
 
   avoidLeavingPage() {
-    window.onbeforeunload = function() {
+    window.onbeforeunload = function () {
       return '';
     };
   }
@@ -123,7 +123,7 @@ export default class Device {
     // IE
     if (window.navigator.msSaveOrOpenBlob) {
       let blob = new Blob([text], {
-        type: 'text/csv;charset=utf-8;'
+        type: 'text/csv;charset=utf-8;',
       });
 
       window.navigator.msSaveOrOpenBlob(blob, filename);
