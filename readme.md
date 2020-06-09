@@ -35,8 +35,7 @@ Current list of features:
 
 ## Demos (in separate projects)
 
-- [Asteroids clone](https://github.com/okinawajs/okinawa-asteroids)
-  Demo it in https://dev.neverbot.com/okinawa-asteroids/
+- [Asteroids clone](https://github.com/okinawajs/okinawa-asteroids) demo in https://dev.neverbot.com/okinawa-asteroids/
 
 ## To Do
 
