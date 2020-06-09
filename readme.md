@@ -33,7 +33,7 @@ Current list of features:
 - [x] Clock subcriptions to wait for certain events
 - [x] Basic audio support
 
-## Tests (in separate projects)
+## Demos (in separate projects)
 
 - [Asteroids clone](https://github.com/okinawajs/okinawa-asteroids)
   Test it in https://dev.neverbot.com/okinawa-asteroids/
