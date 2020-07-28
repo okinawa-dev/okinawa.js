@@ -4,12 +4,13 @@
 
 # okinawa.js
 
-[![travis](https://img.shields.io/travis/com/okinawajs/okinawa.js/master?label=travis%20build%20%28master%29)](https://travis-ci.com/github/okinawajs/okinawa.js)
-[![travis](https://img.shields.io/travis/com/okinawajs/okinawa.js/develop?label=travis%20build%20%28develop%29)](https://travis-ci.com/github/okinawajs/okinawa.js)
+[![travis](https://img.shields.io/travis/com/okinawajs/okinawa.js/master?label=travis%20build%20%28master%29)](https://travis-ci.com/github/okinawajs/okinawa.js/branches)
+[![travis](https://img.shields.io/travis/com/okinawajs/okinawa.js/develop?label=travis%20build%20%28develop%29)](https://travis-ci.com/github/okinawajs/okinawa.js/branches)
 
 [![npm](https://img.shields.io/npm/v/okinawa.js)](https://www.npmjs.com/package/okinawa.js)
 ![npm](https://img.shields.io/npm/dt/okinawa.js)
 [![david](https://david-dm.org/okinawajs/okinawa.js.svg)](https://david-dm.org/okinawajs/okinawa.js)
+[![david](https://david-dm.org/okinawajs/okinawa.js/dev-status.svg)](https://david-dm.org/okinawajs/okinawa.js?type=dev)
 
 ## A simple javascript 2D game engine
 
@@ -32,10 +33,9 @@ Current list of features:
 - [x] Clock subcriptions to wait for certain events
 - [x] Basic audio support
 
-## Tests (in separate projects)
+## Demos (in separate projects)
 
-- [Asteroids clone](https://github.com/okinawajs/okinawa-asteroids)
-  Test it in https://dev.neverbot.com/okinawa-asteroids/
+- [Asteroids clone](https://github.com/okinawajs/okinawa-asteroids) demo in https://dev.neverbot.com/okinawa-asteroids/
 
 ## To Do
 
