@@ -39,7 +39,9 @@
     "lint": "npx eslint . --ext .js,.json",
     "lint:quiet": "npx eslint . --ext .js,.json --quiet",
     "lint:fix": "npx eslint . --ext .js,.json --fix",
-    "build": "npx webpack --config .webpack.config.js --display-modules"
+    "build": "npm run build:dev",
+    "build:dev": "npx webpack --config .webpack.config.js --mode=development",
+    "build:production": "npx webpack --config .webpack.config.js --mode=production"
   },
   "contributors": [
     "Ivan Alonso <ivan@neverbot.com> (https://neverbot.com)"
