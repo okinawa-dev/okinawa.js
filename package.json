@@ -36,10 +36,10 @@
   },
   "optionalDependencies": {},
   "scripts": {
-    "eslint": "./node_modules/eslint/bin/eslint.js . --ext .js,.json",
-    "eslint:quiet": "./node_modules/eslint/bin/eslint.js . --ext .js,.json --quiet",
-    "eslint:fix": "./node_modules/eslint/bin/eslint.js . --ext .js,.json --fix",
-    "build": "webpack --config .webpack.config.js --display-modules"
+    "lint": "npx eslint . --ext .js,.json",
+    "lint:quiet": "npx eslint . --ext .js,.json --quiet",
+    "lint:fix": "npx eslint . --ext .js,.json --fix",
+    "build": "npx webpack --config .webpack.config.js --display-modules"
   },
   "contributors": [
     "Ivan Alonso <ivan@neverbot.com> (https://neverbot.com)"
