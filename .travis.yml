@@ -5,10 +5,10 @@ node_js:
 
 before_script:
   - npm install
-  - npm run eslint
+  - npm run lint
 
 script:
-  - npm run build
+  - npm run build:production
   # - if [ "$TRAVIS_BRANCH" = "master" ]; then ...; fi
 
 branches:
