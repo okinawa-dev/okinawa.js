@@ -9,8 +9,6 @@
 
 [![npm](https://img.shields.io/npm/v/okinawa.js)](https://www.npmjs.com/package/okinawa.js)
 ![npm](https://img.shields.io/npm/dt/okinawa.js)
-[![david](https://david-dm.org/okinawajs/okinawa.js.svg)](https://david-dm.org/okinawajs/okinawa.js)
-[![david](https://david-dm.org/okinawajs/okinawa.js/dev-status.svg)](https://david-dm.org/okinawajs/okinawa.js?type=dev)
 
 ## A simple javascript 2D game engine
 
