@@ -4,9 +4,6 @@
 
 # okinawa.js
 
-[![travis](https://img.shields.io/travis/com/okinawajs/okinawa.js/master?label=travis%20build%20%28master%29)](https://travis-ci.com/github/okinawajs/okinawa.js/branches)
-[![travis](https://img.shields.io/travis/com/okinawajs/okinawa.js/develop?label=travis%20build%20%28develop%29)](https://travis-ci.com/github/okinawajs/okinawa.js/branches)
-
 [![npm](https://img.shields.io/npm/v/okinawa.js)](https://www.npmjs.com/package/okinawa.js)
 ![npm](https://img.shields.io/npm/dt/okinawa.js)
 
