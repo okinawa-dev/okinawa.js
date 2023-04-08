@@ -6,7 +6,7 @@
   "name": "okinawa.js",
   "main": "okinawa.js",
   "description": "Javascript 2D game engine",
-  "version": "3.1.14",
+  "version": "3.1.15",
   "keywords": [
     "okinawajs",
     "javascript",
@@ -23,16 +23,16 @@
     "url": "git://github.com/okinawajs/okinawa.js.git"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.2",
-    "@babel/preset-env": "^7.20.2",
-    "babel-loader": "^9.1.0",
-    "eslint": "^8.27.0",
-    "eslint-config-prettier": "^8.5.0",
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "babel-loader": "^9.1.2",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-json-format": "^2.0.1",
     "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.7.1",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^4.10.0"
+    "prettier": "^2.8.7",
+    "webpack": "^5.78.0",
+    "webpack-cli": "^5.0.1"
   },
   "optionalDependencies": {},
   "scripts": {
