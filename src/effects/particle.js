@@ -21,7 +21,7 @@ export default class Particle extends Item {
   step(dt) {
     this.move(
       (this.speed.x * dt) / engine.core.TIME_PER_FRAME,
-      (this.speed.y * dt) / engine.core.TIME_PER_FRAME
+      (this.speed.y * dt) / engine.core.TIME_PER_FRAME,
     );
 
     this.lived++;

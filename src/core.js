@@ -30,7 +30,7 @@ export default class Core {
   initialize(canvasElementId) {
     engine.logs.log(
       'Engine::Core.initialize',
-      'Initializing engine core object'
+      'Initializing engine core object',
     );
 
     this.canvas = document.getElementById(canvasElementId);
@@ -43,7 +43,7 @@ export default class Core {
     if (!this.ctx) {
       engine.logs.log(
         'Engine::Core.initialize',
-        'Old browser, unable to create canvas context'
+        'Old browser, unable to create canvas context',
       );
       alert('Unable to get canvas context. Old browser?');
       return null;
@@ -51,7 +51,7 @@ export default class Core {
 
     engine.logs.log(
       'Engine::Core.initialize',
-      'UserAgent: ' + engine.device.getUserAgent()
+      'UserAgent: ' + engine.device.getUserAgent(),
     );
 
     // Sometimes this is slower, I don't know why, and that makes me angry :(
@@ -62,13 +62,13 @@ export default class Core {
       this.useAnimationFrame = false;
       engine.logs.log(
         'Engine::Core.initialize',
-        'NOT using requestAnimationFrame'
+        'NOT using requestAnimationFrame',
       );
     } else {
       this.useAnimationFrame = true;
       engine.logs.log(
         'Engine::Core.initialize',
-        'Modern browser, using requestAnimationFrame'
+        'Modern browser, using requestAnimationFrame',
       );
     }
 
@@ -173,7 +173,7 @@ export default class Core {
                 'numItems',
                 sc.getAttachedItems().length +
                   ' ' +
-                  engine.localization.get('items')
+                  engine.localization.get('items'),
               );
           }
           if (engine.effects.effects.length > 0) {
@@ -183,7 +183,7 @@ export default class Core {
                 'numEffects',
                 engine.effects.effects.length +
                   ' ' +
-                  engine.localization.get('effects')
+                  engine.localization.get('effects'),
               );
           }
           if (engine.particles.particles.length > 0) {
@@ -193,7 +193,7 @@ export default class Core {
                 'numParticles',
                 engine.particles.particles.length +
                   ' ' +
-                  engine.localization.get('particles')
+                  engine.localization.get('particles'),
               );
           }
         }

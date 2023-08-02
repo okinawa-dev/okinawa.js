@@ -41,7 +41,7 @@ export default class Controller {
       engine.core,
       'eventKeyPressed',
       [KEYS.P, KEYS.ESC, KEYS.F],
-      true
+      true,
     );
   }
 
@@ -190,7 +190,7 @@ export default class Controller {
       engine.logs.log(
         'Input.informComboPerformed',
         'Combo activated: ' + comboName,
-        time
+        time,
       );
     }
 

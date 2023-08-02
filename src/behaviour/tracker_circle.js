@@ -41,7 +41,7 @@ export default class TrackerCircle extends Tracker {
         pos.x - this.circleRadius,
         pos.y,
         pos.x + this.circleRadius,
-        pos.y
+        pos.y,
       );
       gradient.addColorStop(0, '#009');
       gradient.addColorStop(1, '#900');

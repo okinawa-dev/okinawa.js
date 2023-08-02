@@ -32,7 +32,7 @@ Engine.GUI.GuiMenu.prototype.activate = function () {
     this,
     'eventKeyPressed',
     [Engine.INPUT.KEYS.UP, Engine.INPUT.KEYS.DOWN, Engine.INPUT.KEYS.ENTER],
-    true
+    true,
   );
 };
 
@@ -107,7 +107,7 @@ Engine.GUI.GuiMenu.prototype.eventKeyPressed = function (keyCode) {
         option[2].eventGuiAction(
           this.guiId,
           Engine.GUI.EVENTS.SELECTION,
-          this._menuIds[this.currentOption]
+          this._menuIds[this.currentOption],
         );
   }
 };

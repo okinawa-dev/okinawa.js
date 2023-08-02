@@ -137,7 +137,7 @@ export default class GuiText extends GuiElement {
         // let scale = this.getScaling();
         let offset = new MATH.Point(
           this.horizontalOffset,
-          this.verticalOffset
+          this.verticalOffset,
         );
 
         if (this.textAlign == ALIGN.CENTER) {
@@ -166,13 +166,13 @@ export default class GuiText extends GuiElement {
           ctx.strokeText(
             pieces[i],
             pos.x - size.x / 2 + offset.x,
-            pos.y - size.y / 2 + offset.y
+            pos.y - size.y / 2 + offset.y,
           );
 
           ctx.fillText(
             pieces[i],
             pos.x - size.x / 2 + offset.x,
-            pos.y - size.y / 2 + offset.y
+            pos.y - size.y / 2 + offset.y,
           );
 
           offset.y += this.verticalOffset; // + this.fontSize;
@@ -185,7 +185,7 @@ export default class GuiText extends GuiElement {
         ctx.drawImage(
           this._innerCanvas,
           pos.x - this.size.x / 2,
-          pos.y - this.size.y / 2
+          pos.y - this.size.y / 2,
         );
       }
     }

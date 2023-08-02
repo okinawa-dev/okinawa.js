@@ -25,7 +25,7 @@ export default class Device {
 
     // Get the offset of the DOM element used to capture the touch events
     this.canvasGlobalOffset = engine.device.getGlobalOffset(
-      engine.core.canvas
+      engine.core.canvas,
     );
 
     addEvent('resize', window, () => {
@@ -38,7 +38,7 @@ export default class Device {
 
       // Recalculate if window is resized
       engine.device.canvasGlobalOffset = engine.device.getGlobalOffset(
-        engine.core.canvas
+        engine.core.canvas,
       );
 
       clearTimeout(this._clearTimeOutId);
@@ -134,7 +134,7 @@ export default class Device {
 
       link.setAttribute(
         'href',
-        'data:text/plain;charset=utf-8,' + encodeURIComponent(text)
+        'data:text/plain;charset=utf-8,' + encodeURIComponent(text),
       );
       link.setAttribute('download', filename);
 
@@ -151,7 +151,7 @@ export default class Device {
 
     if (/msie/.test(userAgent)) {
       return parseFloat(
-        (userAgent.match(/.*(?:rv|ie)[/: ](.+?)([ );]|$)/) || [])[1]
+        (userAgent.match(/.*(?:rv|ie)[/: ](.+?)([ );]|$)/) || [])[1],
       );
     }
 

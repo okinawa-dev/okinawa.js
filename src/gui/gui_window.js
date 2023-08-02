@@ -9,7 +9,7 @@ Engine.GUI.GuiWindow = function () {
 };
 
 Engine.GUI.GuiWindow.prototype = Object.create(
-  Engine.GUI.GuiElement.prototype
+  Engine.GUI.GuiElement.prototype,
 );
 Engine.GUI.GuiWindow.prototype.constructor = Engine.GUI.GuiWindow;
 
@@ -31,7 +31,7 @@ Engine.GUI.GuiWindow.prototype.draw = function (ctx) {
     pos.x - (size.x / 2) * scale.x + 1,
     pos.y - (size.y / 2) * scale.y + 1,
     size.x * scale.x - 2,
-    size.y * scale.y - 2
+    size.y * scale.y - 2,
   );
 
   ctx.lineWidth = this._borderWidth;
@@ -44,7 +44,7 @@ Engine.GUI.GuiWindow.prototype.draw = function (ctx) {
     pos.x - (size.x / 2) * scale.x,
     pos.y - (size.y / 2) * scale.y,
     size.x * scale.x,
-    size.y * scale.y
+    size.y * scale.y,
   );
 
   Engine.GUI.GuiElement.prototype.draw.call(this, ctx);

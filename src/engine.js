@@ -94,7 +94,7 @@ class Engine {
         } catch (err) {
           this.logs.log(
             'Engine::external',
-            'Error with external callback with event ' + eventType + ' ' + id
+            'Error with external callback with event ' + eventType + ' ' + id,
           );
         }
       }, 1);

@@ -39,7 +39,7 @@ export default class Rotation {
   transformPosition(point) {
     return new Point(
       point.x * this.a + point.y * this.b,
-      point.x * this.c + point.y * this.d
+      point.x * this.c + point.y * this.d,
     );
   }
 }

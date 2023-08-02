@@ -43,7 +43,7 @@ export default class TrackerFollow extends Tracker {
 
     let movement = new MATH.Point(
       direction.x * this.trackSpeed,
-      direction.y * this.trackSpeed
+      direction.y * this.trackSpeed,
     );
     let futurePos = new MATH.Point(pos.x + movement.x, pos.y + movement.y);
 
@@ -100,7 +100,7 @@ export default class TrackerFollow extends Tracker {
         pos.x,
         pos.y,
         targetPos.x,
-        targetPos.y
+        targetPos.y,
       );
       gradient.addColorStop(0, '#009');
       gradient.addColorStop(1, '#900');

@@ -108,7 +108,7 @@ export function detectIE() {
 
   if (/msie/.test(userAgent)) {
     return parseFloat(
-      (userAgent.match(/.*(?:rv|ie)[/: ](.+?)([ );]|$)/) || [])[1]
+      (userAgent.match(/.*(?:rv|ie)[/: ](.+?)([ );]|$)/) || [])[1],
     );
   }
 

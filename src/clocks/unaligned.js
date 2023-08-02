@@ -24,7 +24,7 @@ export default class UnalignedClock {
     if (typeof this.clockEvents[id] !== 'undefined') {
       engine.logs.log(
         'UnalignedClock::suscribe',
-        'Object suscribing to clock event with repeated id ' + id
+        'Object suscribing to clock event with repeated id ' + id,
       );
     }
 

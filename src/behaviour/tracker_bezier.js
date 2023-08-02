@@ -116,7 +116,7 @@ export default class TrackerBezier extends Tracker {
         pos.x + this.p0.x,
         pos.y + this.p0.y,
         pos.x + this.p3.x,
-        pos.y + this.p3.y
+        pos.y + this.p3.y,
       );
 
       gradient.addColorStop(0, '#009');
@@ -135,7 +135,7 @@ export default class TrackerBezier extends Tracker {
         pos.x + this.p2.x,
         pos.y + this.p2.y,
         pos.x + this.p3.x,
-        pos.y + this.p3.y
+        pos.y + this.p3.y,
       );
       ctx.stroke();
     }

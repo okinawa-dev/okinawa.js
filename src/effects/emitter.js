@@ -41,7 +41,7 @@ export default class Emitter extends Item {
 
     let particleSpeed = new MATH.Point(
       direction.x * this.particleSpeed,
-      direction.y * this.particleSpeed
+      direction.y * this.particleSpeed,
     );
 
     // Initial position of the particle

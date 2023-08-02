@@ -17,7 +17,7 @@ function pointDistance(origin, destination) {
 
   return Math.sqrt(
     Math.pow(destination.x - origin.x, 2) +
-      Math.pow(destination.y - origin.y, 2)
+      Math.pow(destination.y - origin.y, 2),
   );
 }
 

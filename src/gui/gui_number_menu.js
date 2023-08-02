@@ -8,7 +8,7 @@ Engine.GUI.GuiNumberMenu = function () {
 };
 
 Engine.GUI.GuiNumberMenu.prototype = Object.create(
-  Engine.GUI.GuiElement.prototype
+  Engine.GUI.GuiElement.prototype,
 );
 Engine.GUI.GuiNumberMenu.prototype.constructor = Engine.GUI.GuiNumberMenu;
 
@@ -74,7 +74,7 @@ Engine.GUI.GuiNumberMenu.prototype.activate = function () {
         'number_menu_' + this.guiId + '_' + i,
         text.getPosition(),
         text.getSize(),
-        engine.input.convertNumberToKey(i + 1)
+        engine.input.convertNumberToKey(i + 1),
       );
     }
   }
@@ -138,7 +138,7 @@ Engine.GUI.GuiNumberMenu.prototype.addMenuOption = function (id, text, ob) {
     var txt = new Engine.GUI.GuiText(
       '' + (position + 1) + ' - ' + text,
       this.size.x,
-      this.size.y
+      this.size.y,
     );
     txt.setSize(this.size.x, this.size.y);
     // Save time of last text addition
@@ -164,6 +164,6 @@ Engine.GUI.GuiNumberMenu.prototype.eventKeyPressed = function (keyCode) {
       option[3].eventGuiAction(
         this.guiId,
         Engine.GUI.EVENTS.SELECTION,
-        option[0]
+        option[0],
       );
 };

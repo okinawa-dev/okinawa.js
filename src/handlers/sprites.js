@@ -105,7 +105,7 @@ export default class Sprites {
         (-width / 2) * object.scaling.x,
         (-height / 2) * object.scaling.y,
         width * object.scaling.x,
-        height * object.scaling.y
+        height * object.scaling.y,
       );
 
       ctx.restore();
@@ -121,7 +121,7 @@ export default class Sprites {
         position.x - (width / 2) * object.scaling.x,
         position.y - (height / 2) * object.scaling.y,
         width * object.scaling.x,
-        height * object.scaling.y
+        height * object.scaling.y,
       );
     }
 
@@ -152,7 +152,7 @@ export default class Sprites {
     height,
     frames,
     initFrame,
-    speed
+    speed,
   ) {
     this.sprites[name] = [
       path,

@@ -44,11 +44,11 @@ export default class Preloader extends Scene {
     this.message = new GUI.GuiText(
       engine.localization.get('loaded') + ' ' + this.percentageLoaded + '%',
       300,
-      30
+      30,
     );
     this.message.setPosition(
       engine.core.size.x / 2,
-      engine.core.size.y / 2 + 100
+      engine.core.size.y / 2 + 100,
     );
     this.message.setAlign(GUI.ALIGN.CENTER);
     this.message.setVerticalOffset(20);
@@ -106,7 +106,7 @@ export default class Preloader extends Scene {
         data.height,
         data.frames,
         data.initFrame,
-        data.speed
+        data.speed,
       );
     }
   }
@@ -152,7 +152,7 @@ export default class Preloader extends Scene {
     font.onload = () => {
       engine.logs.log(
         'Preloader::addFont',
-        'Font loaded <' + font.fontFamily + '>'
+        'Font loaded <' + font.fontFamily + '>',
       );
       engine.preloader.incrementalLoader('font');
     };
@@ -189,7 +189,7 @@ export default class Preloader extends Scene {
       (engine.core.size.x - barWidth) / 2 + 1,
       engine.core.size.y / 2 + 51,
       (this.percentageLoaded * barWidth) / 100,
-      15
+      15,
     );
 
     ctx.lineWidth = 2;
@@ -198,7 +198,7 @@ export default class Preloader extends Scene {
       (engine.core.size.x - barWidth) / 2,
       engine.core.size.y / 2 + 50,
       barWidth + 2,
-      16
+      16,
     );
   }
 
@@ -206,7 +206,7 @@ export default class Preloader extends Scene {
     super.step(dt);
 
     this.message.setText(
-      engine.localization.get('loaded') + ' ' + this.percentageLoaded + '%'
+      engine.localization.get('loaded') + ' ' + this.percentageLoaded + '%',
     );
 
     let timeLived = new Date().getTime() - this.timeStarted;

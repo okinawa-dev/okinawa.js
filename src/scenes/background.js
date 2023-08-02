@@ -48,13 +48,13 @@ export default class Background extends Item {
         this.verticalOffset +=
           (this.verticalSpeed * dt) / engine.core.TIME_PER_FRAME;
         this.verticalOffset = Math.floor(
-          this.verticalOffset % engine.core.size.y
+          this.verticalOffset % engine.core.size.y,
         );
       } else if (this.horizontalScroll === true) {
         this.horizontalOffset +=
           (this.horizontalSpeed * dt) / engine.core.TIME_PER_FRAME;
         this.horizontalOffset = Math.floor(
-          this.horizontalOffset % engine.core.size.x
+          this.horizontalOffset % engine.core.size.x,
         );
       }
     }
@@ -83,7 +83,7 @@ export default class Background extends Item {
             0,
             0,
             engine.core.size.x,
-            intOffset
+            intOffset,
           );
         }
 
@@ -98,7 +98,7 @@ export default class Background extends Item {
             0,
             intOffset,
             engine.core.size.x,
-            remaining
+            remaining,
           );
         }
       } else if (this.horizontalScroll === true) {
@@ -116,7 +116,7 @@ export default class Background extends Item {
             remaining,
             0,
             intOffset,
-            engine.core.size.y
+            engine.core.size.y,
           );
         }
 
@@ -131,7 +131,7 @@ export default class Background extends Item {
             0,
             0,
             remaining,
-            engine.core.size.y
+            engine.core.size.y,
           );
         }
       } else {

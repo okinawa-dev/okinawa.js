@@ -33,7 +33,7 @@ export default class TrackerSine extends Tracker {
       Math.sin(
         ((new Date().getTime() - this.initTime) / 1000) *
           this.frequencyVector.x +
-          (this.phaseVector.x / 180) * Math.PI
+          (this.phaseVector.x / 180) * Math.PI,
       ) *
       (dt / 1000);
     this.position.y +=
@@ -41,7 +41,7 @@ export default class TrackerSine extends Tracker {
       Math.sin(
         ((new Date().getTime() - this.initTime) / 1000) *
           this.frequencyVector.y +
-          (this.phaseVector.y / 180) * Math.PI
+          (this.phaseVector.y / 180) * Math.PI,
       ) *
       (dt / 1000);
 

@@ -61,7 +61,7 @@ export default class Receiver {
     addEvent('touchstart', engine.core.canvas, (event) => {
       engine.input.onClickStart(
         event.touches[0].clientX,
-        event.touches[0].clientY
+        event.touches[0].clientY,
       );
 
       // So touch would work in Android browser
@@ -195,7 +195,7 @@ export default class Receiver {
       engine.logs.log(
         'Input.addLastPressed',
         'Pressed key: ' + this.inverseKeyboard[keyCode],
-        now
+        now,
       );
     }
 

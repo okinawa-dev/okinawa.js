@@ -81,7 +81,7 @@ export default class Particles {
         0,
         0,
         engine.core.size.x,
-        engine.core.size.y
+        engine.core.size.y,
       );
 
       var particle,
@@ -99,7 +99,7 @@ export default class Particles {
           particle.position.x,
           particle.position.y,
           particle.size,
-          particle.size
+          particle.size,
         );
       }
 
@@ -108,7 +108,7 @@ export default class Particles {
         0,
         0,
         engine.core.size.x,
-        engine.core.size.y
+        engine.core.size.y,
       );
     }
   }

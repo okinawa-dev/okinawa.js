@@ -169,7 +169,7 @@ export default class Item {
 
     return new MATH.Point(
       center.x - this.size.x / 2,
-      center.y - this.size.y / 2
+      center.y - this.size.y / 2,
     );
   }
 
@@ -181,7 +181,7 @@ export default class Item {
     if (this._parent !== null) {
       parentPosition = this._parent.getPosition();
       transformedPosition = this._parent.rotation.transformPosition(
-        this.position
+        this.position,
       );
       result.x = transformedPosition.x + parentPosition.x;
       result.y = transformedPosition.y + parentPosition.y;
@@ -240,13 +240,13 @@ export default class Item {
 
   getRadius() {
     return Math.sqrt(
-      Math.pow(this.size.x / 2, 2) + Math.pow(this.size.y / 2, 2)
+      Math.pow(this.size.x / 2, 2) + Math.pow(this.size.y / 2, 2),
     );
   }
 
   getMagnitude() {
     return Math.sqrt(
-      this.speed.x * this.speed.x + this.speed.y * this.speed.y
+      this.speed.x * this.speed.x + this.speed.y * this.speed.y,
     );
   }
 
@@ -305,7 +305,7 @@ export default class Item {
     if (this.speed.x !== 0 || this.speed.y !== 0)
       this.move(
         (this.speed.x * dt) / engine.core.TIME_PER_FRAME,
-        (this.speed.y * dt) / engine.core.TIME_PER_FRAME
+        (this.speed.y * dt) / engine.core.TIME_PER_FRAME,
       );
 
     if (this.vRot !== 0) {
@@ -353,7 +353,7 @@ export default class Item {
         pos.x - (size.x / 2) * scale.x,
         pos.y - (size.y / 2) * scale.y,
         2,
-        2
+        2,
       );
     } else if ('center' == what) {
       ctx.fillStyle = '#FF0000';
@@ -365,7 +365,7 @@ export default class Item {
         pos.x - (size.x / 2) * scale.x,
         pos.y - (size.y / 2) * scale.y,
         size.x * scale.x,
-        size.y * scale.y
+        size.y * scale.y,
       );
     } else if ('direction' == what) {
       let speed = this.getSpeed();

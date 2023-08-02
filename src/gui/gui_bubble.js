@@ -20,7 +20,7 @@ Engine.GUI.GuiBubble = function () {
 };
 
 Engine.GUI.GuiBubble.prototype = Object.create(
-  Engine.GUI.GuiElement.prototype
+  Engine.GUI.GuiElement.prototype,
 );
 Engine.GUI.GuiBubble.prototype.constructor = Engine.GUI.GuiBubble;
 
@@ -40,7 +40,7 @@ Engine.GUI.GuiBubble.prototype.initialize = function (text) {
   this._text = new Engine.GUI.GuiText();
   this._text.setSize(
     this.size.x - this._borderWidth * 2 - 10,
-    this.size.y - this._borderWidth * 2 - 10
+    this.size.y - this._borderWidth * 2 - 10,
   );
   this._text.setPosition(0, 0);
 
@@ -63,7 +63,7 @@ Engine.GUI.GuiBubble.prototype.draw = function (ctx) {
     pos.x - (size.x / 2) * scale.x + 1,
     pos.y - (size.y / 2) * scale.y + 1,
     size.x * scale.x - 2,
-    size.y * scale.y - 2
+    size.y * scale.y - 2,
   );
 
   ctx.lineWidth = this._borderWidth;
@@ -76,7 +76,7 @@ Engine.GUI.GuiBubble.prototype.draw = function (ctx) {
     pos.x - (size.x / 2) * scale.x,
     pos.y - (size.y / 2) * scale.y,
     size.x * scale.x,
-    size.y * scale.y
+    size.y * scale.y,
   );
 
   var arrowPos = new Engine.MATH.Point();

@@ -8,7 +8,7 @@ Engine.GUI.GuiButton = function () {
 };
 
 Engine.GUI.GuiButton.prototype = Object.create(
-  Engine.GUI.GuiElement.prototype
+  Engine.GUI.GuiElement.prototype,
 );
 Engine.GUI.GuiButton.prototype.constructor = Engine.GUI.GuiButton;
 
@@ -29,7 +29,7 @@ Engine.GUI.GuiButton.prototype.activate = function () {
     'button_zone_' + this.guiId,
     pos,
     this.getSize(),
-    this.buttonToEmulate
+    this.buttonToEmulate,
   );
 
   if (this.spriteName !== '') {

@@ -53,7 +53,7 @@ export default class Scenes {
         this.currentSceneName +
         ' (' +
         this.currentSceneIndex +
-        ')'
+        ')',
     );
 
     engine.external('SCENE_CHANGE', null, null);
