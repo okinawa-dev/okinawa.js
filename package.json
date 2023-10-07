@@ -15,12 +15,12 @@
     "canvas"
   ],
   "engines": {},
-  "bugs": "https://github.com/okinawajs/okinawa.js/issues",
+  "bugs": "https://github.com/okinawa-dev/okinawa.js/issues",
   "license": "",
-  "homepage": "https://github.com/okinawajs/okinawa.js",
+  "homepage": "https://github.com/okinawa-dev/okinawa.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/okinawajs/okinawa.js.git"
+    "url": "git://github.com/okinawa-dev/okinawa.js.git"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
